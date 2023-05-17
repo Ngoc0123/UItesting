@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.oop_ui_test.Controller.LoginController">
+   <children>
+      <VBox alignment="CENTER" layoutX="150.0" layoutY="200.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label text="Online Video Store">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Label>
+            <AnchorPane prefHeight="338.0" prefWidth="800.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e2e3e4" height="200.0" layoutX="150.0" layoutY="71.0" stroke="BLACK" strokeType="INSIDE" width="500.0" />
+                  <Text layoutX="187.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username:" wrappingWidth="71.09259033203125" />
+                  <Text layoutX="187.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" wrappingWidth="71.09259033203125" />
+                  <TextField fx:id="userNameInput" layoutX="258.0" layoutY="108.0" prefHeight="26.0" prefWidth="363.0" />
+                  <TextField fx:id="passInput" layoutX="258.0" layoutY="149.0" prefHeight="26.0" prefWidth="363.0" />
+                  <Button layoutX="575.0" layoutY="211.0" mnemonicParsing="false" onAction="#logInButtonAction" text="Login" />
+                  <Rectangle fx:id="errorPane" arcHeight="5.0" arcWidth="5.0" disable="true" fill="#e2e3e4" height="200.0" layoutX="150.0" layoutY="71.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="500.0" />
+                  <Text fx:id="errorText" layoutX="242.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="315.892578125" />
+                  <Button fx:id="okayErrorButton" disable="true" layoutX="377.0" layoutY="210.0" mnemonicParsing="false" onAction="#errorButtonAction" prefHeight="26.0" prefWidth="46.0" text="Ok" visible="false" />
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
