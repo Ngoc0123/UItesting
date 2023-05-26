@@ -143,12 +143,22 @@ public class StoreController implements Initializable {
             return;
         }
 
+
         int index = 0;
         for(Item item : ManageItem.items){
             if(chosenId.matches(item.getId())){
                 break;
             }
             index++;
+        }
+        if(ManageCustomer.customersList.get(cusIndex).getLevel().matches("Guest") && (ManageItem.items.get(index).getLoanType().matches("2-day"))){
+            errorText.setText("You can not rent this item.");
+            return;
+        }
+
+        if(ManageItem.items.get(index).getStock() == 0){
+            errorText.setText("This item is out of stock.");
+            return;
         }
 
         Rental newRental = new Rental(ManageItem.items.get(index),1);
