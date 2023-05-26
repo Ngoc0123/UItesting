@@ -165,6 +165,7 @@ public class StoreController implements Initializable {
         ManageItem.items.get(index).setStock(ManageItem.items.get(index).getStock() - 1);
         ManageCustomer.customersList.get(cusIndex).setRentalNumber(ManageCustomer.customersList.get(cusIndex).getRentalNumber() + 1);
         ManageCustomer.customersList.get(cusIndex).getRentals().add(newRental);
+        chosenStock.setText("Stock: "+ManageItem.items.get(index).getStock());
 
         ManageCustomer.saveFile();
         ManageItem.saveFile();
