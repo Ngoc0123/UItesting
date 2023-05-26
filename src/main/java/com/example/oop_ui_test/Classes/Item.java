@@ -7,8 +7,9 @@ public class Item {
     private String loanType;
     private int stock;
     private double rentalFee;
-    private String genre;
+    private String genre = null;
     private boolean availability;
+    private String imgSrc;
 
     public Item(){}
 
@@ -78,10 +79,18 @@ public class Item {
         this.genre = genre;
     }
 
+    public void setImgSrc(String src){
+        this.imgSrc = src;
+    }
+
+    public String getImgSrc() {
+        return imgSrc;
+    }
+
     public void setAvailability(boolean availability) {
         this.availability = availability;
     }
-//
+
     public void printItemInfo(){
         System.out.println( "Title: "+this.title+"\n"+
                             "ID: "+this.id+"\n"+

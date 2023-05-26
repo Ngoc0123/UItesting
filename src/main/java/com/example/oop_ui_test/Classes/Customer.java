@@ -10,11 +10,10 @@ public class Customer extends Account{
   private int rentalNumber;
   private String level;
 
+  private int returned;
+  private int rewardPoint = 0;
 
-
-
-
-  private ArrayList<Rental> rentals;
+  private ArrayList<Rental> rentals = new ArrayList<Rental>();
 
   public String getLevel() {
     return level;
@@ -37,6 +36,22 @@ public class Customer extends Account{
 
   public int getRentalNumber() {
     return rentalNumber;
+  }
+
+  public int getReturned() {
+    return returned;
+  }
+
+  public int getRewardPoint() {
+    return rewardPoint;
+  }
+
+  public void setReturned(int returned) {
+    this.returned = returned;
+  }
+
+  public void setRewardPoint(int rewardPoint) {
+    this.rewardPoint = rewardPoint;
   }
 
   public ArrayList<Rental> getRentals() {

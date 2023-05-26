@@ -12,12 +12,14 @@ public class Rental {
     private int amount;
     private String status;
 
-    public Rental(String id,Item item, int amount, String status){
-        this.id = id;
+
+    public Rental(Item item, int amount){
+        this.id = item.getId();
         this.item = item;
         this.amount = amount;
-        this.status = status;
+        this.status = "On-going";
     }
+    public Rental(){}
 
     public int getAmount() {
         return amount;

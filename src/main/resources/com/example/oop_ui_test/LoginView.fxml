@@ -26,6 +26,7 @@
                   <TextField fx:id="userNameInput" layoutX="258.0" layoutY="108.0" prefHeight="26.0" prefWidth="363.0" />
                   <TextField fx:id="passInput" layoutX="258.0" layoutY="149.0" prefHeight="26.0" prefWidth="363.0" />
                   <Button layoutX="575.0" layoutY="211.0" mnemonicParsing="false" onAction="#logInButtonAction" text="Login" />
+                  <Button layoutX="501.0" layoutY="211.0" mnemonicParsing="false" onAction="#signUpButtonAction" text="Sign up" />
                   <Rectangle fx:id="errorPane" arcHeight="5.0" arcWidth="5.0" disable="true" fill="#e2e3e4" height="200.0" layoutX="150.0" layoutY="71.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="500.0" />
                   <Text fx:id="errorText" layoutX="242.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="315.892578125" />
                   <Button fx:id="okayErrorButton" disable="true" layoutX="377.0" layoutY="210.0" mnemonicParsing="false" onAction="#errorButtonAction" prefHeight="26.0" prefWidth="46.0" text="Ok" visible="false" />

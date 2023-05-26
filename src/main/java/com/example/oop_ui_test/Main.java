@@ -1,6 +1,8 @@
 package com.example.oop_ui_test;
 
 import com.example.oop_ui_test.Classes.Item;
+import com.example.oop_ui_test.Classes.ManageCustomer;
+import com.example.oop_ui_test.Classes.ManageItem;
 import com.example.oop_ui_test.Classes.Rental;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -23,6 +25,10 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+
+        ManageCustomer.readFile();
+        ManageItem.readFile();
+
         launch();
     }
 
