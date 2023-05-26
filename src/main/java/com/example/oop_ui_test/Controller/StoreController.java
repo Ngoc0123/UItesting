@@ -131,8 +131,18 @@ public class StoreController implements Initializable {
         stage.show();
     }
     @FXML
-    void switchtoRentals(MouseEvent event) {
+    void switchtoRentals(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("RentalsView.fxml"));
+        root = loader.load();
 
+        RentalsController rentalsController = loader.getController();
+
+        rentalsController.setCusIndex(cusIndex);
+        stage = (Stage)(((Node)event.getSource()).getScene().getWindow());
+        scene = new Scene(root);
+
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -166,6 +176,7 @@ public class StoreController implements Initializable {
         ManageCustomer.customersList.get(cusIndex).setRentalNumber(ManageCustomer.customersList.get(cusIndex).getRentalNumber() + 1);
         ManageCustomer.customersList.get(cusIndex).getRentals().add(newRental);
         chosenStock.setText("Stock: "+ManageItem.items.get(index).getStock());
+        errorText.setText("This item has been added to your rentals list.");
 
         ManageCustomer.saveFile();
         ManageItem.saveFile();
@@ -190,7 +201,7 @@ public class StoreController implements Initializable {
         int column = 0,row = 0;
         try {
             for (int i = 0; i < items.size(); i++) {
-                FXMLLoader fxmlLoader = new FXMLLoader();// = new FXMLLoader(Main.class.getResource("Item.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(Main.class.getResource("Item.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
 

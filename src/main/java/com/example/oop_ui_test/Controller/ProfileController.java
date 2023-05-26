@@ -122,10 +122,19 @@ public class ProfileController implements Initializable {
     }
 
     @FXML
-    void switchtoRentals(MouseEvent event) {
+    void switchtoRentals(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("RentalsView.fxml"));
+        root = loader.load();
 
+        RentalsController rentalsController = loader.getController();
+
+        rentalsController.setCusIndex(cusIndex);
+        stage = (Stage)(((Node)event.getSource()).getScene().getWindow());
+        scene = new Scene(root);
+
+        stage.setScene(scene);
+        stage.show();
     }
-
 
     @FXML
     void confirmButtonAction(ActionEvent event) {

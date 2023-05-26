@@ -81,4 +81,8 @@ public class Customer extends Account{
   public void setRentalNumber(int rentalNumber) {
     this.rentalNumber = rentalNumber;
   }
+
+  public void setRentals(ArrayList<Rental> rentals) {
+    this.rentals = rentals;
+  }
 }
