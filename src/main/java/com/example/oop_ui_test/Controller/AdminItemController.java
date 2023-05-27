@@ -17,7 +17,7 @@ import java.nio.file.Path;
 import java.util.*;
 
 
-public class AdminController implements Initializable {
+public class AdminItemController implements Initializable {
 
     @FXML
     private ListView<String> list;
@@ -551,7 +551,9 @@ public class AdminController implements Initializable {
     private void updateItem(){
         Item item = new Item();
 
-
+        GenreBox.getSelectionModel().getSelectedItem();
+        renTalType.getSelectionModel().getSelectedItem();
+        loanTypeBox.getSelectionModel().getSelectedItem();
 
         if (Etex9.getText() == null || Etex9.getText().length() < 1) {
             ErrorMess.setText("Please enter Item name");
@@ -628,9 +630,7 @@ public class AdminController implements Initializable {
 
     }
     private void getGenreBox(ActionEvent event){
-        Item newItem = new Item();
         String GenreGet = GenreBox.getValue();
-        newItem.setGenre(GenreGet);
 
     }
     private void getRentalType(ActionEvent event){
