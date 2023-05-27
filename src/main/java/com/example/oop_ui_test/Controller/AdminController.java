@@ -1,18 +1,11 @@
 package com.example.oop_ui_test.Controller;
 
-import com.example.oop_ui_test.Classes.Customer;
-import com.example.oop_ui_test.Classes.Item;
-import com.example.oop_ui_test.Classes.ManageCustomer;
-import com.example.oop_ui_test.Classes.ManageItem;
+import com.example.oop_ui_test.Classes.*;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
@@ -31,11 +24,16 @@ public class AdminController implements Initializable {
     private ArrayList<Customer> customers;
     private ArrayList<Item> items;
 
+    private ArrayList<Rental> rental;
+
     @FXML
     private Button CancelButton;
 
     @FXML
     private Text Customertext;
+
+    @FXML
+    private ListView<String> RentalDetail;
 
     @FXML
     private Button DeleButton;
@@ -48,6 +46,9 @@ public class AdminController implements Initializable {
 
     @FXML
     private Pane ErrorPane;
+
+    @FXML
+    private Text Etex0;
 
     @FXML
     private Text Etex1;
@@ -68,7 +69,11 @@ public class AdminController implements Initializable {
     private TextField Etex14;
 
     @FXML
+    private TextField Etex15;
+
+    @FXML
     private Text Etex2;
+
 
     @FXML
     private Text Etex3;
@@ -154,6 +159,20 @@ public class AdminController implements Initializable {
     @FXML
     private Button update;
 
+    @FXML
+    private ChoiceBox<String> GenreBox;
+    private final String[] Genreword = {"Action", "Horror", "Drama", "Comedy"};
+
+    @FXML
+    private ChoiceBox<String> loanTypeBox;
+
+    private final String[] LoanTypeword = {"1-week loan", "2-days loan"};
+
+    @FXML
+    private ChoiceBox<String> renTalType;
+
+    private final String[] rentalType ={"Old Record", "DVD", "Game"};
+
     private String chosenID;
     private String chosenID2;
     private int choseIndex;
@@ -189,13 +208,6 @@ public class AdminController implements Initializable {
     @FXML
     private void CustomerExit(MouseEvent event) {
         Customertext.setUnderline(false);
-    }
-
-    @FXML
-    private void listOnClick(MouseEvent event){
-        list.setOnMouseClicked(event1 -> {
-            String selectedItem = list.getSelectionModel().getSelectedItem().toString();
-        });
     }
 
 
@@ -237,6 +249,7 @@ public class AdminController implements Initializable {
         onItemP();
 
         //avoid spamming the function
+        RentalDetail.setVisible(false);
         Itemtext.setDisable(true);
         Customertext.setDisable(false);
         information.setVisible(false);
@@ -316,7 +329,11 @@ public class AdminController implements Initializable {
                 tex12.setText(cus.getPhone());
                 tex13.setText(cus.getUsername());
                 tex14.setText("" + cus.getPassword());
-                tex15.setText("" + cus.getRentals());
+                RentalDetail.setVisible(true);
+
+//                RentalDetail.getItems().addAll(retal.toString());
+
+                tex15.setVisible(false);
                 tex16.setVisible(false);
             }
         }
@@ -353,6 +370,7 @@ public class AdminController implements Initializable {
         choseIndex = list.getSelectionModel().getSelectedIndex();
         chosenID2 = list.getSelectionModel().getSelectedItem();
         information.setVisible(true);
+        RentalDetail.getItems().clear();
 
 
         if (Customertext.isDisable()){
@@ -365,6 +383,8 @@ public class AdminController implements Initializable {
                 onCusSelect(chosenID2);
             }
         }
+
+
 
         if (Itemtext.isDisable()){
             DeleButton.setVisible(true);
@@ -385,6 +405,10 @@ public class AdminController implements Initializable {
     private void onEditButton(){
         editPane.setVisible(true);
         if(Customertext.isDisable()) {
+            loanTypeBox.setVisible(false);
+            renTalType.setVisible(false);
+            Etex10.setVisible(true);
+            Etex11.setVisible(true);
             Etex1.setText("ID:");
             Etex2.setText("Name:");
             Etex3.setText("Address:");
@@ -407,23 +431,29 @@ public class AdminController implements Initializable {
             }
         }
         if(Itemtext.isDisable()){
-            Etex1.setText("ID:");
-            Etex2.setText("Title:");
+            loanTypeBox.setVisible(true);
+            renTalType.setVisible(true);
+
+            Etex0.setText("ID");
+            Etex1.setText("Title:");
+            Etex2.setText("Genre:");
             Etex3.setText("Rental Type:");
             Etex4.setText("Loan Type:");
             Etex5.setText("Stock");
             Etex6.setText("Rental Fee:");
             Etex7.setText("Rental Status");
 
-            Etex8.setText(customers.get(choseIndex).getId());
+            Etex8.setText(items.get(choseIndex).getId());
             for (Item item : ManageItem.items) {
                 if (chosenID2.matches(item.getId())) {
+                    Etex8.setPromptText(item.getId());
                     Etex9.setPromptText(item.getTitle());
-                    Etex10.setPromptText(item.getRentalType());
-                    Etex11.setPromptText(item.getLoanType());
+                    Etex10.setVisible(false);
+                    Etex11.setVisible(false);
                     Etex12.setPromptText(""+item.getStock());
                     Etex13.setPromptText("" + item.getRentalFee());
                     Etex14.setPromptText("null");
+                    Etex15.setPromptText("null");
 
                 }
             }
@@ -451,6 +481,7 @@ public class AdminController implements Initializable {
 
     private void updateCustomer(){
         Customer cus = new Customer();
+        Rental rental1 = new Rental();
 
         if (Etex9.getText() == null || Etex9.getText().length() < 1) {
             ErrorMess.setText("Please enter your name");
@@ -463,6 +494,11 @@ public class AdminController implements Initializable {
             ErrorPane.setVisible(true);
             return;
         }
+        if(renTalType.getValue().equals("Game")){
+            Etex3.setVisible(false);
+            GenreBox.setVisible(false);
+        }
+
 
 
         if (!checkNumber(Etex11.getText()) || Etex11.getText() == null ||Etex11.getText().length() != 10) {
@@ -492,6 +528,10 @@ public class AdminController implements Initializable {
         cus.setPhone(Etex11.getText());
         cus.setUsername(Etex12.getText());
         cus.setPassword(Etex13.getText());
+        //
+        //RENTAL HERE
+        //
+        //
 
 
         ManageCustomer.customersList.set(choseIndex,cus);
@@ -511,29 +551,19 @@ public class AdminController implements Initializable {
     private void updateItem(){
         Item item = new Item();
 
+
+
         if (Etex9.getText() == null || Etex9.getText().length() < 1) {
             ErrorMess.setText("Please enter Item name");
             ErrorPane.setVisible(true);
             return;
         }
-
-        if (Etex10.getText() == null || Etex10.getText().length() < 1 ) {
-            ErrorMess.setText("Missing Rental Type,Rental Type include: Record, DVD, or Game. Please input again ");
-            ErrorPane.setVisible(true);
-            return;
-
-        } else if (!Etex10.getText().equals("Record") || !Etex10.getText().equals("DVD") || !Etex10.getText().equals("Game")) {
-            ErrorMess.setText("Rental Type include: Record, DVD, or Game. Please input again");
-            ErrorPane.setVisible(true);
-
-        }
+        System.out.println(item.getRentalType());
+        System.out.println(item.getGenre());
+        System.out.println(item.getLoanType());
 
 
-        if (Etex11.getText() == null ||Etex11.getText().length() <1 ||!Etex11.getText().equals("1-week loan") || !Etex11.getText().equals("2-day loan")) {
-            ErrorMess.setText("Invalid day loan, The day Loan included: 2-day loan or 1-week loan. Please insert again");
-            ErrorPane.setVisible(true);
-            return;
-        }
+
 
         if (Etex12.getText() == null|| !checkNumber(Etex12.getText())) {
             ErrorMess.setText("Please insert quantity of the Item");
@@ -547,8 +577,9 @@ public class AdminController implements Initializable {
         }
         item.setId(Etex8.getText());
         item.setTitle(Etex9.getText());
-        item.setRentalType(Etex10.getText());
-        item.setLoanType(Etex11.getText());
+        item.setGenre(GenreBox.getValue());
+        item.setRentalType(renTalType.getValue());
+        item.setLoanType(loanTypeBox.getValue());
         item.setStock(Integer.parseInt(Etex12.getText()));
         item.setRentalFee(Double.parseDouble(Etex13.getText()));
 
@@ -557,9 +588,6 @@ public class AdminController implements Initializable {
 
 
         Etex9.setText("");
-        Etex10.setText("");
-        Etex11.setText("");
-        Etex12.setText("");
         Etex13.setText("");
 
         editPane.setVisible(false);
@@ -588,5 +616,28 @@ public class AdminController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.customers = ManageCustomer.customersList;
+
+        GenreBox.getItems().addAll(Genreword);
+        loanTypeBox.getItems().addAll(LoanTypeword);
+        renTalType.getItems().addAll(rentalType);
+
+        GenreBox.setOnAction(this::getGenreBox);
+        loanTypeBox.setOnAction(this::getLoanType);
+        renTalType.setOnAction(this::getRentalType);
+
+
     }
+    private void getGenreBox(ActionEvent event){
+        Item newItem = new Item();
+        String GenreGet = GenreBox.getValue();
+        newItem.setGenre(GenreGet);
+
+    }
+    private void getRentalType(ActionEvent event){
+        String rentalTypeGet = renTalType.getValue();
+    }
+    private void getLoanType(ActionEvent event){
+        String loanTypeGet = loanTypeBox.getValue();
+    }
+
 }
