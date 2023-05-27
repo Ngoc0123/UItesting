@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
@@ -16,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.oop_ui_test.Controller.AdminController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.oop_ui_test.Controller.AdminItemController">
    <children>
       <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true">
          <image>
@@ -94,8 +95,9 @@
                                     </VBox>
                                  </children>
                               </HBox>
-                              <Button fx:id="EditButton" layoutX="175.0" layoutY="248.0" mnemonicParsing="false" onAction="#onEditButton" prefHeight="25.0" prefWidth="51.0" text="Edit" />
-                              <Button fx:id="DeleButton" layoutX="256.0" layoutY="248.0" mnemonicParsing="false" onAction="#onDeleButton" text="Delete" visible="false" />
+                              <ListView fx:id="RentalDetail" layoutX="88.0" layoutY="179.0" prefHeight="98.0" prefWidth="144.0" visible="false" />
+                              <Button fx:id="EditButton" layoutX="236.0" layoutY="248.0" mnemonicParsing="false" onAction="#onEditButton" prefHeight="25.0" prefWidth="65.0" text="Edit" />
+                              <Button fx:id="DeleButton" layoutX="234.0" layoutY="216.0" mnemonicParsing="false" onAction="#onDeleButton" prefHeight="25.0" prefWidth="65.0" text="Delete" visible="false" />
                            </children>
                         </Pane>
                      </children>
@@ -109,8 +111,9 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b4c1cd" height="259.0" stroke="BLACK" strokeType="INSIDE" width="296.0" />
             <HBox layoutX="-1.0" prefHeight="259.0" prefWidth="296.0">
                <children>
-                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="15.0">
                      <children>
+                        <Text fx:id="Etex0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" />
                         <Text fx:id="Etex1" strokeType="OUTSIDE" strokeWidth="0.0" text="Titile:" />
                         <Text fx:id="Etex2" strokeType="OUTSIDE" strokeWidth="0.0" text="Genre:" />
                         <Text fx:id="Etex3" strokeType="OUTSIDE" strokeWidth="0.0" text="Rental Type:" />
@@ -126,15 +129,16 @@
                         <Insets top="4.0" />
                      </padding>
                   </VBox>
-                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="11.0">
+                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="6.0">
                      <children>
-                        <TextField fx:id="Etex8" />
+                        <TextField fx:id="Etex8" editable="false" />
                         <TextField fx:id="Etex9" />
                         <TextField fx:id="Etex10" />
                         <TextField fx:id="Etex11" />
                         <TextField fx:id="Etex12" />
                         <TextField fx:id="Etex13" />
                         <TextField fx:id="Etex14" />
+                        <TextField fx:id="Etex15" prefHeight="22.0" prefWidth="100.0" />
                      </children>
                      <padding>
                         <Insets top="3.0" />
@@ -142,6 +146,9 @@
                   </VBox>
                </children>
             </HBox>
+            <ChoiceBox fx:id="GenreBox" layoutX="103.0" layoutY="64.0" prefHeight="25.0" prefWidth="100.0" />
+            <ChoiceBox fx:id="renTalType" layoutX="102.0" layoutY="96.0" prefHeight="25.0" prefWidth="100.0" />
+            <ChoiceBox fx:id="loanTypeBox" layoutX="103.0" layoutY="125.0" prefHeight="25.0" prefWidth="100.0" />
             <Button fx:id="update" layoutX="228.0" layoutY="226.0" mnemonicParsing="false" onAction="#onUpdateButton" prefHeight="25.0" prefWidth="58.0" text="Update!">
                <font>
                   <Font size="11.0" />
