@@ -47,6 +47,8 @@ public class StoreController implements Initializable {
     private Label myAccountLabel;
     @FXML
     private Text searchError = new Text();
+    @FXML
+    private Text errorText;
 
     @FXML
     private ChoiceBox<String> typeChoice;
@@ -73,8 +75,7 @@ public class StoreController implements Initializable {
 
     @FXML
     private Text chosenRentalType;
-    @FXML
-    private Text errorText = new Text();
+
 
 
     public StoreController() {
