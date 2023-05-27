@@ -463,7 +463,7 @@ public class AdminController implements Initializable {
         cus.setPhone(Etex11.getText());
         cus.setUsername(Etex12.getText());
         cus.setPassword(Etex13.getText());
-        cus.setRentals(cus.getRentals());
+//        cus.setRentals(cus.getRentals()); Still Error
 
 
         ManageCustomer.customersList.set(choseIndex,cus);
@@ -478,6 +478,10 @@ public class AdminController implements Initializable {
 
         editPane.setVisible(false);
 
+    }
+
+    private void updateItem(){
+        Item item = new Item();
     }
 
     private boolean checkNumber(String str){
