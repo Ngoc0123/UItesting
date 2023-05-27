@@ -28,7 +28,8 @@ public class ProfileController implements Initializable {
     private Scene scene;
     private Parent root;
 
-
+    @FXML
+    private Text rewardText;
     @FXML
     private Text addressText;
     @FXML
@@ -55,29 +56,28 @@ public class ProfileController implements Initializable {
     @FXML
     private AnchorPane updatePane;
     @FXML
-    private Text itemsLabel;
+    private Text itemsText;
     @FXML
-    private Text rentalsLabel;
+    private Text rentalsText;
 
     @FXML
     void enterItems(MouseEvent event) {
-
+        itemsText.setUnderline(true);
     }
 
     @FXML
     void exitItems(MouseEvent event) {
-
+        itemsText.setUnderline(false);
     }
 
     @FXML
     void enterRentals(MouseEvent event) {
-
+        rentalsText.setUnderline(true);
     }
-
-
 
     @FXML
     void exitRentals(MouseEvent event) {
+        rentalsText.setUnderline(false);
     }
 
 
@@ -89,6 +89,7 @@ public class ProfileController implements Initializable {
         addressText.setText("Address: "+customer.getAddress());
         phoneText.setText("Phone Number: "+customer.getPhone());
         typeText.setText("Type of customer: "+customer.getLevel());
+        rewardText.setText("Reward point :"+customer.getRewardPoint());
     }
 
 

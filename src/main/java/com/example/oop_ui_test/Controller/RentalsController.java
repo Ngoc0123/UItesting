@@ -35,6 +35,11 @@ public class RentalsController implements Initializable {
     private int cusIndex;
     private Customer currentCus = new Customer();
     private Item chosenItem = new Item();
+    @FXML
+    private Text numRenText;
+
+    @FXML
+    private Text returnedText;
     private int chosenItemIndex = 0;
     private int chosenRentalIndex;
     @FXML
@@ -49,6 +54,9 @@ public class RentalsController implements Initializable {
 
     @FXML
     private Text chosenName;
+
+    @FXML
+    private Text itemsText;
 
     @FXML
     private ImageView chosenPic;
@@ -72,12 +80,22 @@ public class RentalsController implements Initializable {
 
     @FXML
     void enterProfile(MouseEvent event) {
-
+        myAccountLabel.setUnderline(true);
     }
 
     @FXML
     void exitProfile(MouseEvent event) {
+        myAccountLabel.setUnderline(false);
+    }
 
+    @FXML
+    void enterItems(MouseEvent event) {
+        itemsText.setUnderline(true);
+    }
+
+    @FXML
+    void exitItems(MouseEvent event) {
+        itemsText.setUnderline(false);
     }
 
     @FXML
@@ -89,10 +107,12 @@ public class RentalsController implements Initializable {
 
         currentCus.getRentals().get(chosenRentalIndex).setStatus("Returned");
         ManageCustomer.customersList.get(cusIndex).setRentals(currentCus.getRentals());
-        chosenStatus.setText("Returned");
+        chosenStatus.setText("Status: Returned");
         ManageItem.items.get(chosenItemIndex).setStock(ManageItem.items.get(chosenItemIndex).getStock()+1);
         ManageCustomer.customersList.get(cusIndex).setReturned(ManageCustomer.customersList.get(cusIndex).getReturned()+1);
         ManageCustomer.updateLevel(cusIndex);
+
+        returnedText.setText( "Returned: "+String.valueOf(ManageCustomer.customersList.get(cusIndex).getReturned()));
         errorText.setText("Success!!!");
 
         ManageItem.saveFile();
@@ -176,6 +196,10 @@ public class RentalsController implements Initializable {
         for(int j = 1; j <= currentCus.getRentals().size();j++){
             list.add(j+"."+currentCus.getRentals().get(j-1).getId());
         }
+
+        numRenText.setText("Number of rental: "+currentCus.getRentals().size());
+        returnedText.setText("Returned: "+currentCus.getReturned());
+
 
         myListView.getItems().addAll(list);
         chosenRentalIndex = 0;

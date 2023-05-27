@@ -1,18 +1,11 @@
-C001,Minh Dinh,Irwin,1234567890,14,7,minhdinh,123456,0
-I001-2001,1,Returned
-I002-1988,1,Returned
-I005-2015,1,Returned
-I002-1988,1,Returned
-I002-1988,1,Returned
+C001,Minh Dinh,Irwin,1234567890,7,6,minhdinh,123456,10
 I002-1988,1,Returned
 I003-1992,1,Returned
+I002-1988,1,Returned
+I001-2001,1,Returned
+I004-1999,1,Returned
+I001-2001,1,Returned
 I003-1992,1,On-going
-I003-1992,1,On-going
-I006-2013,1,On-going
-I006-2013,1,On-going
-I006-2013,1,On-going
-I006-2013,1,On-going
-I004-1999,1,On-going
 C002,Hong Wang,20 Irwin Street,0424173255,2,0,wanghong98,987654,0
 I005-2015,1,On-going
 I006-2013,1,On-going
