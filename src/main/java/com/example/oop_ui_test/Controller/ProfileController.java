@@ -56,29 +56,28 @@ public class ProfileController implements Initializable {
     @FXML
     private AnchorPane updatePane;
     @FXML
-    private Text itemsLabel;
+    private Text itemsText;
     @FXML
-    private Text rentalsLabel;
+    private Text rentalsText;
 
     @FXML
     void enterItems(MouseEvent event) {
-
+        itemsText.setUnderline(true);
     }
 
     @FXML
     void exitItems(MouseEvent event) {
-
+        itemsText.setUnderline(false);
     }
 
     @FXML
     void enterRentals(MouseEvent event) {
-
+        rentalsText.setUnderline(true);
     }
-
-
 
     @FXML
     void exitRentals(MouseEvent event) {
+        rentalsText.setUnderline(false);
     }
 
 

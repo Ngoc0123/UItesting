@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -85,6 +86,8 @@ public class StoreController implements Initializable {
 
     @FXML
     private ScrollPane scroll;
+    @FXML
+    private TextField searchbar;
 
     @FXML
     private Button rentingButton;
@@ -206,6 +209,15 @@ public class StoreController implements Initializable {
         ManageItem.saveFile();
     }
 
+    @FXML
+    void searchAction(MouseEvent event) throws IOException {
+        search(searchbar.getText());
+    }
+    @FXML
+    void searchActionenter(ActionEvent event) throws IOException {
+        search(searchbar.getText());
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -281,5 +293,28 @@ public class StoreController implements Initializable {
         else {
             return 0;
         }
+    }
+
+    public void search(String input) throws IOException {
+
+        for(int i = 0; i< ManageItem.items.size();i++){
+            if(ManageItem.items.get(i).getId().toLowerCase().matches(input.toLowerCase()+".*") || ManageItem.items.get(i).getTitle().toLowerCase().matches(".*"+input.toLowerCase()+".*")){
+                grid.getChildren().clear();
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(Main.class.getResource("Item.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+
+                ItemController itemController = fxmlLoader.getController();
+                itemController.setData(ManageItem.items.get(i),listener);
+
+                grid.add(anchorPane,0,0);
+
+
+                GridPane.setMargin(anchorPane,new Insets(10));
+                return;
+            }
+        }
+
+
     }
 }
