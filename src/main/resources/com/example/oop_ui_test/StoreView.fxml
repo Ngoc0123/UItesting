@@ -133,7 +133,7 @@
                                                 <Insets left="20.0" />
                                              </VBox.margin>
                                           </Text>
-                                          <Text fx:id="chosenLoanType" strokeType="OUTSIDE" strokeWidth="0.0" text="Rental type:" wrappingWidth="207.7367286682129">
+                                          <Text fx:id="chosenLoanType" strokeType="OUTSIDE" strokeWidth="0.0" text="Loan type: " wrappingWidth="207.7367286682129">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
