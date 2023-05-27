@@ -6,6 +6,7 @@ import com.example.oop_ui_test.Classes.ManageCustomer;
 import com.example.oop_ui_test.Classes.ManageItem;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -325,7 +326,8 @@ public class AdminController implements Initializable {
     @FXML
     private void onDeleButton(){
         ManageItem.items.remove(choseIndex);
-        list.getItems().clear();
+        list.getItems().remove(choseIndex);
+        ManageItem.saveFile();
     }
 
     //Print Item ID, name
@@ -379,15 +381,39 @@ public class AdminController implements Initializable {
 
     }
     @FXML
-    private void onEditButton(){};
+    private void onEditButton(){editPane.setVisible(true);}
     @FXML
     private void onUpdateButton(){};
 
     @FXML
-    private void CancelButtonPressed(){};
+    private void CancelButtonPressed(){editPane.setVisible(false);}
 
     @FXML
     private void ukiButton(){};
+
+    private void updateCustomer(String str){
+        Etex1.setText("ID:");
+        Etex2.setText("Name:");
+        Etex3.setText("Address:");
+        Etex4.setText("Phone:");
+        Etex5.setText("User Name");
+        Etex6.setText("Password:");
+        Etex7.setVisible(false);
+
+
+        for(Customer cus : ManageCustomer.customersList) {
+            if (str.matches(cus.getId())) {
+                Etex8.setPromptText(cus.getId());
+                Etex9.setPromptText(cus.getName());
+                Etex10.setPromptText(cus.getAddress());
+                Etex11.setPromptText(cus.getPhone());
+                Etex12.setPromptText(cus.getUsername());
+                Etex13.setPromptText("" + cus.getPassword());
+                Etex14.setVisible(false);
+
+            }
+        }
+    }
 
 
 
