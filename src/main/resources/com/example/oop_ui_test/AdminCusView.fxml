@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.oop_ui_test.Controller.AdminCusController">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true">
+         <image>
+            <Image url="@img/adminBG.jpg" />
+         </image>
+      </ImageView>
+      <BorderPane prefHeight="600.0" prefWidth="800.0">
+         <top>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Online Renting" textAlignment="CENTER" wrappingWidth="324.33673095703125" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Text>
+         </top>
+         <center>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="800.0">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" prefHeight="27.0" prefWidth="110.0" text="Admin" textFill="#ff3b3b">
+                           <font>
+                              <Font size="18.0" />
+                           </font></Label>
+                        <ImageView fitHeight="43.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/icon.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="26.0" prefWidth="600.0" spacing="40.0">
+                     <children>
+                        <Text fx:id="itemText" onMouseEntered="#itemEnter" onMouseExited="#itemExit" onMousePressed="#onItemPress" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="2.0" text="Item" textAlignment="CENTER" wrappingWidth="98.13671875">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="customerText" stroke="#fffefe" strokeType="OUTSIDE" strokeWidth="2.0" text="Customer" textAlignment="CENTER" wrappingWidth="98.13671875">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="0.0" prefWidth="800.0">
+                     <children>
+                        <TextField fx:id="searchBar" onAction="#searchBarEnter" prefHeight="26.0" prefWidth="750.0">
+                           <HBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <ImageView fitHeight="26.0" fitWidth="30.0" onMousePressed="#searchBarPress" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/Search_Icon.svg.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets top="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="17.0" prefWidth="800.0">
+                     <children>
+                        <Text fx:id="errorText" strokeType="OUTSIDE" strokeWidth="0.0" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="44.0" prefWidth="800.0">
+                     <children>
+                        <ChoiceBox fx:id="levelChoice" prefHeight="1.0" prefWidth="150.0">
+                           <HBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </HBox.margin>
+                        </ChoiceBox>
+                        <Button mnemonicParsing="false" onAction="#onRefresh" text="Refresh">
+                           <HBox.margin>
+                              <Insets left="20.0" top="10.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="387.0" prefWidth="800.0">
+                     <children>
+                        <ListView fx:id="listView" prefHeight="360.0" prefWidth="251.0">
+                           <HBox.margin>
+                              <Insets bottom="20.0" left="10.0" />
+                           </HBox.margin></ListView>
+                        <AnchorPane prefHeight="377.0" prefWidth="458.0">
+                           <HBox.margin>
+                              <Insets bottom="10.0" />
+                           </HBox.margin>
+                           <children>
+                              <VBox alignment="TOP_CENTER" layoutX="32.0" layoutY="41.0" prefHeight="376.8" prefWidth="584.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <ImageView fitHeight="150.0" fitWidth="152.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@img/icon.png" />
+                                       </image>
+                                    </ImageView>
+                                    <HBox prefHeight="19.0" prefWidth="538.0">
+                                       <children>
+                                          <Text fx:id="chosenID" strokeType="OUTSIDE" strokeWidth="0.0" text="ID: " wrappingWidth="163.09608268737793" />
+                                          <Text fx:id="chosenUsername" strokeType="OUTSIDE" strokeWidth="0.0" text="Username: " wrappingWidth="175.97967529296875" />
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="21.0" prefWidth="538.0">
+                                       <children>
+                                          <Text fx:id="chosenName" strokeType="OUTSIDE" strokeWidth="0.0" text="Name: " wrappingWidth="163.1820831298828" />
+                                          <Text fx:id="chosenPassword" strokeType="OUTSIDE" strokeWidth="0.0" text="Password: " wrappingWidth="166.23981094360352" />
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="22.0" prefWidth="538.0">
+                                       <children>
+                                          <Text fx:id="chosenAddress" strokeType="OUTSIDE" strokeWidth="0.0" text="Address: " wrappingWidth="471.5926055908203" />
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="22.0" prefWidth="478.0">
+                                       <children>
+                                          <Text fx:id="chosenPhone" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone: " wrappingWidth="164.2980499267578" />
+                                          <Text fx:id="chosenLevel" strokeType="OUTSIDE" strokeWidth="0.0" text="Type of member: " wrappingWidth="189.33672714233398" />
+                                          <Text fx:id="chosenReward" strokeType="OUTSIDE" strokeWidth="0.0" text="Reward point: " wrappingWidth="123.69412994384766" />
+                                       </children>
+                                    </HBox>
+                                    <HBox prefHeight="130.0" prefWidth="478.0">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="List of rentals:" wrappingWidth="86.482421875" />
+                                          <ListView fx:id="chosenListRental" prefHeight="130.0" prefWidth="174.0" />
+                                          <VBox prefHeight="130.0" prefWidth="81.0" />
+                                          <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+                                             <children>
+                                                <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="Add" />
+                                                <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="Update" />
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets top="10.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <padding>
+                                    <Insets left="30.0" right="30.0" />
+                                 </padding>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

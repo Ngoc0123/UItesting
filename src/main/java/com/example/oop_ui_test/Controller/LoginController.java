@@ -73,7 +73,7 @@ public class LoginController implements Initializable {
 
         if(stringCompare(userNameInput.getText(),"admin") == 0){
             if(stringCompare(passInput.getText(),"123")==0){
-                FXMLLoader loader = new FXMLLoader(Main.class.getResource("AdminView.fxml"));
+                FXMLLoader loader = new FXMLLoader(Main.class.getResource("AdminItemView.fxml"));
                 root = loader.load();
 
                 stage = (Stage)(((Node)event.getSource()).getScene().getWindow());
