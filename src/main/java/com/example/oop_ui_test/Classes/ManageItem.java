@@ -74,4 +74,12 @@ public class ManageItem {
             e.printStackTrace();
         }
     }
+    public static boolean isExist(String str) {
+        for (Item item : items) {
+            if (item.getId().matches(str)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
