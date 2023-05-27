@@ -20,7 +20,7 @@
    <children>
       <BorderPane layoutX="286.0" layoutY="237.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Online Renting Video" textAlignment="CENTER" BorderPane.alignment="CENTER">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Online Renting Video" textAlignment="CENTER" wrappingWidth="376.9921875" BorderPane.alignment="CENTER">
                <font>
                   <Font size="40.0" />
                </font>
@@ -36,25 +36,25 @@
                      <children>
                         <AnchorPane prefHeight="22.0" prefWidth="198.0">
                            <children>
-                              <Text fill="#454ddf" layoutX="50.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Items" textAlignment="CENTER" underline="true" wrappingWidth="95.73670196533203">
+                              <Text fill="#454ddf" layoutX="64.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Items" textAlignment="CENTER" underline="true" wrappingWidth="95.73670196533203">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
                               </Text>
                            </children>
                         </AnchorPane>
-                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                        <AnchorPane prefHeight="27.0" prefWidth="200.0">
                            <children>
-                              <Text fx:id="rentalsText" layoutX="51.0" layoutY="35.0" onMouseEntered="#enterRentals" onMouseExited="#exitRentals" onMousePressed="#switchtoRentals" strokeType="OUTSIDE" strokeWidth="0.0" text="Rentals" textAlignment="CENTER" wrappingWidth="95.73670196533203">
+                              <Text fx:id="rentalsText" layoutX="52.0" layoutY="30.0" onMouseEntered="#enterRentals" onMouseExited="#exitRentals" onMousePressed="#switchtoRentals" strokeType="OUTSIDE" strokeWidth="0.0" text="Rentals" textAlignment="CENTER" wrappingWidth="95.73670196533203">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
                               </Text>
                            </children>
                         </AnchorPane>
-                        <AnchorPane prefHeight="50.0" prefWidth="222.0" />
+                        <AnchorPane prefHeight="17.0" prefWidth="222.0" />
                         <Label fx:id="myAccountLabel" onMouseEntered="#enterProfile" onMouseExited="#exitProfile" onMousePressed="#switchtoProfile" prefHeight="18.0" prefWidth="72.0" text="My Account" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" onMouseEntered="#enterProfile" onMouseExited="#exitProfile" onMousePressed="#switchtoProfile" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="36.0" fitWidth="50.0" onMouseEntered="#enterProfile" onMouseExited="#exitProfile" onMousePressed="#switchtoProfile" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@img/icon.png" />
                            </image>
@@ -69,7 +69,7 @@
                         <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
                   </Text>
-                  <HBox prefHeight="41.0" prefWidth="807.0">
+                  <HBox prefHeight="26.0" prefWidth="807.0">
                      <children>
                         <TextField fx:id="searchbar" onAction="#searchActionenter" prefHeight="26.0" prefWidth="768.0" promptText="Search name or id" />
                         <ImageView fitHeight="27.0" fitWidth="28.0" onMousePressed="#searchAction" pickOnBounds="true" preserveRatio="true">
@@ -79,7 +79,8 @@
                         </ImageView>
                      </children>
                   </HBox>
-                  <HBox prefHeight="48.0" prefWidth="807.0" />
+                  <Text fx:id="searchError" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="426.13666915893555" />
+                  <HBox prefHeight="29.0" prefWidth="807.0" />
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
                         <ScrollPane fx:id="scroll" prefHeight="400.0" prefWidth="350.0">

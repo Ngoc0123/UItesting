@@ -44,6 +44,8 @@ public class StoreController implements Initializable {
     private ArrayList<Item> items;
     @FXML
     private Label myAccountLabel;
+    @FXML
+    private Text searchError = new Text();
 
 
 
@@ -234,35 +236,9 @@ public class StoreController implements Initializable {
             };
         }
 
-        int column = 0,row = 0;
-        try {
-            for (int i = 0; i < items.size(); i++) {
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(Main.class.getResource("Item.fxml"));
-                AnchorPane anchorPane = fxmlLoader.load();
+        refreshGrid();
 
-                ItemController itemController = fxmlLoader.getController();
-                itemController.setData(items.get(i),listener);
 
-                if(column == 3){
-                    column = 0;
-                    row ++;
-                }
-                grid.add(anchorPane,column++,row);
-
-                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
-                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                grid.setMaxWidth(Region.USE_PREF_SIZE);
-
-                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
-                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                grid.setMaxHeight(Region.USE_PREF_SIZE);
-
-                GridPane.setMargin(anchorPane,new Insets(10));
-            }
-        }catch (IOException e ){
-            e.printStackTrace();
-        }
     }
 
 
@@ -296,25 +272,65 @@ public class StoreController implements Initializable {
     }
 
     public void search(String input) throws IOException {
-
+        grid.getChildren().clear();
+        int column = 0,row = 0, matches = 0;
         for(int i = 0; i< ManageItem.items.size();i++){
             if(ManageItem.items.get(i).getId().toLowerCase().matches(input.toLowerCase()+".*") || ManageItem.items.get(i).getTitle().toLowerCase().matches(".*"+input.toLowerCase()+".*")){
-                grid.getChildren().clear();
+                matches++;
+                searchError.setText("");
+
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(Main.class.getResource("Item.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
 
                 ItemController itemController = fxmlLoader.getController();
                 itemController.setData(ManageItem.items.get(i),listener);
+                if(column == 3){
+                    column = 0;
+                    row ++;
+                }
 
-                grid.add(anchorPane,0,0);
+                grid.add(anchorPane,column++,row);
 
 
                 GridPane.setMargin(anchorPane,new Insets(10));
-                return;
+
             }
         }
 
+        if(matches == 0){searchError.setText("There is no item match with your search!! Please enter another keyword.");}
 
+    }
+
+    public void refreshGrid(){
+        int column = 0,row = 0;
+        try {
+            for (int i = 0; i < items.size(); i++) {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(Main.class.getResource("Item.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+
+                ItemController itemController = fxmlLoader.getController();
+                itemController.setData(items.get(i),listener);
+
+                if(column == 3){
+                    column = 0;
+                    row ++;
+                }
+                grid.add(anchorPane,column++,row);
+
+                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                grid.setMaxWidth(Region.USE_PREF_SIZE);
+
+                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid.setMaxHeight(Region.USE_PREF_SIZE);
+
+                GridPane.setMargin(anchorPane,new Insets(10));
+            }
+        }catch (IOException e ){
+            e.printStackTrace();
+        }
     }
 }
