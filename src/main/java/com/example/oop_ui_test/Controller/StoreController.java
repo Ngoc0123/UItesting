@@ -3,6 +3,10 @@ package com.example.oop_ui_test.Controller;
 import com.example.oop_ui_test.Classes.*;
 import com.example.oop_ui_test.Listener;
 import com.example.oop_ui_test.Main;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,10 +15,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -47,7 +48,8 @@ public class StoreController implements Initializable {
     @FXML
     private Text searchError = new Text();
 
-
+    @FXML
+    private ChoiceBox<String> typeChoice;
 
     @FXML
     private VBox chosenBox;
@@ -104,9 +106,9 @@ public class StoreController implements Initializable {
         if(stringCompare(item.getRentalType(),"Record") == 0 ||stringCompare(item.getRentalType(),"DVD") == 0){
             chosenRentalType.setText("Rental type: "+item.getRentalType()+ "\t\tGenre: "+item.getGenre());
         }else{
-            chosenRentalType.setText("");
+            chosenRentalType.setText("Rental type: "+item.getRentalType());
         }
-        chosenLoanType.setText("Rental type: "+item.getLoanType());
+        chosenLoanType.setText("Loan type: "+item.getLoanType());
         chosenStock.setText("Stock: "+item.getStock());
         chosenPrice.setText("Fee: "+item.getRentalFee());
         Image image = new Image(item.getImgSrc());
@@ -220,11 +222,58 @@ public class StoreController implements Initializable {
         search(searchbar.getText());
     }
 
+    @FXML
+    void onRefreshButton(ActionEvent event) {
+        refreshGrid();
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         this.items = ManageItem.items;
+
+        ObservableList<String> langs = FXCollections.observableArrayList("Record", "DVD", "Game");
+        typeChoice.setItems(langs);
+        typeChoice.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                grid.getChildren().clear();
+                int column = 0,row = 0, matches = 0;
+                for(int i = 0; i< ManageItem.items.size();i++){
+                    if(ManageItem.items.get(i).getRentalType().matches(typeChoice.getSelectionModel().getSelectedItem())){
+                        matches++;
+                        searchError.setText("");
+
+                        FXMLLoader fxmlLoader = new FXMLLoader();
+                        fxmlLoader.setLocation(Main.class.getResource("Item.fxml"));
+                        AnchorPane anchorPane = null;
+                        try {
+                            anchorPane = fxmlLoader.load();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+
+                        ItemController itemController = fxmlLoader.getController();
+                        try {
+                            itemController.setData(ManageItem.items.get(i),listener);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                        if(column == 3){
+                            column = 0;
+                            row ++;
+                        }
+
+                        grid.add(anchorPane,column++,row);
+
+
+                        GridPane.setMargin(anchorPane,new Insets(10));
+
+                    }
+                }
+            }
+        });
 
         if(items.size() > 0 ){
             setChosenItem(items.get(0));
@@ -303,6 +352,7 @@ public class StoreController implements Initializable {
     }
 
     public void refreshGrid(){
+        grid.getChildren().clear();
         int column = 0,row = 0;
         try {
             for (int i = 0; i < items.size(); i++) {
