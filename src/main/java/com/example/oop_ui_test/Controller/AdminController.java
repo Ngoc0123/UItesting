@@ -157,6 +157,7 @@ public class AdminController implements Initializable {
     private String chosenID;
     private String chosenID2;
     private int choseIndex;
+//    private Customer customer;
 
 
 
@@ -381,43 +382,112 @@ public class AdminController implements Initializable {
 
     }
     @FXML
-    private void onEditButton(){editPane.setVisible(true);}
+    private void onEditButton(){
+        editPane.setVisible(true);
+        if(Customertext.isDisable()) {
+            Etex1.setText("ID:");
+            Etex2.setText("Name:");
+            Etex3.setText("Address:");
+            Etex4.setText("Phone:");
+            Etex5.setText("User Name");
+            Etex6.setText("Password:");
+            Etex7.setVisible(false);
+
+            Etex8.setText(customers.get(choseIndex).getId());
+            for (Customer cus : ManageCustomer.customersList) {
+                if (chosenID2.matches(cus.getId())) {
+                    Etex9.setPromptText(cus.getName());
+                    Etex10.setPromptText(cus.getAddress());
+                    Etex11.setPromptText(cus.getPhone());
+                    Etex12.setPromptText(cus.getUsername());
+                    Etex13.setPromptText("" + cus.getPassword());
+                    Etex14.setVisible(false);
+
+                }
+            }
+        }
+
+    }
     @FXML
-    private void onUpdateButton(){};
+    private void onUpdateButton(){
+            updateCustomer();
+
+
+    };
 
     @FXML
     private void CancelButtonPressed(){editPane.setVisible(false);}
 
     @FXML
-    private void ukiButton(){};
+    private void ukiButton(){ErrorPane.setVisible(false);}
 
-    private void updateCustomer(String str){
-        Etex1.setText("ID:");
-        Etex2.setText("Name:");
-        Etex3.setText("Address:");
-        Etex4.setText("Phone:");
-        Etex5.setText("User Name");
-        Etex6.setText("Password:");
-        Etex7.setVisible(false);
+    private void updateCustomer(){
+        Customer cus = new Customer();
 
-
-        for(Customer cus : ManageCustomer.customersList) {
-            if (str.matches(cus.getId())) {
-                Etex8.setPromptText(cus.getId());
-                Etex9.setPromptText(cus.getName());
-                Etex10.setPromptText(cus.getAddress());
-                Etex11.setPromptText(cus.getPhone());
-                Etex12.setPromptText(cus.getUsername());
-                Etex13.setPromptText("" + cus.getPassword());
-                Etex14.setVisible(false);
-
-            }
+        if (Etex9.getText() == null || Etex9.getText().length() < 1) {
+            ErrorMess.setText("Please enter your name");
+            ErrorPane.setVisible(true);
+            return;
         }
+
+        if (Etex10.getText() == null || Etex10.getText().length() < 1) {
+            ErrorMess.setText("Please enter your address");
+            ErrorPane.setVisible(true);
+            return;
+        }
+
+
+        if (!checkNumber(Etex11.getText()) || Etex11.getText() == null ||Etex11.getText().length() != 10) {
+            ErrorMess.setText("Invalid Phone number! Please enter 10 digit numbers: ");
+            ErrorPane.setVisible(true);
+            return;
+        }
+
+        if (Etex12.getText() == null || Etex12.getText().length() < 1) {
+            ErrorMess.setText("Please enter User Name");
+            return;
+        } else if (ManageCustomer.isExist(Etex12.getText())) {
+            ErrorMess.setText("This User Name is already exist, please enter a new one");
+            ErrorPane.setVisible(true);
+            return;
+        }
+
+        if (Etex13.getText() == null || Etex13.getText().length() < 8) {
+            ErrorMess.setText("Wrong format!! Password must have 8 or more characters. Please enter Password");
+            ErrorPane.setVisible(true);
+            return;
+        }
+        cus.setId(Etex8.getText());
+        cus.setName(Etex9.getText());
+        cus.setAddress(Etex10.getText());
+        cus.setPhone(Etex11.getText());
+        cus.setUsername(Etex12.getText());
+        cus.setPassword(Etex13.getText());
+        cus.setRentals(cus.getRentals());
+
+
+        ManageCustomer.customersList.set(choseIndex,cus);
+        ManageCustomer.saveFile();
+
+
+        Etex9.setText("");
+        Etex10.setText("");
+        Etex11.setText("");
+        Etex12.setText("");
+        Etex13.setText("");
+
+        editPane.setVisible(false);
+
     }
 
-
-
-
+    private boolean checkNumber(String str){
+        try{
+            int input = Integer.parseInt(str);
+            return true;
+        }catch (NumberFormatException e ){
+            return false;
+        }
+    }
 
 
 
