@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.util.StringConverter;
 
 import java.io.*;
 import java.net.URL;
@@ -25,6 +26,9 @@ public class AdminItemController implements Initializable {
     private ArrayList<Item> items;
 
     private ArrayList<Rental> rental;
+    private String chosenGenreBox;
+    private String chosenRentalBox;
+    private String chosenLoanBox;
 
     @FXML
     private Button CancelButton;
@@ -32,8 +36,7 @@ public class AdminItemController implements Initializable {
     @FXML
     private Text Customertext;
 
-    @FXML
-    private ListView<String> RentalDetail;
+
 
     @FXML
     private Button DeleButton;
@@ -163,6 +166,7 @@ public class AdminItemController implements Initializable {
     private ChoiceBox<String> GenreBox;
     private final String[] Genreword = {"Action", "Horror", "Drama", "Comedy"};
 
+
     @FXML
     private ChoiceBox<String> loanTypeBox;
 
@@ -249,7 +253,7 @@ public class AdminItemController implements Initializable {
         onItemP();
 
         //avoid spamming the function
-        RentalDetail.setVisible(false);
+
         Itemtext.setDisable(true);
         Customertext.setDisable(false);
         information.setVisible(false);
@@ -300,7 +304,14 @@ public class AdminItemController implements Initializable {
                 tex13.setText(item.getLoanType());
                 tex14.setText("" + item.getStock());
                 tex15.setText("" + item.getRentalFee());
-                tex16.setText("Null");
+                if(item.getStock() > 0) {
+                    tex16.setText("Available");
+                }else{
+                    tex16.setText("Out of stock");
+                }
+                tex8.setVisible(true);
+                tex15.setVisible(true);
+                tex16.setVisible(true);
 
             }
         }
@@ -329,9 +340,9 @@ public class AdminItemController implements Initializable {
                 tex12.setText(cus.getPhone());
                 tex13.setText(cus.getUsername());
                 tex14.setText("" + cus.getPassword());
-                RentalDetail.setVisible(true);
 
-//                RentalDetail.getItems().addAll(retal.toString());
+
+
 
                 tex15.setVisible(false);
                 tex16.setVisible(false);
@@ -369,10 +380,11 @@ public class AdminItemController implements Initializable {
     protected void whenItemSelected(ObservableValue<? extends String> Observable, String str, String str2){
         choseIndex = list.getSelectionModel().getSelectedIndex();
         chosenID2 = list.getSelectionModel().getSelectedItem();
+        chosenGenreBox = GenreBox.getSelectionModel().getSelectedItem();
+        chosenLoanBox = loanTypeBox.getSelectionModel().getSelectedItem();
+        chosenRentalBox = renTalType.getSelectionModel().getSelectedItem();
+
         information.setVisible(true);
-        RentalDetail.getItems().clear();
-
-
         if (Customertext.isDisable()){
             DeleButton.setVisible(false);
             chosenID = "C001";
@@ -441,23 +453,38 @@ public class AdminItemController implements Initializable {
             Etex4.setText("Loan Type:");
             Etex5.setText("Stock");
             Etex6.setText("Rental Fee:");
-            Etex7.setText("Rental Status");
+            Etex7.setVisible(false);
 
             Etex8.setText(items.get(choseIndex).getId());
             for (Item item : ManageItem.items) {
                 if (chosenID2.matches(item.getId())) {
                     Etex8.setPromptText(item.getId());
                     Etex9.setPromptText(item.getTitle());
+                    GenreBox.setValue(item.getGenre());
+                    renTalType.setValue(item.getRentalType());
+                    loanTypeBox.setValue(item.getLoanType());
                     Etex10.setVisible(false);
                     Etex11.setVisible(false);
-                    Etex12.setPromptText(""+item.getStock());
-                    Etex13.setPromptText("" + item.getRentalFee());
-                    Etex14.setPromptText("null");
-                    Etex15.setPromptText("null");
+                    Etex12.setVisible(false);
+                    Etex13.setPromptText("" + item.getStock());
+                    Etex14.setPromptText(""+item.getRentalFee());
+                    Etex15.setVisible(false);
 
                 }
             }
         }
+
+        GenreBox.setConverter(new StringConverter<String>() {
+            @Override
+            public String toString(String s) {
+                return (s==null)? "Nothing Selected":s;
+            }
+
+            @Override
+            public String fromString(String s) {
+                return null;
+            }
+        });
 
         }
 
@@ -550,40 +577,44 @@ public class AdminItemController implements Initializable {
 
     private void updateItem(){
         Item item = new Item();
+        GenreBox.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> chosenGenreBox = newValue);
+        System.out.println(chosenGenreBox);
+        loanTypeBox.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> chosenLoanBox = newValue);
+        System.out.println(chosenLoanBox);
+        renTalType.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> chosenRentalBox = newValue);
+        System.out.println(chosenRentalBox);
 
-        GenreBox.getSelectionModel().getSelectedItem();
-        renTalType.getSelectionModel().getSelectedItem();
-        loanTypeBox.getSelectionModel().getSelectedItem();
 
         if (Etex9.getText() == null || Etex9.getText().length() < 1) {
             ErrorMess.setText("Please enter Item name");
             ErrorPane.setVisible(true);
             return;
         }
-        System.out.println(item.getRentalType());
-        System.out.println(item.getGenre());
-        System.out.println(item.getLoanType());
+
+        if(chosenRentalBox.equals("Game")){
+            GenreBox.setValue(null);
+        }
 
 
-
-
-        if (Etex12.getText() == null|| !checkNumber(Etex12.getText())) {
+        if (!checkNumber(Etex13.getText())||Etex13.getText() == null) {
             ErrorMess.setText("Please insert quantity of the Item");
+            System.out.println(Etex12.getText());
+            ErrorPane.setVisible(true);
             return;
         }
 
-        if (Etex13.getText() == null|| !checkNumberDouble(Etex13.getText())) {
+        if (Etex14.getText() == null|| !checkNumberDouble(Etex14.getText())) {
             ErrorMess.setText("Missing Price, Please insert price of the Item");
             ErrorPane.setVisible(true);
             return;
         }
         item.setId(Etex8.getText());
         item.setTitle(Etex9.getText());
-        item.setGenre(GenreBox.getValue());
-        item.setRentalType(renTalType.getValue());
-        item.setLoanType(loanTypeBox.getValue());
-        item.setStock(Integer.parseInt(Etex12.getText()));
-        item.setRentalFee(Double.parseDouble(Etex13.getText()));
+        item.setGenre(chosenGenreBox);
+        item.setRentalType(chosenRentalBox);
+        item.setLoanType(chosenLoanBox);
+        item.setStock(Integer.parseInt(Etex13.getText()));
+        item.setRentalFee(Double.parseDouble(Etex14.getText()));
 
         ManageItem.items.set(choseIndex,item);
         ManageItem.saveFile();
@@ -620,24 +651,18 @@ public class AdminItemController implements Initializable {
         this.customers = ManageCustomer.customersList;
 
         GenreBox.getItems().addAll(Genreword);
+        GenreBox.setValue("Action");
         loanTypeBox.getItems().addAll(LoanTypeword);
+        loanTypeBox.setValue("2-days loan");
         renTalType.getItems().addAll(rentalType);
+        renTalType.setValue("DVD");
 
-        GenreBox.setOnAction(this::getGenreBox);
-        loanTypeBox.setOnAction(this::getLoanType);
-        renTalType.setOnAction(this::getRentalType);
 
 
     }
-    private void getGenreBox(ActionEvent event){
-        String GenreGet = GenreBox.getValue();
 
-    }
-    private void getRentalType(ActionEvent event){
-        String rentalTypeGet = renTalType.getValue();
-    }
-    private void getLoanType(ActionEvent event){
-        String loanTypeGet = loanTypeBox.getValue();
-    }
+
+
+
 
 }
