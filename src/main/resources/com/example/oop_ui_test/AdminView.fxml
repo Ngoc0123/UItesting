@@ -128,7 +128,7 @@
                   </VBox>
                   <VBox prefHeight="200.0" prefWidth="100.0" spacing="11.0">
                      <children>
-                        <TextField fx:id="Etex8" />
+                        <TextField fx:id="Etex8" editable="false" />
                         <TextField fx:id="Etex9" />
                         <TextField fx:id="Etex10" />
                         <TextField fx:id="Etex11" />

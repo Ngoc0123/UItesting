@@ -416,13 +416,13 @@ public class AdminController implements Initializable {
             Etex7.setText("Rental Status");
 
             Etex8.setText(customers.get(choseIndex).getId());
-            for (Customer cus : ManageCustomer.customersList) {
-                if (chosenID2.matches(cus.getId())) {
-                    Etex9.setPromptText(cus.getName());
-                    Etex10.setPromptText(cus.getAddress());
-                    Etex11.setPromptText(cus.getPhone());
-                    Etex12.setPromptText(cus.getUsername());
-                    Etex13.setPromptText("" + cus.getPassword());
+            for (Item item : ManageItem.items) {
+                if (chosenID2.matches(item.getId())) {
+                    Etex9.setPromptText(item.getTitle());
+                    Etex10.setPromptText(item.getRentalType());
+                    Etex11.setPromptText(item.getLoanType());
+                    Etex12.setPromptText(""+item.getStock());
+                    Etex13.setPromptText("" + item.getRentalFee());
                     Etex14.setPromptText("null");
 
                 }
@@ -435,8 +435,11 @@ public class AdminController implements Initializable {
     @FXML
     private void onUpdateButton(){
 
-        updateCustomer();
-
+        if(Customertext.isDisable()) {
+            updateCustomer();
+        } else if (Itemtext.isDisable()) {
+            updateItem();
+        }
 
     };
 
@@ -514,14 +517,19 @@ public class AdminController implements Initializable {
             return;
         }
 
-        if (Etex10.getText() == null || Etex10.getText().length() < 1 ||Etex10.getText() != "Record" && Etex10.getText() != "DVD"&& Etex10.getText() != "Game" ) {
-            ErrorMess.setText("Rental Type include: Record, DVD, or Game. Please input again");
+        if (Etex10.getText() == null || Etex10.getText().length() < 1 ) {
+            ErrorMess.setText("Missing Rental Type,Rental Type include: Record, DVD, or Game. Please input again ");
             ErrorPane.setVisible(true);
             return;
+
+        } else if (!Etex10.getText().equals("Record") || !Etex10.getText().equals("DVD") || !Etex10.getText().equals("Game")) {
+            ErrorMess.setText("Rental Type include: Record, DVD, or Game. Please input again");
+            ErrorPane.setVisible(true);
+
         }
 
 
-        if (Etex11.getText() == null ||Etex11.getText().length() <1 ||Etex11.getText() != "2-day loan" && Etex11.getText() != "1-week loan"  ) {
+        if (Etex11.getText() == null ||Etex11.getText().length() <1 ||!Etex11.getText().equals("1-week loan") || !Etex11.getText().equals("2-day loan")) {
             ErrorMess.setText("Invalid day loan, The day Loan included: 2-day loan or 1-week loan. Please insert again");
             ErrorPane.setVisible(true);
             return;
@@ -532,7 +540,7 @@ public class AdminController implements Initializable {
             return;
         }
 
-        if (Etex13.getText() == null|| !checkNumber(Etex13.getText())) {
+        if (Etex13.getText() == null|| !checkNumberDouble(Etex13.getText())) {
             ErrorMess.setText("Missing Price, Please insert price of the Item");
             ErrorPane.setVisible(true);
             return;
@@ -561,6 +569,13 @@ public class AdminController implements Initializable {
     private boolean checkNumber(String str){
         try{
             int input = Integer.parseInt(str);
+            return true;
+        }catch (NumberFormatException e ){
+            return false;
+        }
+    }private boolean checkNumberDouble(String str){
+        try{
+            double input = Double.parseDouble(str);
             return true;
         }catch (NumberFormatException e ){
             return false;
