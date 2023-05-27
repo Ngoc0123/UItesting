@@ -92,6 +92,17 @@ public class ManageCustomer {
 
     }
 
+    public static void updateLevel(int i){
+        int tmp = customersList.get(i).getReturned();
+        if(tmp > 5){
+            customersList.get(i).setLevel("VIP");
+        }else if (tmp > 3){
+            customersList.get(i).setLevel("Regular");
+        }else {
+            customersList.get(i).setLevel("Guest");
+        }
+    }
+
 
     public static String generateID(){
         String ID = "";

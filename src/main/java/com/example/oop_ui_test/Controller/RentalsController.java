@@ -91,6 +91,8 @@ public class RentalsController implements Initializable {
         ManageCustomer.customersList.get(cusIndex).setRentals(currentCus.getRentals());
         chosenStatus.setText("Returned");
         ManageItem.items.get(chosenItemIndex).setStock(ManageItem.items.get(chosenItemIndex).getStock()+1);
+        ManageCustomer.customersList.get(cusIndex).setReturned(ManageCustomer.customersList.get(cusIndex).getReturned()+1);
+        ManageCustomer.updateLevel(cusIndex);
         errorText.setText("Success!!!");
 
         ManageItem.saveFile();
