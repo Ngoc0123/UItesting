@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -97,6 +98,16 @@
                               <Insets left="20.0" top="10.0" />
                            </HBox.margin>
                         </Button>
+                        <RadioButton fx:id="sortByName" mnemonicParsing="false" onAction="#setRadio1" text="Sort by Name">
+                           <HBox.margin>
+                              <Insets left="20.0" top="13.0" />
+                           </HBox.margin>
+                        </RadioButton>
+                        <RadioButton fx:id="sortByID" mnemonicParsing="false" onAction="#setRadio2" text="Sort by ID">
+                           <HBox.margin>
+                              <Insets left="10.0" top="13.0" />
+                           </HBox.margin>
+                        </RadioButton>
                      </children>
                   </HBox>
                   <HBox prefHeight="387.0" prefWidth="800.0">
