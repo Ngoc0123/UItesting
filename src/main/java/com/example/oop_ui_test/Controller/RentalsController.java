@@ -148,6 +148,9 @@ public class RentalsController implements Initializable {
 
     private void setChosenRental(int index){
         chosenItemIndex = 0;
+        if(currentCus.getRentals().size() < 1){
+            return;
+        }
         for(Item item: ManageItem.items){
             if(item.getId().matches(currentCus.getRentals().get(index).getId())){
                 chosenItem = item;
