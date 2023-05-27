@@ -34,7 +34,7 @@
                      <children>
                         <AnchorPane prefHeight="22.0" prefWidth="198.0">
                            <children>
-                              <Text layoutX="50.0" layoutY="30.0" onMousePressed="#switchtoItems" strokeType="OUTSIDE" strokeWidth="0.0" text="Items" textAlignment="CENTER" wrappingWidth="95.73670196533203">
+                              <Text fx:id="itemsText" layoutX="50.0" layoutY="30.0" onMouseEntered="#enterItems" onMouseExited="#exitItems" onMousePressed="#switchtoItems" strokeType="OUTSIDE" strokeWidth="0.0" text="Items" textAlignment="CENTER" wrappingWidth="95.73670196533203">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
@@ -67,7 +67,19 @@
                         <Insets bottom="10.0" top="10.0" />
                      </VBox.margin>
                   </Text>
-                  <HBox prefHeight="39.0" prefWidth="807.0" />
+                  <HBox prefHeight="29.0" prefWidth="807.0">
+                     <children>
+                        <AnchorPane prefHeight="21.0" prefWidth="200.0">
+                           <children>
+                              <Text fx:id="numRenText" layoutX="7.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of rental: " wrappingWidth="190.93671035766602" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <Text fx:id="returnedText" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Returned: " />
+                           </children>
+                        </AnchorPane>
+                     </children></HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                      <children>
                         <ListView fx:id="myListView" editable="true" prefHeight="352.0" prefWidth="282.0" />

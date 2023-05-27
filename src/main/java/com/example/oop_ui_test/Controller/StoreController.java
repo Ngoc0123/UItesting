@@ -51,6 +51,8 @@ public class StoreController implements Initializable {
 
     @FXML
     private Text chosenName;
+    @FXML
+    private Text rentalsText;
 
     @FXML
     private ImageView chosenPic;
@@ -115,6 +117,16 @@ public class StoreController implements Initializable {
     void exitProfile(MouseEvent event) {
         myAccountLabel.setUnderline(false);
     }
+
+    @FXML
+    void enterRentals(MouseEvent event) {
+        rentalsText.setUnderline(true);
+    }
+
+    @FXML
+    void exitRentals(MouseEvent event) {
+        rentalsText.setUnderline(false);
+    }
     @FXML
     void switchtoProfile(MouseEvent event) throws IOException {
 
@@ -171,12 +183,24 @@ public class StoreController implements Initializable {
             return;
         }
 
+
+        if(ManageCustomer.customersList.get(cusIndex).getLevel().matches("VIP") ){
+            if(ManageCustomer.customersList.get(cusIndex).getRewardPoint() == 100){
+                errorText.setText("You can rent this item for free!!");
+                ManageCustomer.customersList.get(cusIndex).setRewardPoint(0);
+            }else{
+                errorText.setText("This item has been added to your rentals list.");
+                ManageCustomer.customersList.get(cusIndex).setRewardPoint(ManageCustomer.customersList.get(cusIndex).getRewardPoint()+10);
+            }
+
+        }
+
         Rental newRental = new Rental(ManageItem.items.get(index),1);
         ManageItem.items.get(index).setStock(ManageItem.items.get(index).getStock() - 1);
         ManageCustomer.customersList.get(cusIndex).setRentalNumber(ManageCustomer.customersList.get(cusIndex).getRentalNumber() + 1);
         ManageCustomer.customersList.get(cusIndex).getRentals().add(newRental);
         chosenStock.setText("Stock: "+ManageItem.items.get(index).getStock());
-        errorText.setText("This item has been added to your rentals list.");
+
 
         ManageCustomer.saveFile();
         ManageItem.saveFile();

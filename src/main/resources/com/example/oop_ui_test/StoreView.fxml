@@ -44,7 +44,7 @@
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Text layoutX="51.0" layoutY="35.0" onMousePressed="#switchtoRentals" strokeType="OUTSIDE" strokeWidth="0.0" text="Rentals" textAlignment="CENTER" wrappingWidth="95.73670196533203">
+                              <Text fx:id="rentalsText" layoutX="51.0" layoutY="35.0" onMouseEntered="#enterRentals" onMouseExited="#exitRentals" onMousePressed="#switchtoRentals" strokeType="OUTSIDE" strokeWidth="0.0" text="Rentals" textAlignment="CENTER" wrappingWidth="95.73670196533203">
                                  <font>
                                     <Font size="24.0" />
                                  </font>

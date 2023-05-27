@@ -28,7 +28,8 @@ public class ProfileController implements Initializable {
     private Scene scene;
     private Parent root;
 
-
+    @FXML
+    private Text rewardText;
     @FXML
     private Text addressText;
     @FXML
@@ -89,6 +90,7 @@ public class ProfileController implements Initializable {
         addressText.setText("Address: "+customer.getAddress());
         phoneText.setText("Phone Number: "+customer.getPhone());
         typeText.setText("Type of customer: "+customer.getLevel());
+        rewardText.setText("Reward point :"+customer.getRewardPoint());
     }
 
 

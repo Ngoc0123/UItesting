@@ -92,11 +92,16 @@
                                           <Insets left="10.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <Text fx:id="typeText" strokeType="OUTSIDE" strokeWidth="0.0" text="Type of member: " wrappingWidth="286.72303771972656">
-                                       <VBox.margin>
-                                          <Insets left="10.0" />
-                                       </VBox.margin>
-                                    </Text>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="348.0">
+                                       <children>
+                                          <Text fx:id="typeText" strokeType="OUTSIDE" strokeWidth="0.0" text="Type of member: " wrappingWidth="177.123046875">
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                          <Text fx:id="rewardText" strokeType="OUTSIDE" strokeWidth="0.0" text="Reward point :" wrappingWidth="126.09417724609375" />
+                                       </children>
+                                    </HBox>
                                     <HBox alignment="CENTER" prefHeight="38.0" prefWidth="348.0">
                                        <children>
                                           <Button mnemonicParsing="false" onAction="#updateButtonAction" text="Update" />
