@@ -406,11 +406,36 @@ public class AdminController implements Initializable {
                 }
             }
         }
+        if(Itemtext.isDisable()){
+            Etex1.setText("ID:");
+            Etex2.setText("Title:");
+            Etex3.setText("Rental Type:");
+            Etex4.setText("Loan Type:");
+            Etex5.setText("Stock");
+            Etex6.setText("Rental Fee:");
+            Etex7.setText("Rental Status");
 
-    }
+            Etex8.setText(customers.get(choseIndex).getId());
+            for (Customer cus : ManageCustomer.customersList) {
+                if (chosenID2.matches(cus.getId())) {
+                    Etex9.setPromptText(cus.getName());
+                    Etex10.setPromptText(cus.getAddress());
+                    Etex11.setPromptText(cus.getPhone());
+                    Etex12.setPromptText(cus.getUsername());
+                    Etex13.setPromptText("" + cus.getPassword());
+                    Etex14.setPromptText("null");
+
+                }
+            }
+        }
+
+        }
+
+
     @FXML
     private void onUpdateButton(){
-            updateCustomer();
+
+        updateCustomer();
 
 
     };
@@ -457,13 +482,13 @@ public class AdminController implements Initializable {
             ErrorPane.setVisible(true);
             return;
         }
+        ManageCustomer.readFile();
         cus.setId(Etex8.getText());
         cus.setName(Etex9.getText());
         cus.setAddress(Etex10.getText());
         cus.setPhone(Etex11.getText());
         cus.setUsername(Etex12.getText());
         cus.setPassword(Etex13.getText());
-//        cus.setRentals(cus.getRentals()); Still Error
 
 
         ManageCustomer.customersList.set(choseIndex,cus);
@@ -482,6 +507,55 @@ public class AdminController implements Initializable {
 
     private void updateItem(){
         Item item = new Item();
+
+        if (Etex9.getText() == null || Etex9.getText().length() < 1) {
+            ErrorMess.setText("Please enter Item name");
+            ErrorPane.setVisible(true);
+            return;
+        }
+
+        if (Etex10.getText() == null || Etex10.getText().length() < 1 ||Etex10.getText() != "Record" && Etex10.getText() != "DVD"&& Etex10.getText() != "Game" ) {
+            ErrorMess.setText("Rental Type include: Record, DVD, or Game. Please input again");
+            ErrorPane.setVisible(true);
+            return;
+        }
+
+
+        if (Etex11.getText() == null ||Etex11.getText().length() <1 ||Etex11.getText() != "2-day loan" && Etex11.getText() != "1-week loan"  ) {
+            ErrorMess.setText("Invalid day loan, The day Loan included: 2-day loan or 1-week loan. Please insert again");
+            ErrorPane.setVisible(true);
+            return;
+        }
+
+        if (Etex12.getText() == null|| !checkNumber(Etex12.getText())) {
+            ErrorMess.setText("Please insert quantity of the Item");
+            return;
+        }
+
+        if (Etex13.getText() == null|| !checkNumber(Etex13.getText())) {
+            ErrorMess.setText("Missing Price, Please insert price of the Item");
+            ErrorPane.setVisible(true);
+            return;
+        }
+        item.setId(Etex8.getText());
+        item.setTitle(Etex9.getText());
+        item.setRentalType(Etex10.getText());
+        item.setLoanType(Etex11.getText());
+        item.setStock(Integer.parseInt(Etex12.getText()));
+        item.setRentalFee(Double.parseDouble(Etex13.getText()));
+
+        ManageItem.items.set(choseIndex,item);
+        ManageItem.saveFile();
+
+
+        Etex9.setText("");
+        Etex10.setText("");
+        Etex11.setText("");
+        Etex12.setText("");
+        Etex13.setText("");
+
+        editPane.setVisible(false);
+
     }
 
     private boolean checkNumber(String str){
