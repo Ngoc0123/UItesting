@@ -15,12 +15,14 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -34,6 +36,11 @@ public class AdminCusController implements Initializable {
 
     @FXML
     private Text itemText;
+    @FXML
+    private RadioButton sortByID;
+
+    @FXML
+    private RadioButton sortByName;
     @FXML
     private Text errorText;
     @FXML
@@ -89,9 +96,17 @@ public class AdminCusController implements Initializable {
     }
     @FXML
     void onRefresh(ActionEvent event) {
+        levelChoice.setValue("");
+        ManageCustomer.sort(ManageCustomer.SORT_BY_ID);
         refreshList();
         errorText.setText("");
         searchBar.setText("");
+        sortByName.setSelected(false);
+        sortByID.setSelected(false);
+
+
+
+
     }
 
     @FXML
@@ -113,9 +128,12 @@ public class AdminCusController implements Initializable {
         listView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-                chosenCusIndex = listView.getSelectionModel().getSelectedIndex();
-                setChosenCus(chosenCusIndex);
+                try {
+                    chosenCusIndex = ManageCustomer.find(listView.getSelectionModel().getSelectedItem().substring(2, 6));
+                    setChosenCus(chosenCusIndex);
+                } catch (NullPointerException e){
 
+                }
             }
         });
 
@@ -129,7 +147,6 @@ public class AdminCusController implements Initializable {
         levelChoice.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-                refreshList();
                 listView.getItems().clear();
                 ArrayList<String> list = new ArrayList<String>();
                 for(int i = 1; i<= ManageCustomer.customersList.size();i++){
@@ -145,6 +162,17 @@ public class AdminCusController implements Initializable {
         });
 
 
+    }
+
+    public void setRadio1() {
+        ManageCustomer.sort(ManageCustomer.SORT_BY_NAME);
+        refreshList();
+        sortByID.setSelected(false);
+    }
+    public void setRadio2() {
+        ManageCustomer.sort(ManageCustomer.SORT_BY_ID);
+        refreshList();
+        sortByName.setSelected(false);
     }
 
     public void search(String input){
@@ -184,7 +212,7 @@ public class AdminCusController implements Initializable {
         chosenListRental.getItems().addAll(list);
     }
 
-    public void refreshList(){
+    public void refreshList() throws UnsupportedOperationException {
         listView.getItems().clear();
         ArrayList<String> list = new ArrayList<String>();
         for(int j = 1; j <= ManageCustomer.customersList.size(); j++){

@@ -1,14 +1,20 @@
 package com.example.oop_ui_test.Controller;
 
 import com.example.oop_ui_test.Classes.*;
+import com.example.oop_ui_test.Main;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
 import java.io.*;
@@ -19,7 +25,9 @@ import java.util.*;
 
 
 public class AdminItemController implements Initializable {
-
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
     @FXML
     private ListView<String> list;
     private ArrayList<Customer> customers;
@@ -325,23 +333,16 @@ public class AdminItemController implements Initializable {
     }
 
     @FXML
-    private void onCustomerPress(MouseEvent event) {//on click customer text
+    private void onCustomerPress(MouseEvent event) throws IOException {//on click customer text
 
-        //refresh the View List each time change tab
-        list.getItems().clear();
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("AdminCusView.fxml"));
+        root = loader.load();
 
-        //Print Customer ID, name
-        onCusP();
-        //set button disable for each time change tab
+        stage = (Stage)(((Node)event.getSource()).getScene().getWindow());
+        scene = new Scene(root);
 
-
-        //avoid spamming the function
-        Itemtext.setDisable(false);
-        Customertext.setDisable(true);
-        information.setVisible(false);
-
-        //when click the content in the table view list
-        list.getSelectionModel().selectedItemProperty().addListener(this::whenItemSelected);
+        stage.setScene(scene);
+        stage.show();
 
     }
 

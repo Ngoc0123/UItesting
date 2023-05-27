@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -70,6 +71,7 @@ public class ManageCustomer {
 
     public  static void saveFile(){
         Path path = FileSystems.getDefault().getPath(new String()).toAbsolutePath();
+        sort(SORT_BY_ID);
 
             try {
                 FileWriter file = new FileWriter(path.toString() + "\\src\\main\\java\\com\\example\\oop_ui_test\\Data\\customers.txt");
@@ -103,7 +105,14 @@ public class ManageCustomer {
         }
     }
 
-
+    public static int find(String id){
+        for(Customer cus: customersList){
+            if(cus.getId().matches(id)){
+                return customersList.indexOf(cus);
+            }
+        }
+        return -1;
+    }
     public static String generateID(){
         String ID = "";
         if(customersList.size() < 9) {
@@ -124,6 +133,25 @@ public class ManageCustomer {
             }
         }
         return false;
+    }
+
+    public static boolean SORT_BY_NAME = true;
+    public static boolean SORT_BY_ID = false;
+    public static void sort(boolean type){
+        if(type)
+            customersList.sort(new Comparator<Customer>() {
+                @Override
+                public int compare(Customer a, Customer b) {
+                    return a.getName().compareTo(b.getName());
+                }
+            });
+        else
+            customersList.sort(new Comparator<Customer>() {
+                @Override
+                public int compare(Customer a, Customer b) {
+                    return a.getId().compareTo(b.getId());
+                }
+            });
     }
 
 
