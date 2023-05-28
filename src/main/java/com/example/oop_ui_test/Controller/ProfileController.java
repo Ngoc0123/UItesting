@@ -2,6 +2,7 @@ package com.example.oop_ui_test.Controller;
 
 import com.example.oop_ui_test.Classes.Customer;
 import com.example.oop_ui_test.Classes.ManageCustomer;
+import com.example.oop_ui_test.Classes.ManageItem;
 import com.example.oop_ui_test.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,7 +22,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ProfileController implements Initializable {
+public class ProfileController extends Controller implements Initializable {
     private Customer customer;
     private int cusIndex;
     private Stage stage;
@@ -103,6 +104,9 @@ public class ProfileController implements Initializable {
     void updateButtonAction(ActionEvent event) {
         updatePane.setDisable(false);
         updatePane.setVisible(true);
+        nameInput.setText(customer.getName());
+        addInput.setText(customer.getAddress());
+        phoneInput.setText(customer.getPhone());
     }
 
     @FXML
@@ -130,6 +134,19 @@ public class ProfileController implements Initializable {
         RentalsController rentalsController = loader.getController();
 
         rentalsController.setCusIndex(cusIndex);
+        stage = (Stage)(((Node)event.getSource()).getScene().getWindow());
+        scene = new Scene(root);
+
+        stage.setScene(scene);
+        stage.show();
+    }
+    @FXML
+    void onLogOutAction(ActionEvent event) throws IOException {
+        ManageItem.readFile();
+        ManageCustomer.readFile();
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("LoginView.fxml"));
+        root = loader.load();
+
         stage = (Stage)(((Node)event.getSource()).getScene().getWindow());
         scene = new Scene(root);
 

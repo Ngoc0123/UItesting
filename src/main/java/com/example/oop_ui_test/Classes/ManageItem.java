@@ -1,21 +1,27 @@
 package com.example.oop_ui_test.Classes;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import javafx.scene.image.Image;
+
+import java.io.*;
+import java.lang.reflect.InvocationTargetException;
+import java.net.MalformedURLException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class ManageItem {
-
+    private static ManageItem manageItemObj;
     public static ArrayList<Item> items = new ArrayList<Item>();
+    public static ManageItem getInstance(){
+        if(manageItemObj == null){
+            manageItemObj = new ManageItem();
+        }
+        return manageItemObj;
+    }
+
 
     public static void readFile(){
+        ManageItem.items = new ArrayList<Item>();
         Path path = FileSystems.getDefault().getPath(new String()).toAbsolutePath();
         Scanner fileScanner = null;
         try {
@@ -24,7 +30,6 @@ public class ManageItem {
             throw new RuntimeException(e);
         }
 
-        int cnt = 1;
         while(fileScanner.hasNextLine()){
             Item item = new Item();
 
@@ -37,8 +42,7 @@ public class ManageItem {
             item.setLoanType(inReader.nextToken());
             item.setStock(Integer.parseInt(inReader.nextToken()));
             item.setRentalFee(Double.parseDouble(inReader.nextToken()));
-            item.setImgSrc(path.toString()+"\\src\\main\\resources\\com\\example\\oop_ui_test\\img\\"+cnt+".png");
-            cnt++;
+            item.setImgSrc("file:///"+path+"\\src\\main\\resources\\com\\example\\oop_ui_test\\img\\"+item.getRentalType()+".png");
 
             try{String tmp = inReader.nextToken();
                 item.setGenre(tmp);
@@ -51,6 +55,7 @@ public class ManageItem {
     }
 
     public static void saveFile(){
+        sort(SORT_BY_ID);
         Path path = FileSystems.getDefault().getPath(new String()).toAbsolutePath();
 
         try {
@@ -73,5 +78,43 @@ public class ManageItem {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
+    }
+
+    public static int find(String id){
+        for(Item item: items){
+            if(item.getId().matches(id)){
+                return items.indexOf(item);
+            }
+        }
+        return -1;
+    }
+
+    public static boolean isExist(String id){
+
+        for (Item item : items) {
+            if (item.getId().substring(0,4).matches(id)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean SORT_BY_NAME = true;
+    public static boolean SORT_BY_ID = false;
+    public static void sort(boolean type){
+        if(type)
+            items.sort(new Comparator<Item>() {
+                @Override
+                public int compare(Item a, Item b) {
+                    return a.getTitle().toLowerCase().compareTo(b.getTitle().toLowerCase());
+                }
+            });
+        else
+            items.sort(new Comparator<Item>() {
+                @Override
+                public int compare(Item a, Item b) {
+                    return a.getId().compareTo(b.getId());
+                }
+            });
     }
 }

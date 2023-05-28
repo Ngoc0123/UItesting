@@ -22,7 +22,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 
 
-public class RegisterCotroller {
+public class RegisterCotroller extends Controller{
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -68,10 +68,7 @@ public class RegisterCotroller {
 
     String name = null, address = null, phone = null, userName = null, password = null, reEnterPassWord = null;
 
-    @FXML
-    void ukiButton(){
-        uki.setOnAction(event -> Succeed.setVisible(false));
-    }
+
 
     @FXML
     void switchtoLogin(ActionEvent event) throws IOException {

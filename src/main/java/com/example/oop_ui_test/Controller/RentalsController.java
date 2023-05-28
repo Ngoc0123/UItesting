@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class RentalsController implements Initializable {
+public class RentalsController extends Controller implements Initializable {
 
     private Stage stage;
     private Scene scene;
@@ -162,21 +162,41 @@ public class RentalsController implements Initializable {
                 System.out.println(chosenRentalIndex);
                 setChosenRental(chosenRentalIndex);
                 errorText.setText("");
+
+                int cut = 0;
+                if(chosenRentalIndex >= 9){
+                    cut = 3;
+                }else{
+                    cut = 2;
+                }
+
+                try {
+
+                    chosenItemIndex = ManageItem.find(myListView.getSelectionModel().getSelectedItem().substring(cut));
+                }catch (NullPointerException e){
+
+                }
+                chosenItem = ManageItem.items.get(chosenItemIndex);
             }
         });
     }
 
     private void setChosenRental(int index){
-        chosenItemIndex = 0;
+        int cut = 0;
+        if(chosenRentalIndex >= 9){
+            cut = 3;
+        }else{
+            cut = 2;
+        }
+        try {
+            chosenItemIndex = ManageItem.find(myListView.getSelectionModel().getSelectedItem().substring(cut));
+        }catch (NullPointerException e){
+
+        }
+        chosenItem = ManageItem.items.get(chosenItemIndex);
+
         if(currentCus.getRentals().size() < 1){
             return;
-        }
-        for(Item item: ManageItem.items){
-            if(item.getId().matches(currentCus.getRentals().get(index).getId())){
-                chosenItem = item;
-                break;
-            }
-            chosenItemIndex++;
         }
 
         chosenName.setText(chosenItem.getTitle());
@@ -203,7 +223,7 @@ public class RentalsController implements Initializable {
 
         myListView.getItems().addAll(list);
         chosenRentalIndex = 0;
-        setChosenRental(0);
+        setChosenRental(chosenRentalIndex);
 
     }
 

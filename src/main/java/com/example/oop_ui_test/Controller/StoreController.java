@@ -35,7 +35,8 @@ import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.*;
 
-public class StoreController implements Initializable {
+public class StoreController extends Controller implements Initializable {
+
 
     private Stage stage;
     private Scene scene;
@@ -47,6 +48,8 @@ public class StoreController implements Initializable {
     private Label myAccountLabel;
     @FXML
     private Text searchError = new Text();
+    @FXML
+    private Text errorText;
 
     @FXML
     private ChoiceBox<String> typeChoice;
@@ -73,8 +76,7 @@ public class StoreController implements Initializable {
 
     @FXML
     private Text chosenRentalType;
-    @FXML
-    private Text errorText = new Text();
+
 
 
     public StoreController() {
@@ -202,7 +204,7 @@ public class StoreController implements Initializable {
 
         }
 
-        Rental newRental = new Rental(ManageItem.items.get(index),1);
+        Rental newRental = new Rental(ManageItem.items.get(index).getId(),"On-going");
         ManageItem.items.get(index).setStock(ManageItem.items.get(index).getStock() - 1);
         ManageCustomer.customersList.get(cusIndex).setRentalNumber(ManageCustomer.customersList.get(cusIndex).getRentalNumber() + 1);
         ManageCustomer.customersList.get(cusIndex).getRentals().add(newRental);

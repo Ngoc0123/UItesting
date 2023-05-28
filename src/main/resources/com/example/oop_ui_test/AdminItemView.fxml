@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.oop_ui_test.Controller.AdminItemController">
+   <children>
+      <ImageView fitHeight="649.0" fitWidth="928.0" layoutX="-6.0" layoutY="-16.0" pickOnBounds="true">
+         <image>
+            <Image url="@img/adminBG.jpg" />
+         </image>
+      </ImageView>
+      <BorderPane prefHeight="633.0" prefWidth="922.0">
+         <top>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Genies's Online Video Store" textAlignment="CENTER" wrappingWidth="429.13671875" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Text>
+         </top>
+         <center>
+            <VBox prefHeight="564.0" prefWidth="816.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="57.0" prefWidth="600.0">
+                     <children>
+                        <Text fx:id="logOutText" fill="#6f64bf" onMouseEntered="#logOutEnter" onMouseExited="#logOutExit" onMousePressed="#onLogOutAction" strokeType="OUTSIDE" strokeWidth="0.0" text="Log Out" textAlignment="RIGHT" wrappingWidth="762.13671875">
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                        </Text>
+                        <Label alignment="CENTER_RIGHT" prefHeight="57.0" prefWidth="831.0" text="Admin" textFill="#ff3b3b">
+                           <font>
+                              <Font size="24.0" />
+                           </font></Label>
+                        <ImageView fitHeight="70.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/icon.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="26.0" prefWidth="800.0">
+                     <children>
+                        <Text fx:id="Itemtext" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="2.0" text="Item" textAlignment="CENTER" wrappingWidth="98.13671875">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="Customertext" onMouseEntered="#CustomerEnter" onMouseExited="#CustomerExit" onMousePressed="#onCustomerPress" stroke="#fffefe" strokeType="OUTSIDE" strokeWidth="2.0" text="Customer" textAlignment="CENTER" wrappingWidth="178.13671875">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <VBox prefHeight="125.0" prefWidth="922.0">
+                     <children>
+                        <HBox prefHeight="38.0" prefWidth="922.0">
+                           <children>
+                              <TextField fx:id="searchBar" onAction="#searchBarEnter" prefHeight="31.0" prefWidth="874.0">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin></TextField>
+                              <ImageView fitHeight="26.0" fitWidth="36.0" onMousePressed="#searchBarPress" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@img/Search_Icon.svg.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="24.0" prefWidth="922.0">
+                           <children>
+                              <Text fx:id="searchErrorText" fill="#ee0404" strokeType="OUTSIDE" strokeWidth="0.0" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="33.0" prefWidth="922.0" spacing="30.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#onRefresh" text="Refresh" />
+                              <RadioButton fx:id="sortByTitle" mnemonicParsing="false" onAction="#setRadio1" text="Sort By Title" />
+                              <RadioButton fx:id="sortByID" mnemonicParsing="false" onAction="#setRadio2" text="Sort By ID" />
+                              <RadioButton fx:id="sortOutOfStock" mnemonicParsing="false" onAction="#setRadio3" text="Out of Stock Items" />
+                           </children>
+                           <padding>
+                              <Insets bottom="4.0" left="12.0" top="4.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <HBox prefHeight="411.0" prefWidth="922.0">
+                     <children>
+                        <ListView fx:id="list" prefHeight="340.0" prefWidth="227.0">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin></ListView>
+                        <Pane fx:id="information" prefHeight="474.0" prefWidth="457.0" visible="false">
+                           <children>
+                              <HBox prefHeight="479.0" prefWidth="410.0">
+                                 <children>
+                                    <VBox prefHeight="253.0" prefWidth="113.0" spacing="15.0">
+                                       <children>
+                                          <Text fx:id="tex1" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" wrappingWidth="123.13671875">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fx:id="tex2" strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fx:id="tex3" strokeType="OUTSIDE" strokeWidth="0.0" text="Genre">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fx:id="tex4" strokeType="OUTSIDE" strokeWidth="0.0" text="Rental type">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fx:id="tex5" strokeType="OUTSIDE" strokeWidth="0.0" text="Loan type">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fx:id="tex6" strokeType="OUTSIDE" strokeWidth="0.0" text="Stock">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fx:id="tex7" strokeType="OUTSIDE" strokeWidth="0.0" text="Rental fee ">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fx:id="tex8" strokeType="OUTSIDE" strokeWidth="0.0" text="Rental status">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets left="5.0" />
+                                       </HBox.margin>
+                                       <padding>
+                                          <Insets left="10.0" top="10.0" />
+                                       </padding>
+                                    </VBox>
+                                    <VBox prefHeight="279.0" prefWidth="199.0" spacing="15.0">
+                                       <children>
+                                          <Text fx:id="tex9" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" textAlignment="CENTER" wrappingWidth="123.13671875">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fx:id="tex10" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" textAlignment="CENTER" wrappingWidth="123.13671875">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fx:id="tex11" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" textAlignment="CENTER" wrappingWidth="123.13671875">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fx:id="tex12" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" textAlignment="CENTER" wrappingWidth="123.13671875">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fx:id="tex13" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" textAlignment="CENTER" wrappingWidth="123.13671875">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fx:id="tex14" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" textAlignment="CENTER" wrappingWidth="123.13671875">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fx:id="tex15" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" textAlignment="CENTER" wrappingWidth="123.13671875">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fx:id="tex16" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" textAlignment="CENTER" wrappingWidth="123.13671875">
+                                             <font>
+                                                <Font size="20.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <padding>
+                                          <Insets top="10.0" />
+                                       </padding>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <Button fx:id="EditButton" layoutX="312.0" layoutY="344.0" mnemonicParsing="false" onAction="#onEditButton" prefHeight="35.0" prefWidth="96.0" text="Edit">
+                                 <font>
+                                    <Font size="19.0" />
+                                 </font></Button>
+                              <Button fx:id="DeleButton" layoutX="19.0" layoutY="345.0" mnemonicParsing="false" onAction="#onDeleButton" prefHeight="45.0" prefWidth="100.0" text="Delete" visible="false">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font></Button>
+                              <Button fx:id="addButton" layoutX="473.0" layoutY="342.0" mnemonicParsing="false" onAction="#addButton" prefHeight="35.0" prefWidth="83.0" text="Add" />
+                              <Pane fx:id="RegisPane" layoutX="-61.0" prefHeight="318.0" prefWidth="471.0" visible="false">
+                                 <children>
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8599ab" height="320.0" stroke="BLACK" strokeType="INSIDE" width="471.0" />
+                                    <HBox layoutY="1.0" prefHeight="319.0" prefWidth="472.0">
+                                       <children>
+                                          <VBox prefHeight="319.0" prefWidth="135.0" spacing="5.0">
+                                             <children>
+                                                <Label prefHeight="25.0" prefWidth="58.0" text="ID">
+                                                   <font>
+                                                      <Font size="22.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label prefHeight="25.0" prefWidth="58.0" text="Title">
+                                                   <font>
+                                                      <Font size="22.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label prefHeight="32.0" prefWidth="80.0" text="Genre">
+                                                   <font>
+                                                      <Font size="22.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label prefHeight="32.0" prefWidth="126.0" text="Rental Type">
+                                                   <font>
+                                                      <Font size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label prefHeight="32.0" prefWidth="117.0" text="Loan Type">
+                                                   <font>
+                                                      <Font size="20.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label prefHeight="32.0" prefWidth="111.0" text="Stock">
+                                                   <font>
+                                                      <Font size="22.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label prefHeight="32.0" prefWidth="124.0" text="Rental Fee">
+                                                   <font>
+                                                      <Font size="19.0" />
+                                                   </font>
+                                                </Label>
+                                                <Button fx:id="RegisCancelButton" mnemonicParsing="false" onAction="#onRegisCancelButton" prefHeight="39.0" prefWidth="81.0" text="Cancel">
+                                                   <VBox.margin>
+                                                      <Insets left="10.0" top="8.0" />
+                                                   </VBox.margin>
+                                                </Button>
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                          <VBox prefHeight="315.0" prefWidth="153.0" spacing="12.0">
+                                             <children>
+                                                <TextField fx:id="getID" prefHeight="25.0" prefWidth="153.0" promptText="IXXX(3uniqeCode)" />
+                                                <TextField fx:id="getTitle" promptText="name" />
+                                                <ChoiceBox fx:id="getGenreBox" prefWidth="150.0" />
+                                                <ChoiceBox fx:id="getRentalTypeBox" prefHeight="25.0" prefWidth="150.0" />
+                                                <ChoiceBox fx:id="getLoanTypeBox" prefWidth="150.0" />
+                                                <TextField fx:id="getQuantity" promptText="quantity" />
+                                                <TextField fx:id="getRentalFee" promptText="\$$$" />
+                                             </children>
+                                             <HBox.margin>
+                                                <Insets top="4.0" />
+                                             </HBox.margin>
+                                          </VBox>
+                                          <VBox prefHeight="319.0" prefWidth="127.0" spacing="12.0">
+                                             <children>
+                                                <TextField fx:id="getYearID" prefHeight="27.0" prefWidth="110.0" promptText="YYYY(Year)">
+                                                   <VBox.margin>
+                                                      <Insets left="5.0" top="4.0" />
+                                                   </VBox.margin>
+                                                </TextField>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                    <Button fx:id="RegisterButton" layoutX="361.0" layoutY="262.0" mnemonicParsing="false" onAction="#onRegisItemButton" prefHeight="45.0" prefWidth="96.0" text="Register Item" />
+                                 </children>
+                              </Pane>
+                              <Pane fx:id="RegisPaneError" prefHeight="379.0" prefWidth="444.0" visible="false">
+                                 <children>
+                                    <ImageView fitHeight="310.0" fitWidth="406.0" pickOnBounds="true">
+                                       <image>
+                                          <Image url="@img/erorr.jpg" />
+                                       </image>
+                                    </ImageView>
+                                    <Label fx:id="RegisMessError" alignment="TOP_CENTER" layoutX="273.0" prefHeight="255.0" prefWidth="131.0" text="Label" textAlignment="CENTER" wrapText="true">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets top="10.0" />
+                                       </padding>
+                                    </Label>
+                                    <Button fx:id="RegisOkayButton" layoutX="303.0" layoutY="256.0" mnemonicParsing="false" onAction="#onRegisOkayButton" prefHeight="45.0" prefWidth="96.0" text="Okay" />
+                                 </children>
+                              </Pane>
+                           </children>
+                        </Pane>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+      <Pane fx:id="editPane" layoutX="243.0" layoutY="153.0" prefHeight="431.0" prefWidth="491.0" visible="false">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#b4c1cd" height="431.0" stroke="BLACK" strokeType="INSIDE" width="491.0" />
+            <HBox layoutX="-1.0" prefHeight="431.0" prefWidth="541.0">
+               <children>
+                  <VBox prefHeight="431.0" prefWidth="142.0" spacing="20.0">
+                     <children>
+                        <Text fx:id="Etex0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID">
+                           <font>
+                              <Font size="20.0" />
+                           </font></Text>
+                        <Text fx:id="Etex1" strokeType="OUTSIDE" strokeWidth="0.0" text="Titile:">
+                           <font>
+                              <Font size="20.0" />
+                           </font></Text>
+                        <Text fx:id="Etex2" strokeType="OUTSIDE" strokeWidth="0.0" text="Genre:">
+                           <font>
+                              <Font size="20.0" />
+                           </font></Text>
+                        <Text fx:id="Etex3" strokeType="OUTSIDE" strokeWidth="0.0" text="Rental Type:">
+                           <font>
+                              <Font size="17.0" />
+                           </font></Text>
+                        <Text fx:id="Etex4" strokeType="OUTSIDE" strokeWidth="0.0" text="Loan Type:">
+                           <font>
+                              <Font size="20.0" />
+                           </font></Text>
+                        <Text fx:id="Etex5" strokeType="OUTSIDE" strokeWidth="0.0" text="Stock:">
+                           <font>
+                              <Font size="20.0" />
+                           </font></Text>
+                        <Text fx:id="Etex6" strokeType="OUTSIDE" strokeWidth="0.0" text="Rental Fee:">
+                           <font>
+                              <Font size="20.0" />
+                           </font></Text>
+                        <Text fx:id="Etex7" strokeType="OUTSIDE" strokeWidth="0.0" text="Rental Status:">
+                           <font>
+                              <Font size="17.0" />
+                           </font></Text>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="7.0" top="4.0" />
+                     </padding>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="12.0">
+                     <children>
+                        <TextField fx:id="Etex8" editable="false">
+                           <font>
+                              <Font size="16.0" />
+                           </font></TextField>
+                        <TextField fx:id="Etex9">
+                           <font>
+                              <Font size="16.0" />
+                           </font></TextField>
+                        <TextField fx:id="Etex10">
+                           <font>
+                              <Font size="16.0" />
+                           </font></TextField>
+                        <TextField fx:id="Etex11">
+                           <font>
+                              <Font size="16.0" />
+                           </font></TextField>
+                        <TextField fx:id="Etex12">
+                           <font>
+                              <Font size="16.0" />
+                           </font></TextField>
+                        <TextField fx:id="Etex13">
+                           <font>
+                              <Font size="16.0" />
+                           </font></TextField>
+                        <TextField fx:id="Etex14">
+                           <font>
+                              <Font size="16.0" />
+                           </font></TextField>
+                        <TextField fx:id="Etex15" prefHeight="22.0" prefWidth="100.0">
+                           <font>
+                              <Font size="16.0" />
+                           </font></TextField>
+                     </children>
+                     <padding>
+                        <Insets top="3.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </HBox>
+            <ChoiceBox fx:id="GenreBox" layoutX="148.0" layoutY="98.0" prefHeight="35.0" prefWidth="102.0" />
+            <ChoiceBox fx:id="renTalType" layoutX="148.0" layoutY="144.0" prefHeight="35.0" prefWidth="102.0" />
+            <ChoiceBox fx:id="loanTypeBox" layoutX="148.0" layoutY="193.0" prefHeight="35.0" prefWidth="102.0" />
+            <Label alignment="CENTER" layoutX="284.0" layoutY="14.0" prefHeight="231.0" prefWidth="180.0" text="Update Item Infomation" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Bell MT" size="25.0" />
+               </font>
+            </Label>
+            <Button fx:id="update" layoutX="262.0" layoutY="376.0" mnemonicParsing="false" onAction="#onUpdateButton" prefHeight="45.0" prefWidth="100.0" text="Update!">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="CancelButton" layoutX="14.0" layoutY="374.0" mnemonicParsing="false" onAction="#CancelButtonPressed" prefHeight="45.0" prefWidth="95.0" text="Cancel">
+               <font>
+                  <Font size="21.0" />
+               </font></Button>
+            <Pane fx:id="ErrorPane" prefHeight="377.0" prefWidth="508.0" visible="false">
+               <children>
+                  <ImageView fitHeight="255.0" fitWidth="396.0" layoutX="78.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/erorr.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="ErrorMess" alignment="TOP_CENTER" layoutX="359.0" layoutY="66.0" prefHeight="177.0" prefWidth="102.0" text="Label" textAlignment="CENTER" textFill="#f2f2f2" wrapText="true" />
+                  <Button fx:id="UkiButton" layoutX="393.0" layoutY="258.0" mnemonicParsing="false" onAction="#ukiButton" text="Uki!" />
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

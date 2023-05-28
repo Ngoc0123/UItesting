@@ -19,11 +19,16 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.oop_ui_test.Controller.StoreController">
    <children>
+      <ImageView fitHeight="600.0" fitWidth="827.0" pickOnBounds="true">
+         <image>
+            <Image url="@img/loginBG.png" />
+         </image>
+      </ImageView>
       <BorderPane layoutX="286.0" layoutY="237.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Online Renting Video" textAlignment="CENTER" wrappingWidth="376.9921875" BorderPane.alignment="CENTER">
+            <Text fill="#5a4fe0" strokeType="OUTSIDE" strokeWidth="0.0" text="Genie's Online Video Store" textAlignment="CENTER" wrappingWidth="514.9921875" BorderPane.alignment="CENTER">
                <font>
-                  <Font size="40.0" />
+                  <Font name="Berlin Sans FB Demi Bold" size="40.0" />
                </font>
                <BorderPane.margin>
                   <Insets bottom="10.0" top="10.0" />
@@ -35,7 +40,7 @@
                <children>
                   <HBox alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="807.0" spacing="10.0">
                      <children>
-                        <AnchorPane prefHeight="22.0" prefWidth="198.0">
+                        <AnchorPane prefHeight="38.0" prefWidth="0.0">
                            <children>
                               <Text fill="#454ddf" layoutX="64.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Items" textAlignment="CENTER" underline="true" wrappingWidth="95.73670196533203">
                                  <font>
@@ -44,16 +49,16 @@
                               </Text>
                            </children>
                         </AnchorPane>
-                        <AnchorPane prefHeight="27.0" prefWidth="200.0">
+                        <AnchorPane prefHeight="38.0" prefWidth="141.0">
                            <children>
-                              <Text fx:id="rentalsText" layoutX="52.0" layoutY="30.0" onMouseEntered="#enterRentals" onMouseExited="#exitRentals" onMousePressed="#switchtoRentals" strokeType="OUTSIDE" strokeWidth="0.0" text="Rentals" textAlignment="CENTER" wrappingWidth="95.73670196533203">
+                              <Text fx:id="rentalsText" fill="#454ddf" layoutX="52.0" layoutY="30.0" onMouseEntered="#enterRentals" onMouseExited="#exitRentals" onMousePressed="#switchtoRentals" strokeType="OUTSIDE" strokeWidth="0.0" text="Rentals" textAlignment="CENTER" wrappingWidth="95.73670196533203">
                                  <font>
                                     <Font size="24.0" />
                                  </font>
                               </Text>
                            </children>
                         </AnchorPane>
-                        <AnchorPane prefHeight="17.0" prefWidth="222.0" />
+                        <AnchorPane prefHeight="38.0" prefWidth="360.0" />
                         <Label fx:id="myAccountLabel" onMouseEntered="#enterProfile" onMouseExited="#exitProfile" onMousePressed="#switchtoProfile" prefHeight="18.0" prefWidth="72.0" text="My Account" />
                         <ImageView fitHeight="36.0" fitWidth="50.0" onMouseEntered="#enterProfile" onMouseExited="#exitProfile" onMousePressed="#switchtoProfile" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -125,7 +130,7 @@
                                        </VBox.margin></ImageView>
                                     <VBox alignment="CENTER_LEFT" prefHeight="78.0" prefWidth="457.0">
                                        <children>
-                                          <Text fx:id="chosenRentalType" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="388.53671646118164">
+                                          <Text fx:id="chosenRentalType" fill="#b27606" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="388.53671646118164">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
@@ -133,7 +138,7 @@
                                                 <Insets left="20.0" />
                                              </VBox.margin>
                                           </Text>
-                                          <Text fx:id="chosenLoanType" strokeType="OUTSIDE" strokeWidth="0.0" text="Rental type:" wrappingWidth="207.7367286682129">
+                                          <Text fx:id="chosenLoanType" fill="#b27606" strokeType="OUTSIDE" strokeWidth="0.0" text="Loan type: " wrappingWidth="207.7367286682129">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
@@ -141,7 +146,7 @@
                                                 <Insets left="20.0" />
                                              </VBox.margin>
                                           </Text>
-                                          <Text fx:id="chosenStock" strokeType="OUTSIDE" strokeWidth="0.0" text="Stock:" wrappingWidth="192.5367774963379">
+                                          <Text fx:id="chosenStock" fill="#b27606" strokeType="OUTSIDE" strokeWidth="0.0" text="Stock:" wrappingWidth="192.5367774963379">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
@@ -149,7 +154,7 @@
                                                 <Insets left="20.0" />
                                              </VBox.margin>
                                           </Text>
-                                          <Text fx:id="chosenPrice" strokeType="OUTSIDE" strokeWidth="0.0" text="Price:" wrappingWidth="194.13681411743164">
+                                          <Text fx:id="chosenPrice" fill="#b27606" strokeType="OUTSIDE" strokeWidth="0.0" text="Price:" wrappingWidth="194.13681411743164">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
@@ -159,7 +164,7 @@
                                           </Text>
                                        </children>
                                     </VBox>
-                                    <Text fx:id="errorText" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="320.800030708313" />
+                                    <Text fx:id="errorText" fill="#eb0c0c" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="320.800030708313" />
                                     <Button fx:id="rentingButton" mnemonicParsing="false" onAction="#onRentingAction" text="Rent" />
                                  </children>
                               </VBox>

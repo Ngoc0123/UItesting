@@ -15,6 +15,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.FileSystems;
@@ -22,8 +23,7 @@ import java.nio.file.Path;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class ItemController implements Initializable {
-
+public class ItemController extends Controller implements Initializable {
     @FXML
     private Label nameLabel;
 
@@ -41,8 +41,8 @@ public class ItemController implements Initializable {
         this.item = i_item;
         this.listener=listener;
         nameLabel.setText(this.item.getTitle());
-        Image image = new Image(i_item.getImgSrc());
-        itemPic.setImage(image);
+        itemPic.setImage(new Image(i_item.getImgSrc()));
+
     }
 
     @FXML

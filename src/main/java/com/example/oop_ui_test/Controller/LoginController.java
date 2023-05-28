@@ -1,9 +1,6 @@
 package com.example.oop_ui_test.Controller;
 
-import com.example.oop_ui_test.Classes.Customer;
-import com.example.oop_ui_test.Classes.Item;
-import com.example.oop_ui_test.Classes.ManageCustomer;
-import com.example.oop_ui_test.Classes.Rental;
+import com.example.oop_ui_test.Classes.*;
 import com.example.oop_ui_test.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,7 +26,7 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-public class LoginController implements Initializable {
+public class LoginController extends Controller implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -71,9 +68,9 @@ public class LoginController implements Initializable {
             return;
         }
 
-        if(stringCompare(userNameInput.getText(),"admin") == 0){
-            if(stringCompare(passInput.getText(),"123")==0){
-                FXMLLoader loader = new FXMLLoader(Main.class.getResource("AdminView.fxml"));
+        if(userNameInput.getText().matches(Admin.username)){
+            if(passInput.getText().matches(Admin.password)){
+                FXMLLoader loader = new FXMLLoader(Main.class.getResource("AdminItemView.fxml"));
                 root = loader.load();
 
                 stage = (Stage)(((Node)event.getSource()).getScene().getWindow());
@@ -88,8 +85,8 @@ public class LoginController implements Initializable {
         int i;
 
         for(i=0; i < customers.size();i++){
-            if(stringCompare(customers.get(i).getUsername(),userNameInput.getText())==0){
-                if (stringCompare(customers.get(i).getPassword(),passInput.getText())==0){
+            if(customers.get(i).getUsername().matches(userNameInput.getText())){
+                if (customers.get(i).getPassword().matches(passInput.getText())){
                     found = true;
                     customer = customers.get(i);
                     break;
@@ -144,31 +141,6 @@ public class LoginController implements Initializable {
         customers = ManageCustomer.customersList;
     }
 
-
-    public static int stringCompare(String str1, String str2)
-    {
-
-        int l1 = str1.length();
-        int l2 = str2.length();
-        int lmin = Math.min(l1, l2);
-
-        for (int i = 0; i < lmin; i++) {
-            int str1_ch = (int)str1.charAt(i);
-            int str2_ch = (int)str2.charAt(i);
-
-            if (str1_ch != str2_ch) {
-                return str1_ch - str2_ch;
-            }
-        }
-
-        if (l1 != l2) {
-            return l1 - l2;
-        }
-
-        else {
-            return 0;
-        }
-    }
 
     public void displayError(String errStr){
         errorPane.setVisible(true);

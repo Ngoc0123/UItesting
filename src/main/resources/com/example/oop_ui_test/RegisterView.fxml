@@ -13,37 +13,55 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.oop_ui_test.Controller.RegisterCotroller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.oop_ui_test.Controller.RegisterCotroller">
    <children>
-      <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@img/signUpBG.png" />
          </image>
       </ImageView>
       <HBox layoutX="144.0" layoutY="150.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label alignment="CENTER" prefHeight="368.0" prefWidth="490.0" text="Sign Up Now" textFill="WHITE">
+            <Label alignment="CENTER" prefHeight="469.0" prefWidth="702.0" text="Sign Up Now" textFill="WHITE">
                <font>
-                  <Font name="Bodoni MT Black" size="27.0" />
+                  <Font name="Bodoni MT Black" size="39.0" />
                </font>
             </Label>
          </children>
       </HBox>
-      <VBox layoutX="348.0" prefHeight="400.0" prefWidth="200.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="348.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="0.0">
+      <VBox layoutX="506.0" prefHeight="600.0" prefWidth="242.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="506.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TextField fx:id="fullnameIn" prefHeight="28.0" prefWidth="187.0" promptText="Full Name" />
-            <TextField fx:id="addressIn" prefHeight="28.0" prefWidth="187.0" promptText="Address" />
-            <TextField fx:id="phoneIn" prefHeight="28.0" prefWidth="187.0" promptText="Phone" />
-            <TextField fx:id="userNameIn" prefHeight="28.0" prefWidth="187.0" promptText="User Name" />
-            <PasswordField fx:id="passwordIn" prefHeight="28.0" prefWidth="187.0" promptText="Password" />
-            <PasswordField fx:id="reEnterPassWordIn" prefHeight="28.0" prefWidth="187.0" promptText="Re-Enter Password" />
+            <TextField fx:id="fullnameIn" prefHeight="28.0" prefWidth="187.0" promptText="Full Name">
+               <font>
+                  <Font size="19.0" />
+               </font></TextField>
+            <TextField fx:id="addressIn" prefHeight="28.0" prefWidth="187.0" promptText="Address">
+               <font>
+                  <Font size="19.0" />
+               </font></TextField>
+            <TextField fx:id="phoneIn" prefHeight="28.0" prefWidth="187.0" promptText="Phone">
+               <font>
+                  <Font size="19.0" />
+               </font></TextField>
+            <TextField fx:id="userNameIn" prefHeight="28.0" prefWidth="187.0" promptText="User Name">
+               <font>
+                  <Font size="19.0" />
+               </font></TextField>
+            <PasswordField fx:id="passwordIn" prefHeight="28.0" prefWidth="187.0" promptText="Password">
+               <font>
+                  <Font size="19.0" />
+               </font></PasswordField>
+            <PasswordField fx:id="reEnterPassWordIn" prefHeight="28.0" prefWidth="187.0" promptText="Re-Enter Password">
+               <font>
+                  <Font size="19.0" />
+               </font></PasswordField>
          </children>
          <padding>
             <Insets top="50.0" />
          </padding>
       </VBox>
-      <Button fx:id="submitButton" layoutX="366.0" layoutY="332.0" mnemonicParsing="false" onAction="#onSubmitButton" prefHeight="34.0" prefWidth="84.0" text="Sign Up" />
-      <Button fx:id="Login" layoutX="481.0" layoutY="335.0" mnemonicParsing="false" onAction="#switchtoLogin" prefHeight="28.0" prefWidth="71.0" text="Log In" />
+      <Button fx:id="submitButton" layoutX="516.0" layoutY="409.0" mnemonicParsing="false" onAction="#onSubmitButton" prefHeight="34.0" prefWidth="76.0" text="Sign Up" />
+      <Button fx:id="Login" layoutX="668.0" layoutY="409.0" mnemonicParsing="false" onAction="#switchtoLogin" prefHeight="34.0" prefWidth="76.0" text="Log In" />
       <Pane fx:id="errorPane" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="255.0" fitWidth="409.0" layoutX="111.0" layoutY="53.0" pickOnBounds="true">
@@ -76,7 +94,7 @@
                   <Font name="Bodoni MT Black" size="12.0" />
                </font>
             </Label>
-            <Button fx:id="uki" layoutX="277.0" layoutY="185.0" mnemonicParsing="false" onAction="#ukiButton" text="uki!" />
+            <Button fx:id="uki" layoutX="277.0" layoutY="185.0" mnemonicParsing="false" onAction="#switchtoLogin" text="uki!" />
          </children>
       </Pane>
    </children>
