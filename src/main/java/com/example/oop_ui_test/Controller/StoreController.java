@@ -203,7 +203,7 @@ public class StoreController implements Initializable {
 
         }
 
-        Rental newRental = new Rental(ManageItem.items.get(index),1);
+        Rental newRental = new Rental(ManageItem.items.get(index).getId(),"On-going");
         ManageItem.items.get(index).setStock(ManageItem.items.get(index).getStock() - 1);
         ManageCustomer.customersList.get(cusIndex).setRentalNumber(ManageCustomer.customersList.get(cusIndex).getRentalNumber() + 1);
         ManageCustomer.customersList.get(cusIndex).getRentals().add(newRental);

@@ -493,9 +493,7 @@ public class AdminItemController implements Initializable {
     @FXML
     private void onUpdateButton(){
 
-        if(Customertext.isDisable()) {
-            updateCustomer();
-        } else if (Itemtext.isDisable()) {
+        if (Itemtext.isDisable()) {
             updateItem();
         }
 
@@ -507,74 +505,7 @@ public class AdminItemController implements Initializable {
     @FXML
     private void ukiButton(){ErrorPane.setVisible(false);}
 
-    private void updateCustomer(){
-        Customer cus = new Customer();
-        Rental rental1 = new Rental();
 
-        if (Etex9.getText() == null || Etex9.getText().length() < 1) {
-            ErrorMess.setText("Please enter your name");
-            ErrorPane.setVisible(true);
-            return;
-        }
-
-        if (Etex10.getText() == null || Etex10.getText().length() < 1) {
-            ErrorMess.setText("Please enter your address");
-            ErrorPane.setVisible(true);
-            return;
-        }
-        if(renTalType.getValue().equals("Game")){
-            Etex3.setVisible(false);
-            GenreBox.setVisible(false);
-        }
-
-
-
-        if (!checkNumber(Etex11.getText()) || Etex11.getText() == null ||Etex11.getText().length() != 10) {
-            ErrorMess.setText("Invalid Phone number! Please enter 10 digit numbers: ");
-            ErrorPane.setVisible(true);
-            return;
-        }
-
-        if (Etex12.getText() == null || Etex12.getText().length() < 1) {
-            ErrorMess.setText("Please enter User Name");
-            return;
-        } else if (ManageCustomer.isExist(Etex12.getText())) {
-            ErrorMess.setText("This User Name is already exist, please enter a new one");
-            ErrorPane.setVisible(true);
-            return;
-        }
-
-        if (Etex13.getText() == null || Etex13.getText().length() < 8) {
-            ErrorMess.setText("Wrong format!! Password must have 8 or more characters. Please enter Password");
-            ErrorPane.setVisible(true);
-            return;
-        }
-        ManageCustomer.readFile();
-        cus.setId(Etex8.getText());
-        cus.setName(Etex9.getText());
-        cus.setAddress(Etex10.getText());
-        cus.setPhone(Etex11.getText());
-        cus.setUsername(Etex12.getText());
-        cus.setPassword(Etex13.getText());
-        //
-        //RENTAL HERE
-        //
-        //
-
-
-        ManageCustomer.customersList.set(choseIndex,cus);
-        ManageCustomer.saveFile();
-
-
-        Etex9.setText("");
-        Etex10.setText("");
-        Etex11.setText("");
-        Etex12.setText("");
-        Etex13.setText("");
-
-        editPane.setVisible(false);
-
-    }
 
     private void updateItem(){
         Item item = new Item();
@@ -597,7 +528,7 @@ public class AdminItemController implements Initializable {
         }
 
 
-        if (!checkNumber(Etex13.getText())||Etex13.getText() == null) {
+        if (!ManageCustomer.checkNumber(Etex13.getText())||Etex13.getText() == null) {
             ErrorMess.setText("Please insert quantity of the Item");
             System.out.println(Etex12.getText());
             ErrorPane.setVisible(true);
@@ -628,14 +559,9 @@ public class AdminItemController implements Initializable {
 
     }
 
-    private boolean checkNumber(String str){
-        try{
-            int input = Integer.parseInt(str);
-            return true;
-        }catch (NumberFormatException e ){
-            return false;
-        }
-    }private boolean checkNumberDouble(String str){
+
+
+    private boolean checkNumberDouble(String str){
         try{
             double input = Double.parseDouble(str);
             return true;

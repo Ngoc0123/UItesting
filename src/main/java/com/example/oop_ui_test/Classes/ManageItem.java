@@ -74,4 +74,13 @@ public class ManageItem {
             e.printStackTrace();
         }
     }
+
+    public static int find(String id){
+        for(Item item: items){
+            if(item.getId().matches(id)){
+                return items.indexOf(item);
+            }
+        }
+        return -1;
+    }
 }

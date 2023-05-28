@@ -162,21 +162,26 @@ public class RentalsController implements Initializable {
                 System.out.println(chosenRentalIndex);
                 setChosenRental(chosenRentalIndex);
                 errorText.setText("");
+                try {
+                    chosenItemIndex = ManageItem.find(myListView.getSelectionModel().getSelectedItem().substring(2, 11));
+                }catch (NullPointerException e){
+
+                }
+                chosenItem = ManageItem.items.get(chosenItemIndex);
             }
         });
     }
 
     private void setChosenRental(int index){
-        chosenItemIndex = 0;
+        try {
+            chosenItemIndex = ManageItem.find(myListView.getSelectionModel().getSelectedItem().substring(2));
+        }catch (NullPointerException e){
+
+        }
+        chosenItem = ManageItem.items.get(chosenItemIndex);
+
         if(currentCus.getRentals().size() < 1){
             return;
-        }
-        for(Item item: ManageItem.items){
-            if(item.getId().matches(currentCus.getRentals().get(index).getId())){
-                chosenItem = item;
-                break;
-            }
-            chosenItemIndex++;
         }
 
         chosenName.setText(chosenItem.getTitle());
@@ -203,7 +208,7 @@ public class RentalsController implements Initializable {
 
         myListView.getItems().addAll(list);
         chosenRentalIndex = 0;
-        setChosenRental(0);
+        setChosenRental(chosenRentalIndex);
 
     }
 

@@ -1,30 +1,28 @@
-C001,Minh Dinh,Irwin,1234567890,9,8,minhdinh,123456,30
-I002-1988,1,Returned
-I003-1992,1,Returned
-I002-1988,1,Returned
-I001-2001,1,Returned
-I004-1999,1,Returned
-I001-2001,1,Returned
-I003-1992,1,On-going
-I006-2013,1,Returned
-I002-1988,1,Returned
-C002,Hong Wang,20 Irwin Street,0424173255,2,0,wanghong98,987654,0
-I005-2015,1,On-going
-I006-2013,1,On-going
-C003,Linh Nguyen,12 Brunswick Street,0424173255,2,1,linhtb,linhlinh,0
-I001-2001,1,Returned
-I002-1988,1,On-going
-C004,Antony Zinc,114 Fraser Avenue,0424512345,1,1,abookworm,booklover,0
-I003-1992,1,Returned
-C005,John Cain,45 Sydney Road,0424325123,1,0,johnthebaby,123456,0
-I004-1999,1,On-going
-C006,BaoNgoc,Dien Bien Phu,0905151667,0,0,ngoc01,12345678,0
-C007,Ngoc123,asdasd,0123456789,0,0,ngoc02,12345678,0
-C008,Ngoc,123456asda,1234567891,7,4,ngoctest,12345678,0
-I001-2001,1,Returned
-I004-1999,1,On-going
-I002-1988,1,Returned
-I002-1988,1,Returned
-I004-1999,1,Returned
-I004-1999,1,On-going
-I004-1999,1,On-going
+C001,Bao Ngoc,Dien Bien Phu,0914288975,VIP,baongoc,123456,40
+I002-1988,On-going
+I003-1992,Returned
+I002-1988,Returned
+I004-1999,On-going
+I001-2001,On-going
+I003-1992,On-going
+I002-1988,Returned
+C002,Hong Wang,20 Irwin Street,0424173255,Guest,wanghong98,987654,0
+I005-2015,On-going
+I006-2013,On-going
+C003,Linh Nguyen,12 Brunswick Street,0424173255,Guest,linhtb,linhlinh,0
+I001-2001,On-going
+I002-1988,On-going
+C004,Antony Zinc,114 Fraser Avenue,0424512345,Guest,abookworm,booklover,0
+I003-1992,On-going
+C005,John Cain,45 Sydney Road,0424325123,Guest,johnthebaby,123456,0
+I004-1999,On-going
+C006,BaoNgoc,Dien Bien Phu,0905151667,Guest,ngoc01,12345678,0
+C007,Ngoc123,asdasd,0123456789,Guest,ngoc02,12345678,0
+C008,Ngoc,123456asda,1234567891,Regular,ngoctest,12345678,0
+I001-2001,On-going
+I004-1999,On-going
+I002-1988,On-going
+I002-1988,On-going
+I004-1999,On-going
+I004-1999,On-going
+I004-1999,On-going

@@ -7,10 +7,10 @@ public class Customer extends Account{
   private String name;
   private String address;
   private String phone;
-  private int rentalNumber;
+  private int rentalNumber = 0;
   private String level;
 
-  private int returned;
+  private int returned = 0;
   private int rewardPoint = 0;
 
   private ArrayList<Rental> rentals = new ArrayList<Rental>();
