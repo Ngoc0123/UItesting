@@ -205,7 +205,7 @@ public class AdminItemController implements Initializable {
     private Button RegisCancelButton;
 
     @FXML
-    private TextField sreachBar;
+    private TextField searchBar;
 
     @FXML
     private Label RegisMessError;
@@ -314,7 +314,6 @@ public class AdminItemController implements Initializable {
         //refresh the View List each time change tab
         list.getItems().clear();
 
-        //set button disable for each time change tab
 
 
         //Print array
@@ -445,14 +444,7 @@ public class AdminItemController implements Initializable {
         }
     }
 
-    //Print Customer ID, name
-    private  void onCusP() {
-        for (int i = 0; i < customers.size(); i++) {
-            list.getItems().addAll(customers.get(i).getId());
 
-        }
-
-    }
 
 
     //When Select content in List View
@@ -553,19 +545,7 @@ public class AdminItemController implements Initializable {
             }
         }
 
-        GenreBox.setConverter(new StringConverter<String>() {
-            @Override
-            public String toString(String s) {
-                return (s==null)? "Nothing Selected":s;
-            }
-
-            @Override
-            public String fromString(String s) {
-                return null;
-            }
-        });
-
-        }
+    }
 
 
     @FXML
@@ -634,10 +614,7 @@ public class AdminItemController implements Initializable {
         cus.setPhone(Etex11.getText());
         cus.setUsername(Etex12.getText());
         cus.setPassword(Etex13.getText());
-        //
-        //RENTAL HERE
-        //
-        //
+
 
 
         ManageCustomer.customersList.set(choseIndex,cus);
