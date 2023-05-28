@@ -639,11 +639,11 @@ public class AdminItemController implements Initializable {
     private void updateItem(){
         Item item = new Item();
         GenreBox.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> chosenGenreBox = newValue);
-        System.out.println(chosenGenreBox);
+
         loanTypeBox.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> chosenLoanBox = newValue);
-        System.out.println(chosenLoanBox);
+
         renTalType.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> chosenRentalBox = newValue);
-        System.out.println(chosenRentalBox);
+
 
 
         if (Etex9.getText() == null || Etex9.getText().length() < 1) {
@@ -690,13 +690,18 @@ public class AdminItemController implements Initializable {
 
     @FXML
     private void onRegisItemButton(){
+        getGenreBox.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> Igenre = newValue);
+
+        getRentalTypeBox.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> IrentalType = newValue);
+
+        getLoanTypeBox.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> IloanType = newValue);
+
         //set default value
-        getGenreBox.setValue("Horror");
-        getLoanTypeBox.setValue("1-week loan");
-        renTalType.setValue("Record");
+
+
         String tmp = getID.getText();
-        if (!checkNumber(tmp)||tmp == null || tmp.length() < 3) {
-            RegisMessError.setText("ID has 3 unique number, please enter again");
+        if (!checkNumber(tmp)||tmp == null || tmp.length() > 3 ||tmp.length() < 1) {
+            RegisMessError.setText("ID is 3 unique number, please enter again");
             RegisPaneError.setVisible(true);
             return;
         }
@@ -718,18 +723,38 @@ public class AdminItemController implements Initializable {
         }
         Ititle = tmp;
 
+        if(getGenreBox.getValue() == null){
+            RegisPaneError.setVisible(true);
+            RegisMessError.setText("You forgot to choose Genre Type, please choose it agian");
+            return;
+        }
+        if(getRentalTypeBox.getValue() == null){
+            RegisPaneError.setVisible(true);
+            RegisMessError.setText("You forgot to choose RENTAL Type, please choose it agian");
+            return;
+        }
+
+        if(getLoanTypeBox.getValue() == null){
+            RegisPaneError.setVisible(true);
+            RegisMessError.setText("You forgot to choose Loan Type, please choose it agian");
+            return;
+        }
+
+        if(getRentalTypeBox.getValue().equals("Game")){
+            getGenreBox.setVisible(false);
+        }
+
         if((ManageItem.isExist((Iid + "-" + IidYear)))){
             RegisMessError.setText("The ID is already exist, try another one");
             RegisPaneError.setVisible(true);
             return;
         }
 
-        getGenreBox.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> Igenre = newValue);
-        System.out.println(Igenre);
-        getRentalTypeBox.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> IrentalType = newValue);
-        System.out.println(IrentalType);
-        getLoanTypeBox.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> IloanType = newValue);
-        System.out.println(IloanType);
+
+
+
+
+
 
         tmp = getQuantity.getText();
         if(!checkNumber(tmp) || tmp == null){
@@ -750,6 +775,11 @@ public class AdminItemController implements Initializable {
 
         RegisPane.setVisible(false);
 
+        getID.setText("");
+        getYearID.setText("");
+        getTitle.setText("");
+        getQuantity.setText("");
+        getRentalFee.setText("");
 
 
     }
@@ -792,11 +822,11 @@ public class AdminItemController implements Initializable {
         this.customers = ManageCustomer.customersList;
 
         getGenreBox.getItems().addAll(Genreword);
-        getGenreBox.setValue("Action");
+        getGenreBox.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> Igenre = newValue);
         getLoanTypeBox.getItems().addAll(LoanTypeword);
-        getLoanTypeBox.setValue("2-days loan");
+        getRentalTypeBox.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> IrentalType = newValue);
         getRentalTypeBox.getItems().addAll(rentalType);
-        getRentalTypeBox.setValue("DVD");
+        getLoanTypeBox.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> IloanType = newValue);
 
         GenreBox.getItems().addAll(Genreword);
         GenreBox.setValue("Action");
