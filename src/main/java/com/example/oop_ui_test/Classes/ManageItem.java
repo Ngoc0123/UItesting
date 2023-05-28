@@ -87,7 +87,7 @@ public class ManageItem {
     public static boolean isExist(String id){
 
         for (Item item : items) {
-            if (item.getId().matches(id)) {
+            if (item.getId().substring(0,4).matches(id)) {
                 return true;
             }
         }
