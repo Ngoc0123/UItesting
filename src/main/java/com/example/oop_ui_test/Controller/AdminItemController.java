@@ -218,6 +218,20 @@ public class AdminItemController implements Initializable {
 
     @FXML
     private Button RegisOkayButton;
+    @FXML
+    private TextField searchBar;
+
+    @FXML
+    private Text searchErrorText;
+
+    @FXML
+    private RadioButton sortByID;
+
+    @FXML
+    private RadioButton sortByTitle;
+
+    @FXML
+    private RadioButton sortOutOfStock;
 
     @FXML
     private ChoiceBox<String> GenreBox;
@@ -283,55 +297,70 @@ public class AdminItemController implements Initializable {
     private void onRegisCancelButton(){RegisPane.setVisible(false);}
 
 
-
-
     @FXML
-    private void onItemPress(MouseEvent event) { //on click Item text
-
-        items = new ArrayList<Item>();
-
-        Path path = FileSystems.getDefault().getPath(new String()).toAbsolutePath();
-        Scanner fileScanner = null;
-        //determine the path of the file need to read
-        try {
-            fileScanner = new Scanner(new FileReader(path.toString() + "\\src\\main\\java\\com\\example\\oop_ui_test\\Data\\items.txt"));
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-
-        //break the file into string each after ","
-        while (fileScanner.hasNextLine()) {
-             Item item = new Item();
-            String line = fileScanner.nextLine();
-            StringTokenizer inReader = new StringTokenizer(line, ",");
-
-            item.setId(inReader.nextToken());
-            item.setTitle(inReader.nextToken());
-
-            //add result to the array
-            items.add(item);
-        }
-        //refresh the View List each time change tab
-        list.getItems().clear();
-
-        //set button disable for each time change tab
-
-
-        //Print array
-        onRefreshList();
-
-        //avoid spamming the function
-
-        Itemtext.setDisable(true);
-        Customertext.setDisable(false);
-        information.setVisible(false);
-
-        //when click the content in the table view list
-        list.getSelectionModel().selectedItemProperty().addListener(this::whenItemSelected);
-
-
+    void searchBarEnter(ActionEvent event) {
+        search(searchBar.getText());
     }
 
+    @FXML
+    void searchBarPress(MouseEvent event) {
+        search(searchBar.getText());
+    }
+
+    @FXML
+    void onRefresh(ActionEvent event) {
+        ManageItem.sort(ManageItem.SORT_BY_ID);
+        onRefreshList();
+        searchErrorText.setText("");
+        sortByID.setSelected(false);
+        sortByTitle.setSelected(false);
+    }
+
+
+    public void setRadio1() {
+        ManageItem.sort(ManageItem.SORT_BY_NAME);
+        onRefreshList();
+        sortByID.setSelected(false);
+        sortOutOfStock.setSelected(false);
+    }
+    public void setRadio2() {
+        ManageItem.sort(ManageItem.SORT_BY_ID);
+        onRefreshList();
+        sortByTitle.setSelected(false);
+        sortOutOfStock.setSelected(false);
+    }
+
+    public void setRadio3(){
+        ManageItem.sort(ManageItem.SORT_BY_ID);
+        list.getItems().clear();
+        for(Item item: ManageItem.items){
+            if(item.getStock() == 0){
+                list.getItems().add(item.getId());
+            }
+        }
+        sortByID.setSelected(false);
+        sortByTitle.setSelected(false);
+    }
+
+    public void search(String input){
+        list.getItems().clear();
+        int matches = 0;
+        ArrayList<String> lists = new ArrayList<String>();
+        for(int i = 1; i<= ManageItem.items.size();i++){
+            if(ManageItem.items.get(i-1).getTitle().toLowerCase().matches(".*"+input.toLowerCase()+".*")||ManageItem.items.get(i-1).getId().toLowerCase().matches(".*"+input)){
+                matches++;
+                searchErrorText.setText("");
+                lists.add(i+"."+ManageItem.items.get(i-1).getId());
+
+            }
+        }
+        list.getItems().addAll(lists);
+
+        if(matches == 0){
+            searchErrorText.setText("There is no Item match with your search!! Please enter another keyword.");
+            onRefreshList();
+        }
+    }
     @FXML
     private void onCustomerPress(MouseEvent event) throws IOException {//on click customer text
 
@@ -347,6 +376,7 @@ public class AdminItemController implements Initializable {
     }
 
     private void onItemSelect(String str){
+        System.out.println(str);
         tex1.setText("ID:");
         tex2.setText("Title:");
         tex3.setText("Genre:");
@@ -860,6 +890,9 @@ public class AdminItemController implements Initializable {
         loanTypeBox.setValue("2-days loan");
         renTalType.getItems().addAll(rentalType);
         renTalType.setValue("DVD");
+
+        onRefreshList();
+        information.setVisible(true);
 
 
     }
