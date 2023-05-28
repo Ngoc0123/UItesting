@@ -33,6 +33,10 @@ public class AdminCusController implements Initializable {
 
     @FXML
     private Text customerText;
+    @FXML
+    private Text logOutText;
+
+
 
     @FXML
     private Text itemText;
@@ -106,6 +110,27 @@ public class AdminCusController implements Initializable {
     private ListView<String> listView;
     @FXML
     private AnchorPane updatePane;
+
+    @FXML
+    void logOutEnter(MouseEvent event) {
+        logOutText.setUnderline(true);
+    }
+
+    @FXML
+    void logOutExit(MouseEvent event) {
+        logOutText.setUnderline(false);
+    }
+    @FXML
+    void onLogOutAction(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("LoginView.fxml"));
+        root = loader.load();
+
+        stage = (Stage)(((Node)event.getSource()).getScene().getWindow());
+        scene = new Scene(root);
+
+        stage.setScene(scene);
+        stage.show();
+    }
 
     @FXML
     void itemEnter(MouseEvent event) {
@@ -322,7 +347,13 @@ public class AdminCusController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
                 try {
-                    chosenCusIndex = ManageCustomer.find(listView.getSelectionModel().getSelectedItem().substring(2, 6));
+                    int cut = 0;
+                    if(listView.getSelectionModel().getSelectedIndex() >= 9){
+                        cut = 3;
+                    }else{
+                        cut = 2;
+                    }
+                    chosenCusIndex = ManageCustomer.find(listView.getSelectionModel().getSelectedItem().substring(cut, cut+4));
                     setChosenCus(chosenCusIndex);
                 } catch (NullPointerException e){
 
