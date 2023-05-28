@@ -33,7 +33,7 @@ public class AdminItemController implements Initializable {
     private ArrayList<Customer> customers;
     private ArrayList<Item> items;
 
-    private ArrayList<Rental> rental;
+
     private String chosenGenreBox;
     private String chosenRentalBox;
     private String chosenLoanBox;
@@ -402,11 +402,12 @@ public class AdminItemController implements Initializable {
                 tex13.setText(cus.getUsername());
                 tex14.setText("" + cus.getPassword());
 
-
+                choseIndex = ManageCustomer.customersList.indexOf(cus);
 
 
                 tex15.setVisible(false);
                 tex16.setVisible(false);
+                return;
             }
         }
 
@@ -414,10 +415,23 @@ public class AdminItemController implements Initializable {
     }
 
     @FXML
-    private void onDeleButton(){
+    private void onDeleButton() {
+        choseIndex = list.getSelectionModel().getSelectedIndex();
+
+        for(Customer customer: ManageCustomer.customersList){
+
+            ArrayList<Rental> rentals = new ArrayList<Rental>();
+            for(Rental rental : customer.getRentals()){
+                if(rental.getId().matches(ManageItem.items.get(choseIndex).getId())){
+                    rentals.add(rental);
+                }
+            }
+            customer.getRentals().removeAll(rentals);
+        }
+
         ManageItem.items.remove(choseIndex);
-        list.getItems().remove(choseIndex);
         ManageItem.saveFile();
+        ManageCustomer.saveFile();
     }
 
     //Print Item ID, name
@@ -842,7 +856,6 @@ public class AdminItemController implements Initializable {
         loanTypeBox.setValue("2-days loan");
         renTalType.getItems().addAll(rentalType);
         renTalType.setValue("DVD");
-
 
 
 
