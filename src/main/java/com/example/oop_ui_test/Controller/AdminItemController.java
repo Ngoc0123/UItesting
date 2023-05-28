@@ -431,6 +431,7 @@ public class AdminItemController implements Initializable {
         ManageItem.items.remove(choseIndex);
         ManageItem.saveFile();
         ManageCustomer.saveFile();
+        onRefreshList();
 
 
 
@@ -439,8 +440,8 @@ public class AdminItemController implements Initializable {
     //Print Item ID, name
     private void onRefreshList() {
         list.getItems().clear();
-        for (int i = 0; i < items.size(); i++) {
-            list.getItems().addAll(items.get(i).getId());
+        for (Item item : ManageItem.items) {
+            list.getItems().addAll(item.getId());
         }
     }
 
