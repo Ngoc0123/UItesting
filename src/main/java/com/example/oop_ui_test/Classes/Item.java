@@ -8,6 +8,7 @@ public class Item {
     private int stock;
     private double rentalFee;
     private String genre = null;
+    private String imgSrc;
 
     public Item(){}
 
@@ -76,7 +77,13 @@ public class Item {
         this.genre = genre;
     }
 
+    public void setImgSrc(String src){
+        this.imgSrc = src;
+    }
 
+    public String getImgSrc() {
+        return imgSrc;
+    }
 
 
 

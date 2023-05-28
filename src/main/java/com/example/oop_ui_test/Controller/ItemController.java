@@ -24,7 +24,6 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class ItemController implements Initializable {
-
     @FXML
     private Label nameLabel;
 
@@ -42,13 +41,8 @@ public class ItemController implements Initializable {
         this.item = i_item;
         this.listener=listener;
         nameLabel.setText(this.item.getTitle());
-        try {
-            Image image = new Image("\\src\\main\\resources\\com\\example\\oop_ui_test\\img\\"+i_item.getRentalType()+".png");
-            itemPic.setImage(image);
-        }catch (NullPointerException e){
-            Image image = new Image("\\src\\main\\resources\\com\\example\\oop_ui_test\\img\\icon.png");
-            itemPic.setImage(image);
-        }
+        itemPic.setImage(new Image(i_item.getImgSrc()));
+
     }
 
     @FXML

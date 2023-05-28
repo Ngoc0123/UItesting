@@ -37,6 +37,7 @@ public class ManageItem {
             item.setLoanType(inReader.nextToken());
             item.setStock(Integer.parseInt(inReader.nextToken()));
             item.setRentalFee(Double.parseDouble(inReader.nextToken()));
+            item.setImgSrc("file:///"+path+"\\src\\main\\resources\\com\\example\\oop_ui_test\\img\\"+item.getRentalType()+".png");
 
             try{String tmp = inReader.nextToken();
                 item.setGenre(tmp);

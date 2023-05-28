@@ -37,6 +37,7 @@ import java.util.*;
 
 public class StoreController implements Initializable {
 
+
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -112,7 +113,7 @@ public class StoreController implements Initializable {
         chosenLoanType.setText("Loan type: "+item.getLoanType());
         chosenStock.setText("Stock: "+item.getStock());
         chosenPrice.setText("Fee: "+item.getRentalFee());
-        Image image = new Image("\\src\\main\\resources\\com\\example\\oop_ui_test\\img\\"+item.getRentalType()+".png");
+        Image image = new Image(item.getImgSrc());
         chosenPic.setImage(image);
     }
 
