@@ -76,7 +76,7 @@
                   <Font name="Bodoni MT Black" size="12.0" />
                </font>
             </Label>
-            <Button fx:id="uki" layoutX="277.0" layoutY="185.0" mnemonicParsing="false" onAction="#ukiButton" text="uki!" />
+            <Button fx:id="uki" layoutX="277.0" layoutY="185.0" mnemonicParsing="false" onAction="#switchtoLogin" text="uki!" />
          </children>
       </Pane>
    </children>

@@ -38,7 +38,7 @@
                <children>
                   <HBox alignment="CENTER_RIGHT" prefHeight="57.0" prefWidth="600.0">
                      <children>
-                        <Text fill="#6f64bf" strokeType="OUTSIDE" strokeWidth="0.0" text="Log Out" textAlignment="RIGHT" wrappingWidth="762.13671875">
+                        <Text fx:id="logOutText" fill="#6f64bf" onMouseEntered="#logOutEnter" onMouseExited="#logOutExit" onMousePressed="#onLogOutAction" strokeType="OUTSIDE" strokeWidth="0.0" text="Log Out" textAlignment="RIGHT" wrappingWidth="762.13671875">
                            <font>
                               <Font size="11.0" />
                            </font>

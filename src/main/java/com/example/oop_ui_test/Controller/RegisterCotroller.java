@@ -68,10 +68,7 @@ public class RegisterCotroller extends Controller{
 
     String name = null, address = null, phone = null, userName = null, password = null, reEnterPassWord = null;
 
-    @FXML
-    void ukiButton(){
-        uki.setOnAction(event -> Succeed.setVisible(false));
-    }
+
 
     @FXML
     void switchtoLogin(ActionEvent event) throws IOException {
