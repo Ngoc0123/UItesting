@@ -417,9 +417,8 @@ public class AdminItemController implements Initializable {
     @FXML
     private void onDeleButton() {
         choseIndex = list.getSelectionModel().getSelectedIndex();
-
+        list.getItems().remove(choseIndex);
         for(Customer customer: ManageCustomer.customersList){
-
             ArrayList<Rental> rentals = new ArrayList<Rental>();
             for(Rental rental : customer.getRentals()){
                 if(rental.getId().matches(ManageItem.items.get(choseIndex).getId())){
@@ -432,13 +431,14 @@ public class AdminItemController implements Initializable {
         ManageItem.items.remove(choseIndex);
         ManageItem.saveFile();
         ManageCustomer.saveFile();
-        list.getItems().remove(choseIndex);
-        onRefreshList();
+
+
 
     }
 
     //Print Item ID, name
     private void onRefreshList() {
+
         for (int i = 0; i < items.size(); i++) {
             list.getItems().addAll(items.get(i).getId());
         }
