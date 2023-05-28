@@ -318,7 +318,7 @@ public class AdminItemController implements Initializable {
 
 
         //Print array
-        onItemP();
+        onRefreshList();
 
         //avoid spamming the function
 
@@ -432,10 +432,11 @@ public class AdminItemController implements Initializable {
         ManageItem.items.remove(choseIndex);
         ManageItem.saveFile();
         ManageCustomer.saveFile();
+        list.getItems().clear();
     }
 
     //Print Item ID, name
-    private void onItemP() {
+    private void onRefreshList() {
         for (int i = 0; i < items.size(); i++) {
             list.getItems().addAll(items.get(i).getId());
         }
