@@ -2,27 +2,33 @@ package com.example.oop_ui_test.Controller;
 
 import com.example.oop_ui_test.Classes.Customer;
 import com.example.oop_ui_test.Classes.ManageCustomer;
+import com.example.oop_ui_test.Main;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class AdminCusController implements Initializable {
-
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
     int chosenCusIndex = 1;
 
     @FXML
@@ -69,6 +75,8 @@ public class AdminCusController implements Initializable {
     @FXML
     private Text updateErrorText;
     @FXML
+    private Text popUpText = new Text();
+    @FXML
     private TextField addTextField;
     @FXML
     private TextField idTextField;
@@ -82,6 +90,11 @@ public class AdminCusController implements Initializable {
     private TextField phoneTextField;
     @FXML
     private TextField usernameTextField;
+    @FXML
+    private Button confirmButton;
+
+    @FXML
+    private Button createButton;
 
 
     @FXML
@@ -96,18 +109,14 @@ public class AdminCusController implements Initializable {
 
     @FXML
     void itemEnter(MouseEvent event) {
-
+        itemText.setUnderline(true);
     }
 
     @FXML
     void itemExit(MouseEvent event) {
-
+        itemText.setUnderline(false);
     }
 
-    @FXML
-    void onItemPress(MouseEvent event) {
-
-    }
     @FXML
     void onRefresh(ActionEvent event) {
         levelChoice.setValue("");
@@ -186,6 +195,7 @@ public class AdminCusController implements Initializable {
     void onUpdateAction(ActionEvent event) {
         updatePane.setVisible(true);
         updatePane.setDisable(false);
+        popUpText.setText("Edit Customer");
 
         Customer cus = ManageCustomer.customersList.get(chosenCusIndex);
 
@@ -203,8 +213,82 @@ public class AdminCusController implements Initializable {
 
         errorText.setText("");
     }
+    @FXML
+    void onAddAction(ActionEvent event) {
+        updatePane.setVisible(true);
+        updatePane.setDisable(false);
+        popUpText.setText("Add new Customer");
+        confirmButton.setVisible(false);
+        confirmButton.setDisable(true);
+        Customer cus = new Customer();
+
+        idTextField.setText(ManageCustomer.generateID());
+        nameTextField.setText("");
+        addTextField.setText("");
+        phoneTextField.setText("");
+        usernameTextField.setText("");
+        passTextField.setText("");
+
+        ObservableList<String> langs = FXCollections.observableArrayList("Guest", "Regular", "VIP");
+        levelChoiceUpdate.setItems(langs);
+        levelChoiceUpdate.setValue(cus.getLevel());
 
 
+        errorText.setText("");
+    }
+
+    @FXML
+    void onCreateButton(ActionEvent event) {
+
+        Customer cus = new Customer();
+
+        if (nameTextField.getText().length() < 1) {
+            updateErrorText.setText("Please enter your name");
+            return;
+        }
+
+        if (addTextField.getText().length() < 1) {
+            updateErrorText.setText("Please enter your address");
+            return;
+        }
+
+        if (!ManageCustomer.checkNumber(phoneTextField.getText()) ||phoneTextField.getText().length() != 10) {
+            updateErrorText.setText("Invalid Phone number! Please enter 10 digit numbers: ");
+            return;
+        }
+
+        if (usernameTextField.getText().length() < 1) {
+            updateErrorText.setText("Please enter Username");
+            return;
+        } else if (ManageCustomer.isExist(usernameTextField.getText()) && !usernameTextField.getText().matches(cus.getUsername())) {
+            updateErrorText.setText("This Username is already exist, please enter a new one");
+            return;
+        }
+
+        if (passTextField.getText().length() < 8 && !passTextField.getText().matches(cus.getPassword())) {
+            updateErrorText.setText("Wrong format!! Password must have 8 or more characters. Please enter Password");
+            return;
+        }
+
+        cus.setId(idTextField.getText());
+        cus.setName(nameTextField.getText());
+        cus.setAddress(addTextField.getText());
+        cus.setPhone(phoneTextField.getText());
+        cus.setUsername(usernameTextField.getText());
+        cus.setPassword(passTextField.getText());
+        cus.setLevel(levelChoiceUpdate.getValue());
+
+        ManageCustomer.customersList.add(cus);
+
+        ManageCustomer.saveFile();
+
+
+        updatePane.setVisible(false);
+        updatePane.setDisable(true);
+
+        refreshList();
+
+    }
     @FXML
     void searchBarPress(MouseEvent event) {
         search(searchBar.getText());
@@ -213,6 +297,19 @@ public class AdminCusController implements Initializable {
     @FXML
     void searchBarEnter(ActionEvent event) {
         search(searchBar.getText());
+    }
+    @FXML
+    private void onItemsPress(MouseEvent event) throws IOException {//on click customer text
+
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("AdminItemView.fxml"));
+        root = loader.load();
+
+        stage = (Stage)(((Node)event.getSource()).getScene().getWindow());
+        scene = new Scene(root);
+
+        stage.setScene(scene);
+        stage.show();
+
     }
 
     @Override

@@ -15,6 +15,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.FileSystems;
@@ -41,8 +42,13 @@ public class ItemController implements Initializable {
         this.item = i_item;
         this.listener=listener;
         nameLabel.setText(this.item.getTitle());
-        Image image = new Image(i_item.getImgSrc());
-        itemPic.setImage(image);
+        try {
+            Image image = new Image("\\src\\main\\resources\\com\\example\\oop_ui_test\\img\\"+i_item.getRentalType()+".png");
+            itemPic.setImage(image);
+        }catch (NullPointerException e){
+            Image image = new Image("\\src\\main\\resources\\com\\example\\oop_ui_test\\img\\icon.png");
+            itemPic.setImage(image);
+        }
     }
 
     @FXML

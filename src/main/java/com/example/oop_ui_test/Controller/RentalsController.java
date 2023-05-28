@@ -190,7 +190,7 @@ public class RentalsController implements Initializable {
         chosenStatus.setText("Status: "+currentCus.getRentals().get(chosenRentalIndex).getStatus());
 
         chosenPrice.setText("Price: $"+String.valueOf(chosenItem.getRentalFee()));
-        chosenPic.setImage(new Image(chosenItem.getImgSrc()));
+        chosenPic.setImage(new Image("\\src\\main\\resources\\com\\example\\oop_ui_test\\img\\"+chosenItem.getRentalType()+".png"));
     }
 
     public void setCusIndex(int i ){

@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
@@ -55,7 +54,7 @@
                   </HBox>
                   <HBox prefHeight="26.0" prefWidth="600.0" spacing="40.0">
                      <children>
-                        <Text fx:id="itemText" onMouseEntered="#itemEnter" onMouseExited="#itemExit" onMousePressed="#onItemPress" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="2.0" text="Item" textAlignment="CENTER" wrappingWidth="98.13671875">
+                        <Text fx:id="itemText" onMouseEntered="#itemEnter" onMouseExited="#itemExit" onMousePressed="#onItemsPress" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="2.0" text="Item" textAlignment="CENTER" wrappingWidth="98.13671875">
                            <font>
                               <Font size="22.0" />
                            </font>
@@ -164,7 +163,7 @@
                                                 <VBox prefHeight="130.0" prefWidth="81.0" />
                                                 <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
                                                    <children>
-                                                      <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="Add" />
+                                                      <Button mnemonicParsing="false" onAction="#onAddAction" prefHeight="30.0" prefWidth="60.0" text="Add" />
                                                       <Button mnemonicParsing="false" onAction="#onUpdateAction" prefHeight="30.0" prefWidth="60.0" text="Update" />
                                                    </children>
                                                    <HBox.margin>
@@ -184,11 +183,15 @@
                                        </StackPane.margin>
                                        <children>
                                           <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ccd4dc" height="378.0" layoutX="12.0" stroke="BLACK" strokeType="INSIDE" width="517.0" />
-                                          <Text layoutX="177.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Edit Customer" textAlignment="CENTER" wrappingWidth="186.58990478515625">
-                                             <font>
-                                                <Font size="28.0" />
-                                             </font>
-                                          </Text>
+                                          <HBox alignment="CENTER" prefHeight="47.0" prefWidth="527.0">
+                                             <children>
+                                                <Text fx:id="popUpText" strokeType="OUTSIDE" strokeWidth="0.0" text="Edit Customer" textAlignment="CENTER" wrappingWidth="441.7899169921875">
+                                                   <font>
+                                                      <Font size="28.0" />
+                                                   </font>
+                                                </Text>
+                                             </children>
+                                          </HBox>
                                           <VBox layoutX="12.0" layoutY="60.0" prefHeight="316.0" prefWidth="516.0" spacing="10.0">
                                              <children>
                                                 <HBox alignment="CENTER_LEFT" prefHeight="23.0" prefWidth="506.0">
@@ -262,8 +265,8 @@
                                                 <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="516.0" spacing="50.0">
                                                    <children>
                                                       <Button mnemonicParsing="false" onAction="#cancelUpdateButton" text="Cancel" />
-                                                      <Pane prefHeight="34.0" prefWidth="60.0" />
-                                                      <Button mnemonicParsing="false" onAction="#confirmUpdateButton" text="Confirm" />
+                                                      <Button fx:id="confirmButton" mnemonicParsing="false" onAction="#confirmUpdateButton" text="Confirm" />
+                                                      <Button fx:id="createButton" mnemonicParsing="false" onAction="#onCreateButton" prefHeight="26.0" prefWidth="69.0" text="Create" />
                                                    </children>
                                                    <VBox.margin>
                                                       <Insets left="10.0" />

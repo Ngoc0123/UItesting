@@ -775,7 +775,8 @@ public class AdminItemController implements Initializable {
         }catch (NumberFormatException e ){
             return false;
         }
-    }private boolean checkNumberDouble(String str){
+    }
+    private boolean checkNumberDouble(String str){
         try{
             double input = Double.parseDouble(str);
             return true;

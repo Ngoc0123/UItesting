@@ -112,7 +112,7 @@ public class StoreController implements Initializable {
         chosenLoanType.setText("Loan type: "+item.getLoanType());
         chosenStock.setText("Stock: "+item.getStock());
         chosenPrice.setText("Fee: "+item.getRentalFee());
-        Image image = new Image(item.getImgSrc());
+        Image image = new Image("\\src\\main\\resources\\com\\example\\oop_ui_test\\img\\"+item.getRentalType()+".png");
         chosenPic.setImage(image);
     }
 
