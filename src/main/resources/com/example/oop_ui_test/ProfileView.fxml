@@ -36,43 +36,6 @@
          <center>
             <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <AnchorPane fx:id="updatePane" disable="true" prefHeight="200.0" prefWidth="200.0" visible="false">
-                     <children>
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000a8" height="538.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
-                        <AnchorPane layoutX="174.0" layoutY="140.0" prefHeight="258.0" prefWidth="452.0">
-                           <children>
-                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="258.0" stroke="BLACK" strokeType="INSIDE" width="455.0" />
-                              <VBox alignment="CENTER" prefHeight="412.0" prefWidth="452.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <children>
-                                    <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="0.0">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" wrappingWidth="90.0" />
-                                          <TextField fx:id="nameInput" prefHeight="26.0" prefWidth="300.0" />
-                                       </children>
-                                    </HBox>
-                                    <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="0.0">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Address:" wrappingWidth="90.0" />
-                                          <TextField fx:id="addInput" prefHeight="26.0" prefWidth="300.0" />
-                                       </children>
-                                    </HBox>
-                                    <HBox alignment="CENTER_LEFT" prefHeight="53.0" prefWidth="435.0">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Phone:" wrappingWidth="90.0" />
-                                          <TextField fx:id="phoneInput" prefHeight="26.0" prefWidth="300.0" />
-                                       </children>
-                                    </HBox>
-                                    <Text fx:id="errorText" strokeType="OUTSIDE" strokeWidth="0.0" />
-                                    <Button mnemonicParsing="false" onAction="#confirmButtonAction" text="Confirm" />
-                                 </children>
-                                 <padding>
-                                    <Insets left="20.0" top="10.0" />
-                                 </padding>
-                              </VBox>
-                           </children>
-                        </AnchorPane>
-                     </children>
-                  </AnchorPane>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <HBox alignment="CENTER_RIGHT" prefHeight="68.0" prefWidth="800.0">
@@ -171,6 +134,43 @@
                         </HBox>
                      </children>
                   </VBox>
+                  <AnchorPane fx:id="updatePane" disable="true" prefHeight="200.0" prefWidth="200.0" visible="false">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#000000a8" height="538.0" stroke="BLACK" strokeType="INSIDE" width="800.0" />
+                        <AnchorPane layoutX="174.0" layoutY="140.0" prefHeight="258.0" prefWidth="452.0">
+                           <children>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="258.0" stroke="BLACK" strokeType="INSIDE" width="455.0" />
+                              <VBox alignment="CENTER" prefHeight="412.0" prefWidth="452.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="0.0">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" wrappingWidth="90.0" />
+                                          <TextField fx:id="nameInput" prefHeight="26.0" prefWidth="300.0" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="0.0">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Address:" wrappingWidth="90.0" />
+                                          <TextField fx:id="addInput" prefHeight="26.0" prefWidth="300.0" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="53.0" prefWidth="435.0">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Phone:" wrappingWidth="90.0" />
+                                          <TextField fx:id="phoneInput" prefHeight="26.0" prefWidth="300.0" />
+                                       </children>
+                                    </HBox>
+                                    <Text fx:id="errorText" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                    <Button mnemonicParsing="false" onAction="#confirmButtonAction" text="Confirm" />
+                                 </children>
+                                 <padding>
+                                    <Insets left="20.0" top="10.0" />
+                                 </padding>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
                </children>
             </StackPane>
          </center>
