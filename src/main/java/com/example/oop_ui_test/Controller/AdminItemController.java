@@ -33,7 +33,7 @@ public class AdminItemController implements Initializable {
     private ArrayList<Customer> customers;
     private ArrayList<Item> items;
 
-    private ArrayList<Rental> rental;
+
     private String chosenGenreBox;
     private String chosenRentalBox;
     private String chosenLoanBox;
@@ -240,7 +240,7 @@ public class AdminItemController implements Initializable {
 //    private Customer customer;
 
     String Iid = null, IidYear=null, Ititle = null, Igenre = null, IrentalType= null,
-    IloanType = null, Istock = null, IrentalFee = null;
+    IloanType = null, Istock = null, IrentalFee = null, Idtrue = null;
 
 
 
@@ -402,11 +402,12 @@ public class AdminItemController implements Initializable {
                 tex13.setText(cus.getUsername());
                 tex14.setText("" + cus.getPassword());
 
-
+                choseIndex = ManageCustomer.customersList.indexOf(cus);
 
 
                 tex15.setVisible(false);
                 tex16.setVisible(false);
+                return;
             }
         }
 
@@ -414,10 +415,23 @@ public class AdminItemController implements Initializable {
     }
 
     @FXML
-    private void onDeleButton(){
+    private void onDeleButton() {
+        choseIndex = list.getSelectionModel().getSelectedIndex();
+
+        for(Customer customer: ManageCustomer.customersList){
+
+            ArrayList<Rental> rentals = new ArrayList<Rental>();
+            for(Rental rental : customer.getRentals()){
+                if(rental.getId().matches(ManageItem.items.get(choseIndex).getId())){
+                    rentals.add(rental);
+                }
+            }
+            customer.getRentals().removeAll(rentals);
+        }
+
         ManageItem.items.remove(choseIndex);
-        list.getItems().remove(choseIndex);
         ManageItem.saveFile();
+        ManageCustomer.saveFile();
     }
 
     //Print Item ID, name
@@ -700,20 +714,39 @@ public class AdminItemController implements Initializable {
 
 
         String tmp = getID.getText();
-        if (!checkNumber(tmp)||tmp == null || tmp.length() > 3 ||tmp.length() < 1) {
+        if (!checkNumber(tmp)||tmp == null||tmp.length() > 3) {
             RegisMessError.setText("ID is 3 unique number, please enter again");
             RegisPaneError.setVisible(true);
             return;
         }
-        Iid = tmp;
+        if(tmp.length() == 1){
+            Iid = "I"+"00" +tmp;
+            System.out.println(Iid);
+
+        }else if(tmp.length() ==2){
+            Iid = "I"+"0" + tmp;
+            System.out.println(Iid);
+        }else  {
+            Iid = "I"+tmp;
+            System.out.println(Iid);
+        }
+        if((ManageItem.isExist((Iid)))){
+            RegisMessError.setText("The ID is already exist, try another one");
+            RegisPaneError.setVisible(true);
+            return;
+        }
 
         tmp = getYearID.getText();
-        if(!checkNumber(tmp) || tmp == null ){
-            RegisMessError.setText("Please enter Year of Item");
+        if(!checkNumber(tmp) || tmp == null || tmp.length() != 4 ){
+            RegisMessError.setText("Please enter Year of Item follow the format YYYY");
             RegisPaneError.setVisible(true);
             return;
         }
         IidYear = tmp;
+
+        Idtrue = Iid + "-" + IidYear;
+
+
 
         tmp = getTitle.getText();
         if(tmp == null|| tmp.length() < 1){
@@ -741,24 +774,14 @@ public class AdminItemController implements Initializable {
         }
 
         if(getRentalTypeBox.getValue().equals("Game")){
-            getGenreBox.setVisible(false);
+            getGenreBox.setValue(null);
         }
-
-        if((ManageItem.isExist((Iid + "-" + IidYear)))){
-            RegisMessError.setText("The ID is already exist, try another one");
-            RegisPaneError.setVisible(true);
-            return;
-        }
-
-
-
-
 
 
 
         tmp = getQuantity.getText();
-        if(!checkNumber(tmp) || tmp == null){
-            RegisMessError.setText("Please enter Item Qantity");
+        if(!checkNumber(tmp) || tmp == null || Integer.parseInt(tmp) < 0){
+            RegisMessError.setText("Wrong format! Please enter Item Qantity again");
             RegisPaneError.setVisible(true);
             return;
         }
@@ -781,12 +804,11 @@ public class AdminItemController implements Initializable {
         getQuantity.setText("");
         getRentalFee.setText("");
 
-
     }
 
     private void createItem(){
         Item newItem = new Item();
-        newItem.setId("I"+Iid + "-" + IidYear);
+        newItem.setId(Idtrue);
         newItem.setTitle(Ititle);
         newItem.setGenre(Igenre);
         newItem.setRentalType(IrentalType);
@@ -835,7 +857,6 @@ public class AdminItemController implements Initializable {
         loanTypeBox.setValue("2-days loan");
         renTalType.getItems().addAll(rentalType);
         renTalType.setValue("DVD");
-
 
 
 
