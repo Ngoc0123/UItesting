@@ -428,7 +428,7 @@ public class AdminItemController implements Initializable {
             customer.getRentals().removeAll(rentals);
         }
 
-        ManageItem.items.remove(choseIndex);
+        ManageItem.items.remove(choseIndex+1);
         ManageItem.saveFile();
         ManageCustomer.saveFile();
 
