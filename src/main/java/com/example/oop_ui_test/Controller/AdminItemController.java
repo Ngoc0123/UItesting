@@ -350,7 +350,7 @@ public class AdminItemController implements Initializable {
             if(ManageItem.items.get(i-1).getTitle().toLowerCase().matches(".*"+input.toLowerCase()+".*")||ManageItem.items.get(i-1).getId().toLowerCase().matches(".*"+input)){
                 matches++;
                 searchErrorText.setText("");
-                lists.add(i+"."+ManageItem.items.get(i-1).getId());
+                lists.add(ManageItem.items.get(i-1).getId());
 
             }
         }
@@ -411,38 +411,6 @@ public class AdminItemController implements Initializable {
 
     }
 
-    private void onCusSelect(String str){
-
-        tex1.setText("ID:");
-        tex2.setText("Name:");
-        tex3.setText("Address:");
-        tex4.setText("Phone:");
-        tex5.setText("User Name");
-        tex6.setText("Password:");
-        tex7.setText("List of rentals:");
-        tex8.setVisible(false);
-
-
-        for(Customer cus : ManageCustomer.customersList) {
-            if (str.matches(cus.getId())) {
-                tex9.setText(cus.getId());
-                tex10.setText(cus.getName());
-                tex11.setText(cus.getAddress());
-                tex12.setText(cus.getPhone());
-                tex13.setText(cus.getUsername());
-                tex14.setText("" + cus.getPassword());
-
-                choseIndex = ManageCustomer.customersList.indexOf(cus);
-
-
-                tex15.setVisible(false);
-                tex16.setVisible(false);
-                return;
-            }
-        }
-
-
-    }
 
     @FXML
     private void onDeleButton() {
@@ -475,15 +443,6 @@ public class AdminItemController implements Initializable {
         }
     }
 
-    //Print Customer ID, name
-    private  void onCusP() {
-        for (int i = 0; i < customers.size(); i++) {
-            list.getItems().addAll(customers.get(i).getId());
-
-        }
-
-    }
-
 
     //When Select content in List View
     protected void whenItemSelected(ObservableValue<? extends String> Observable, String str, String str2){
@@ -511,34 +470,8 @@ public class AdminItemController implements Initializable {
     }
     @FXML
     private void onEditButton(){
-        editPane.setVisible(true);
-        if(Customertext.isDisable()) {
-            loanTypeBox.setVisible(false);
-            renTalType.setVisible(false);
-            Etex10.setVisible(true);
-            Etex11.setVisible(true);
-            Etex1.setText("ID:");
-            Etex2.setText("Name:");
-            Etex3.setText("Address:");
-            Etex4.setText("Phone:");
-            Etex5.setText("User Name");
-            Etex6.setText("Password:");
-            Etex7.setVisible(false);
 
-            Etex8.setText(customers.get(choseIndex).getId());
-            for (Customer cus : ManageCustomer.customersList) {
-                if (chosenID2.matches(cus.getId())) {
-                    Etex9.setPromptText(cus.getName());
-                    Etex10.setPromptText(cus.getAddress());
-                    Etex11.setPromptText(cus.getPhone());
-                    Etex12.setPromptText(cus.getUsername());
-                    Etex13.setPromptText("" + cus.getPassword());
-                    Etex14.setVisible(false);
-
-                }
-            }
-        }
-        if(Itemtext.isDisable()){
+            editPane.setVisible(true);
             loanTypeBox.setVisible(true);
             renTalType.setVisible(true);
 
@@ -551,7 +484,13 @@ public class AdminItemController implements Initializable {
             Etex6.setText("Rental Fee:");
             Etex7.setVisible(false);
 
-            Etex8.setText(items.get(choseIndex).getId());
+            for(Item item : ManageItem.items) {
+                if(chosenID2.matches(item.getId())){
+                    Etex8.setText(item.getId());
+                }
+            }
+            System.out.println(Etex8.getText());
+
             for (Item item : ManageItem.items) {
                 if (chosenID2.matches(item.getId())) {
                     Etex8.setPromptText(item.getId());
@@ -568,108 +507,20 @@ public class AdminItemController implements Initializable {
 
                 }
             }
-        }
-
-        GenreBox.setConverter(new StringConverter<String>() {
-            @Override
-            public String toString(String s) {
-                return (s==null)? "Nothing Selected":s;
-            }
-
-            @Override
-            public String fromString(String s) {
-                return null;
-            }
-        });
 
         }
 
 
     @FXML
     private void onUpdateButton(){
-
-        if(Customertext.isDisable()) {
-            updateCustomer();
-        } else if (Itemtext.isDisable()) {
-            updateItem();
-        }
-
-    };
+        updateItem();
+    }
 
     @FXML
     private void CancelButtonPressed(){editPane.setVisible(false);}
 
     @FXML
     private void ukiButton(){ErrorPane.setVisible(false);}
-
-    private void updateCustomer(){
-        Customer cus = new Customer();
-        Rental rental1 = new Rental();
-
-        if (Etex9.getText() == null || Etex9.getText().length() < 1) {
-            ErrorMess.setText("Please enter your name");
-            ErrorPane.setVisible(true);
-            return;
-        }
-
-        if (Etex10.getText() == null || Etex10.getText().length() < 1) {
-            ErrorMess.setText("Please enter your address");
-            ErrorPane.setVisible(true);
-            return;
-        }
-        if(renTalType.getValue().equals("Game")){
-            Etex3.setVisible(false);
-            GenreBox.setVisible(false);
-        }
-
-
-
-        if (!checkNumber(Etex11.getText()) || Etex11.getText() == null ||Etex11.getText().length() != 10) {
-            ErrorMess.setText("Invalid Phone number! Please enter 10 digit numbers: ");
-            ErrorPane.setVisible(true);
-            return;
-        }
-
-        if (Etex12.getText() == null || Etex12.getText().length() < 1) {
-            ErrorMess.setText("Please enter User Name");
-            return;
-        } else if (ManageCustomer.isExist(Etex12.getText())) {
-            ErrorMess.setText("This User Name is already exist, please enter a new one");
-            ErrorPane.setVisible(true);
-            return;
-        }
-
-        if (Etex13.getText() == null || Etex13.getText().length() < 8) {
-            ErrorMess.setText("Wrong format!! Password must have 8 or more characters. Please enter Password");
-            ErrorPane.setVisible(true);
-            return;
-        }
-        ManageCustomer.readFile();
-        cus.setId(Etex8.getText());
-        cus.setName(Etex9.getText());
-        cus.setAddress(Etex10.getText());
-        cus.setPhone(Etex11.getText());
-        cus.setUsername(Etex12.getText());
-        cus.setPassword(Etex13.getText());
-        //
-        //RENTAL HERE
-        //
-        //
-
-
-        ManageCustomer.customersList.set(choseIndex,cus);
-        ManageCustomer.saveFile();
-
-
-        Etex9.setText("");
-        Etex10.setText("");
-        Etex11.setText("");
-        Etex12.setText("");
-        Etex13.setText("");
-
-        editPane.setVisible(false);
-
-    }
 
     private void updateItem(){
         Item item = new Item();
@@ -779,18 +630,18 @@ public class AdminItemController implements Initializable {
 
         if(getGenreBox.getValue() == null){
             RegisPaneError.setVisible(true);
-            RegisMessError.setText("You forgot to choose Genre Type, please choose it agian");
+            RegisMessError.setText("You forgot to choose Genre Type, please choose it again");
             return;
         }
         if(getRentalTypeBox.getValue() == null){
             RegisPaneError.setVisible(true);
-            RegisMessError.setText("You forgot to choose RENTAL Type, please choose it agian");
+            RegisMessError.setText("You forgot to choose RENTAL Type, please choose it again");
             return;
         }
 
         if(getLoanTypeBox.getValue() == null){
             RegisPaneError.setVisible(true);
-            RegisMessError.setText("You forgot to choose Loan Type, please choose it agian");
+            RegisMessError.setText("You forgot to choose Loan Type, please choose it again");
             return;
         }
 
