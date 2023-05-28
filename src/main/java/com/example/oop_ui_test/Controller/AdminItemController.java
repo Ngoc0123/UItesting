@@ -432,7 +432,9 @@ public class AdminItemController implements Initializable {
         ManageItem.items.remove(choseIndex);
         ManageItem.saveFile();
         ManageCustomer.saveFile();
-        list.getItems().clear();
+        list.getItems().remove(choseIndex);
+        onRefreshList();
+
     }
 
     //Print Item ID, name
