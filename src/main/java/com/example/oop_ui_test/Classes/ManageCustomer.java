@@ -28,41 +28,28 @@ public class ManageCustomer {
             Customer customer = new Customer();
             String line = fileScanner.nextLine();
             StringTokenizer inReader = new StringTokenizer(line, ",");
-            if (inReader.countTokens() != 9) {
-
-            } else {
+            if (inReader.countTokens() == 8) {
                 customer.setId(inReader.nextToken());
                 customer.setName(inReader.nextToken());
                 customer.setAddress(inReader.nextToken());
                 customer.setPhone(inReader.nextToken());
-                customer.setRentalNumber(Integer.parseInt(inReader.nextToken()));
-                customer.setReturned(Integer.parseInt(inReader.nextToken()));
-                if(customer.getReturned() > 5){
-                    customer.setLevel("VIP");
-                }else if (customer.getReturned() > 3){
-                    customer.setLevel("Regular");
-                }else {
-                    customer.setLevel("Guest");
-                }
+
+                customer.setLevel(inReader.nextToken());
+
                 customer.setUsername(inReader.nextToken());
                 customer.setPassword(inReader.nextToken());
                 customer.setRewardPoint(Integer.parseInt(inReader.nextToken()));
 
-
-                for(int i  = 1; i <= customer.getRentalNumber(); i++){
-                    String line2 = fileScanner.nextLine();
-                    StringTokenizer Reader2 = new StringTokenizer(line2,",");
-                    Rental newrental = new Rental();
-                    newrental.setId(Reader2.nextToken());
-                    newrental.setAmount(Integer.parseInt(Reader2.nextToken()));
-                    newrental.setStatus(Reader2.nextToken());
-
-                    customer.getRentals().add(newrental);
-
-                }
-
                 customersList.add(customer);
-
+            } else if(inReader.countTokens() == 2){
+                Rental newRental = new Rental();
+                newRental.setId(inReader.nextToken());
+                newRental.setStatus(inReader.nextToken());
+                customersList.get(customersList.size()-1).getRentals().add(newRental);
+                customersList.get(customersList.size()-1).setRentalNumber(customersList.get(customersList.size()-1).getRentalNumber()+1);
+                if(newRental.getStatus().matches("Returned")){
+                    customersList.get(customersList.size()-1).setReturned(customersList.get(customersList.size()-1).getReturned()+1);
+                }
             }
         }
 
@@ -77,10 +64,10 @@ public class ManageCustomer {
                 FileWriter file = new FileWriter(path.toString() + "\\src\\main\\java\\com\\example\\oop_ui_test\\Data\\customers.txt");
 
                 for(Customer customer: customersList) {
-                    file.write(customer.getId() + "," + customer.getName() + "," + customer.getAddress() + "," + customer.getPhone() + "," + customer.getRentalNumber() + "," + customer.getReturned()
+                    file.write(customer.getId() + "," + customer.getName() + "," + customer.getAddress() + "," + customer.getPhone() + "," + customer.getLevel()
                         + "," + customer.getUsername() + "," + customer.getPassword()+","+customer.getRewardPoint()+"\n");
                     for(Rental rental: customer.getRentals()){
-                        file.write(rental.getId()+","+rental.getAmount()+","+rental.getStatus()+"\n");
+                        file.write(rental.getId()+","+rental.getStatus()+"\n");
                     }
                 }
 
@@ -96,9 +83,10 @@ public class ManageCustomer {
 
     public static void updateLevel(int i){
         int tmp = customersList.get(i).getReturned();
-        if(tmp > 5){
+
+        if(tmp > 5 || customersList.get(i).getLevel().matches("VIP")){
             customersList.get(i).setLevel("VIP");
-        }else if (tmp > 3){
+        }else if (tmp > 3 || customersList.get(i).getLevel().matches("Regular")){
             customersList.get(i).setLevel("Regular");
         }else {
             customersList.get(i).setLevel("Guest");
@@ -154,7 +142,15 @@ public class ManageCustomer {
             });
     }
 
+    public static boolean checkNumber(String str) {
+        try {
+            int input = Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
 
+    }
 
 
 

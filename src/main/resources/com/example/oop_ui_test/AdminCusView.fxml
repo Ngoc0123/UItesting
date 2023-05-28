@@ -12,7 +12,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -121,58 +124,157 @@
                               <Insets bottom="10.0" />
                            </HBox.margin>
                            <children>
-                              <VBox alignment="TOP_CENTER" layoutX="32.0" layoutY="41.0" prefHeight="376.8" prefWidth="584.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <StackPane prefHeight="376.8" prefWidth="539.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <ImageView fitHeight="150.0" fitWidth="152.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@img/icon.png" />
-                                       </image>
-                                    </ImageView>
-                                    <HBox prefHeight="19.0" prefWidth="538.0">
+                                    <VBox alignment="TOP_CENTER" prefHeight="376.8" prefWidth="584.0">
                                        <children>
-                                          <Text fx:id="chosenID" strokeType="OUTSIDE" strokeWidth="0.0" text="ID: " wrappingWidth="163.09608268737793" />
-                                          <Text fx:id="chosenUsername" strokeType="OUTSIDE" strokeWidth="0.0" text="Username: " wrappingWidth="175.97967529296875" />
-                                       </children>
-                                    </HBox>
-                                    <HBox prefHeight="21.0" prefWidth="538.0">
-                                       <children>
-                                          <Text fx:id="chosenName" strokeType="OUTSIDE" strokeWidth="0.0" text="Name: " wrappingWidth="163.1820831298828" />
-                                          <Text fx:id="chosenPassword" strokeType="OUTSIDE" strokeWidth="0.0" text="Password: " wrappingWidth="166.23981094360352" />
-                                       </children>
-                                    </HBox>
-                                    <HBox prefHeight="22.0" prefWidth="538.0">
-                                       <children>
-                                          <Text fx:id="chosenAddress" strokeType="OUTSIDE" strokeWidth="0.0" text="Address: " wrappingWidth="471.5926055908203" />
-                                       </children>
-                                    </HBox>
-                                    <HBox prefHeight="22.0" prefWidth="478.0">
-                                       <children>
-                                          <Text fx:id="chosenPhone" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone: " wrappingWidth="164.2980499267578" />
-                                          <Text fx:id="chosenLevel" strokeType="OUTSIDE" strokeWidth="0.0" text="Type of member: " wrappingWidth="189.33672714233398" />
-                                          <Text fx:id="chosenReward" strokeType="OUTSIDE" strokeWidth="0.0" text="Reward point: " wrappingWidth="123.69412994384766" />
-                                       </children>
-                                    </HBox>
-                                    <HBox prefHeight="130.0" prefWidth="478.0">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="List of rentals:" wrappingWidth="86.482421875" />
-                                          <ListView fx:id="chosenListRental" prefHeight="130.0" prefWidth="174.0" />
-                                          <VBox prefHeight="130.0" prefWidth="81.0" />
-                                          <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+                                          <ImageView fitHeight="150.0" fitWidth="152.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@img/icon.png" />
+                                             </image>
+                                          </ImageView>
+                                          <HBox prefHeight="19.0" prefWidth="538.0">
                                              <children>
-                                                <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="Add" />
-                                                <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="Update" />
+                                                <Text fx:id="chosenID" strokeType="OUTSIDE" strokeWidth="0.0" text="ID: " wrappingWidth="163.09608268737793" />
+                                                <Text fx:id="chosenUsername" strokeType="OUTSIDE" strokeWidth="0.0" text="Username: " wrappingWidth="175.97967529296875" />
                                              </children>
-                                             <HBox.margin>
-                                                <Insets top="10.0" />
-                                             </HBox.margin>
+                                          </HBox>
+                                          <HBox prefHeight="21.0" prefWidth="538.0">
+                                             <children>
+                                                <Text fx:id="chosenName" strokeType="OUTSIDE" strokeWidth="0.0" text="Name: " wrappingWidth="163.1820831298828" />
+                                                <Text fx:id="chosenPassword" strokeType="OUTSIDE" strokeWidth="0.0" text="Password: " wrappingWidth="166.23981094360352" />
+                                             </children>
+                                          </HBox>
+                                          <HBox prefHeight="22.0" prefWidth="538.0">
+                                             <children>
+                                                <Text fx:id="chosenAddress" strokeType="OUTSIDE" strokeWidth="0.0" text="Address: " wrappingWidth="471.5926055908203" />
+                                             </children>
+                                          </HBox>
+                                          <HBox prefHeight="22.0" prefWidth="478.0">
+                                             <children>
+                                                <Text fx:id="chosenPhone" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone: " wrappingWidth="164.2980499267578" />
+                                                <Text fx:id="chosenLevel" strokeType="OUTSIDE" strokeWidth="0.0" text="Type of member: " wrappingWidth="189.33672714233398" />
+                                                <Text fx:id="chosenReward" strokeType="OUTSIDE" strokeWidth="0.0" text="Reward point: " wrappingWidth="123.69412994384766" />
+                                             </children>
+                                          </HBox>
+                                          <HBox prefHeight="130.0" prefWidth="478.0">
+                                             <children>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="List of rentals:" wrappingWidth="86.482421875" />
+                                                <ListView fx:id="chosenListRental" prefHeight="130.0" prefWidth="174.0" />
+                                                <VBox prefHeight="130.0" prefWidth="81.0" />
+                                                <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+                                                   <children>
+                                                      <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="Add" />
+                                                      <Button mnemonicParsing="false" onAction="#onUpdateAction" prefHeight="30.0" prefWidth="60.0" text="Update" />
+                                                   </children>
+                                                   <HBox.margin>
+                                                      <Insets top="10.0" />
+                                                   </HBox.margin>
+                                                </VBox>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                       <padding>
+                                          <Insets left="30.0" right="30.0" />
+                                       </padding>
+                                    </VBox>
+                                    <AnchorPane fx:id="updatePane" disable="true" prefHeight="200.0" prefWidth="200.0" visible="false">
+                                       <StackPane.margin>
+                                          <Insets right="10.0" />
+                                       </StackPane.margin>
+                                       <children>
+                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ccd4dc" height="378.0" layoutX="12.0" stroke="BLACK" strokeType="INSIDE" width="517.0" />
+                                          <Text layoutX="177.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Edit Customer" textAlignment="CENTER" wrappingWidth="186.58990478515625">
+                                             <font>
+                                                <Font size="28.0" />
+                                             </font>
+                                          </Text>
+                                          <VBox layoutX="12.0" layoutY="60.0" prefHeight="316.0" prefWidth="516.0" spacing="10.0">
+                                             <children>
+                                                <HBox alignment="CENTER_LEFT" prefHeight="23.0" prefWidth="506.0">
+                                                   <children>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ID:" wrappingWidth="98.80742835998535" />
+                                                      <TextField fx:id="idTextField" editable="false" prefHeight="26.0" prefWidth="78.0" />
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </VBox.margin>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" prefHeight="23.0" prefWidth="506.0">
+                                                   <children>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name: " wrappingWidth="98.80742835998535" />
+                                                      <TextField fx:id="nameTextField" prefHeight="26.0" prefWidth="262.0" />
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </VBox.margin>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" prefHeight="23.0" prefWidth="506.0">
+                                                   <children>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Address: " wrappingWidth="99.60735511779785" />
+                                                      <TextField fx:id="addTextField" prefHeight="26.0" prefWidth="262.0" />
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </VBox.margin>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" prefHeight="23.0" prefWidth="506.0">
+                                                   <children>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Phone number: " wrappingWidth="99.6074161529541" />
+                                                      <TextField fx:id="phoneTextField" prefHeight="26.0" prefWidth="262.0" />
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </VBox.margin>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" prefHeight="23.0" prefWidth="506.0">
+                                                   <children>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Username: " wrappingWidth="99.60747337341309" />
+                                                      <TextField fx:id="usernameTextField" prefHeight="26.0" prefWidth="262.0" />
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </VBox.margin>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" prefHeight="23.0" prefWidth="506.0">
+                                                   <children>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Password: " wrappingWidth="99.60741233825684" />
+                                                      <TextField fx:id="passTextField" prefHeight="26.0" prefWidth="262.0" />
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </VBox.margin>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" prefHeight="23.0" prefWidth="506.0">
+                                                   <children>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Type of member:" wrappingWidth="99.60741233825684" />
+                                                      <ChoiceBox fx:id="levelChoiceUpdate" prefHeight="26.0" prefWidth="103.0" />
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </VBox.margin>
+                                                </HBox>
+                                                <HBox alignment="CENTER" prefHeight="18.0" prefWidth="516.0">
+                                                   <children>
+                                                      <Text fx:id="updateErrorText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="480.99993324279785" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="516.0" spacing="50.0">
+                                                   <children>
+                                                      <Button mnemonicParsing="false" onAction="#cancelUpdateButton" text="Cancel" />
+                                                      <Pane prefHeight="34.0" prefWidth="60.0" />
+                                                      <Button mnemonicParsing="false" onAction="#confirmUpdateButton" text="Confirm" />
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </VBox.margin>
+                                                </HBox>
+                                             </children>
                                           </VBox>
                                        </children>
-                                    </HBox>
+                                    </AnchorPane>
                                  </children>
-                                 <padding>
-                                    <Insets left="30.0" right="30.0" />
-                                 </padding>
-                              </VBox>
+                              </StackPane>
                            </children>
                         </AnchorPane>
                      </children>
