@@ -494,20 +494,7 @@ public class AdminItemController extends Controller implements Initializable {
         chosenRentalBox = renTalType.getSelectionModel().getSelectedItem();
 
         information.setVisible(true);
-        if (Customertext.isDisable()){
-            DeleButton.setVisible(false);
-            chosenID = "C001";
-            if(chosenID2 == null) {
-                onCusSelect(chosenID);
-            }else {
-                chosenID2 = list.getSelectionModel().getSelectedItem();
-                onCusSelect(chosenID2);
-            }
-        }
 
-
-
-        if (Itemtext.isDisable()){
             DeleButton.setVisible(true);
             chosenID = "I001-2001";
             if(chosenID2 == null) {
@@ -518,7 +505,7 @@ public class AdminItemController extends Controller implements Initializable {
                 onItemSelect(chosenID2);
             }
 
-        }
+
 
 
     }
@@ -891,8 +878,8 @@ public class AdminItemController extends Controller implements Initializable {
         renTalType.getItems().addAll(rentalType);
         renTalType.setValue("DVD");
 
+        list.getSelectionModel().selectedItemProperty().addListener(this::whenItemSelected);
         onRefreshList();
-        information.setVisible(true);
 
 
     }
