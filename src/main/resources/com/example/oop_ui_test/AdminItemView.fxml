@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -24,20 +25,25 @@
             <Image url="@img/adminBG.jpg" />
          </image>
       </ImageView>
-      <BorderPane prefHeight="594.0" prefWidth="800.0">
+      <BorderPane prefHeight="633.0" prefWidth="922.0">
          <top>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Online Renting" textAlignment="CENTER" wrappingWidth="149.13671875" BorderPane.alignment="CENTER">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Genies's Online Video Store" textAlignment="CENTER" wrappingWidth="429.13671875" BorderPane.alignment="CENTER">
                <font>
-                  <Font size="22.0" />
+                  <Font size="32.0" />
                </font>
             </Text>
          </top>
          <center>
-            <VBox prefHeight="579.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+            <VBox prefHeight="564.0" prefWidth="816.0" BorderPane.alignment="CENTER">
                <children>
-                  <HBox prefHeight="57.0" prefWidth="600.0">
+                  <HBox alignment="CENTER_RIGHT" prefHeight="57.0" prefWidth="600.0">
                      <children>
-                        <Label alignment="CENTER_RIGHT" prefHeight="57.0" prefWidth="715.0" text="Admin" textFill="#ff3b3b">
+                        <Text fill="#6f64bf" strokeType="OUTSIDE" strokeWidth="0.0" text="Log Out" textAlignment="RIGHT" wrappingWidth="762.13671875">
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                        </Text>
+                        <Label alignment="CENTER_RIGHT" prefHeight="57.0" prefWidth="831.0" text="Admin" textFill="#ff3b3b">
                            <font>
                               <Font size="24.0" />
                            </font></Label>
@@ -52,31 +58,54 @@
                      <children>
                         <Text fx:id="Itemtext" onMouseEntered="#ItemEnter" onMouseExited="#ItemExit" onMousePressed="#onItemPress" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="2.0" text="Item" textAlignment="CENTER" wrappingWidth="98.13671875">
                            <font>
-                              <Font size="34.0" />
+                              <Font size="22.0" />
                            </font>
                         </Text>
                         <Text fx:id="Customertext" onMouseEntered="#CustomerEnter" onMouseExited="#CustomerExit" onMousePressed="#onCustomerPress" stroke="#fffefe" strokeType="OUTSIDE" strokeWidth="2.0" text="Customer" textAlignment="CENTER" wrappingWidth="178.13671875">
                            <font>
-                              <Font size="34.0" />
+                              <Font size="22.0" />
                            </font>
                         </Text>
                      </children>
                   </HBox>
-                  <VBox prefHeight="51.0" prefWidth="800.0">
+                  <VBox prefHeight="125.0" prefWidth="922.0">
                      <children>
-                        <HBox prefHeight="60.0" prefWidth="800.0">
+                        <HBox prefHeight="68.0" prefWidth="922.0">
                            <children>
-                              <TextField fx:id="sreachBar" prefHeight="27.0" prefWidth="742.0" />
-                              <ImageView fitHeight="26.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                              <TextField fx:id="searchBar" onAction="#searchBarEnter" prefHeight="31.0" prefWidth="874.0">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin></TextField>
+                              <ImageView fitHeight="26.0" fitWidth="36.0" onMousePressed="#searchBarPress" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@img/Search_Icon.svg.png" />
                                  </image>
                               </ImageView>
                            </children>
                         </HBox>
+                        <HBox alignment="CENTER" prefHeight="66.0" prefWidth="922.0">
+                           <children>
+                              <Text fx:id="searchErrorText" fill="#ee0404" strokeType="OUTSIDE" strokeWidth="0.0" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="33.0" prefWidth="922.0" spacing="30.0">
+                           <children>
+                              <ChoiceBox prefHeight="25.0" prefWidth="176.0" />
+                              <Button mnemonicParsing="false" onAction="#onRefresh" text="Refresh" />
+                              <RadioButton fx:id="sortByTitle" mnemonicParsing="false" text="Sort By Title" />
+                              <RadioButton fx:id="sortByID" mnemonicParsing="false" text="Sort By ID" />
+                              <RadioButton fx:id="sortOutOfStock" mnemonicParsing="false" text="Out of Stock Items" />
+                           </children>
+                           <padding>
+                              <Insets bottom="4.0" left="12.0" top="4.0" />
+                           </padding>
+                        </HBox>
                      </children>
                   </VBox>
-                  <HBox prefHeight="403.0" prefWidth="800.0">
+                  <HBox prefHeight="411.0" prefWidth="922.0">
                      <children>
                         <ListView fx:id="list" prefHeight="340.0" prefWidth="227.0">
                            <HBox.margin>
@@ -185,7 +214,7 @@
                                     </VBox>
                                  </children>
                               </HBox>
-                              <Button fx:id="EditButton" layoutX="312.0" layoutY="344.0" mnemonicParsing="false" onAction="#onEditButton" prefHeight="45.0" prefWidth="96.0" text="Edit">
+                              <Button fx:id="EditButton" layoutX="312.0" layoutY="344.0" mnemonicParsing="false" onAction="#onEditButton" prefHeight="35.0" prefWidth="96.0" text="Edit">
                                  <font>
                                     <Font size="19.0" />
                                  </font></Button>
@@ -193,7 +222,7 @@
                                  <font>
                                     <Font size="18.0" />
                                  </font></Button>
-                              <Button fx:id="addButton" layoutX="473.0" layoutY="342.0" mnemonicParsing="false" onAction="#addButton" prefHeight="45.0" prefWidth="83.0" text="Add" />
+                              <Button fx:id="addButton" layoutX="473.0" layoutY="342.0" mnemonicParsing="false" onAction="#addButton" prefHeight="35.0" prefWidth="83.0" text="Add" />
                               <Pane fx:id="RegisPane" layoutX="-61.0" prefHeight="318.0" prefWidth="471.0" visible="false">
                                  <children>
                                     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#8599ab" height="320.0" stroke="BLACK" strokeType="INSIDE" width="471.0" />
@@ -408,15 +437,15 @@
                <font>
                   <Font size="21.0" />
                </font></Button>
-            <Pane fx:id="ErrorPane" prefHeight="200.0" prefWidth="334.0" visible="false">
+            <Pane fx:id="ErrorPane" prefHeight="377.0" prefWidth="508.0" visible="false">
                <children>
-                  <ImageView fitHeight="208.0" fitWidth="315.0" layoutX="7.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="255.0" fitWidth="396.0" layoutX="78.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@img/erorr.jpg" />
                      </image>
                   </ImageView>
-                  <Label fx:id="ErrorMess" alignment="TOP_CENTER" layoutX="211.0" layoutY="4.0" prefHeight="152.0" prefWidth="100.0" text="Label" textAlignment="CENTER" textFill="#f2f2f2" wrapText="true" />
-                  <Button fx:id="UkiButton" layoutX="242.0" layoutY="161.0" mnemonicParsing="false" onAction="#ukiButton" text="Uki!" />
+                  <Label fx:id="ErrorMess" alignment="TOP_CENTER" layoutX="359.0" layoutY="66.0" prefHeight="177.0" prefWidth="102.0" text="Label" textAlignment="CENTER" textFill="#f2f2f2" wrapText="true" />
+                  <Button fx:id="UkiButton" layoutX="393.0" layoutY="258.0" mnemonicParsing="false" onAction="#ukiButton" text="Uki!" />
                </children>
             </Pane>
          </children>

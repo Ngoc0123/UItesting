@@ -842,7 +842,6 @@ public class AdminItemController implements Initializable {
 
 
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.customers = ManageCustomer.customersList;
@@ -860,9 +859,6 @@ public class AdminItemController implements Initializable {
         loanTypeBox.setValue("2-days loan");
         renTalType.getItems().addAll(rentalType);
         renTalType.setValue("DVD");
-
-
-
 
 
     }
