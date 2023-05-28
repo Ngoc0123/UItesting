@@ -7,10 +7,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.net.MalformedURLException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class ManageItem {
 
@@ -50,6 +47,7 @@ public class ManageItem {
     }
 
     public static void saveFile(){
+        sort(SORT_BY_ID);
         Path path = FileSystems.getDefault().getPath(new String()).toAbsolutePath();
 
         try {
@@ -91,5 +89,24 @@ public class ManageItem {
             }
         }
         return false;
+    }
+
+    public static boolean SORT_BY_NAME = true;
+    public static boolean SORT_BY_ID = false;
+    public static void sort(boolean type){
+        if(type)
+            items.sort(new Comparator<Item>() {
+                @Override
+                public int compare(Item a, Item b) {
+                    return a.getTitle().toLowerCase().compareTo(b.getTitle().toLowerCase());
+                }
+            });
+        else
+            items.sort(new Comparator<Item>() {
+                @Override
+                public int compare(Item a, Item b) {
+                    return a.getId().compareTo(b.getId());
+                }
+            });
     }
 }
