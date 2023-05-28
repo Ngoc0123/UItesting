@@ -312,6 +312,8 @@ public class AdminItemController extends Controller implements Initializable {
 
     @FXML
     void onLogOutAction(MouseEvent event) throws IOException {
+        ManageItem.readFile();
+        ManageCustomer.readFile();
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("LoginView.fxml"));
         root = loader.load();
 

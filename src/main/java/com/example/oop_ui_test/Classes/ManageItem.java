@@ -21,6 +21,7 @@ public class ManageItem {
 
 
     public static void readFile(){
+        ManageItem.items = new ArrayList<Item>();
         Path path = FileSystems.getDefault().getPath(new String()).toAbsolutePath();
         Scanner fileScanner = null;
         try {

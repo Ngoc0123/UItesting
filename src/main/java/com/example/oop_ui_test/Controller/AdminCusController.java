@@ -2,6 +2,7 @@ package com.example.oop_ui_test.Controller;
 
 import com.example.oop_ui_test.Classes.Customer;
 import com.example.oop_ui_test.Classes.ManageCustomer;
+import com.example.oop_ui_test.Classes.ManageItem;
 import com.example.oop_ui_test.Main;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -122,6 +123,8 @@ public class AdminCusController extends Controller implements Initializable {
     }
     @FXML
     void onLogOutAction(MouseEvent event) throws IOException {
+        ManageItem.readFile();
+        ManageCustomer.readFile();
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("LoginView.fxml"));
         root = loader.load();
 

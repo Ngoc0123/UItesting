@@ -25,6 +25,7 @@ public class ManageCustomer {
 
     //Function to read customersList from customer.txt
     public  static void readFile(){
+        ManageCustomer.customersList = new ArrayList<Customer>();
         Path path = FileSystems.getDefault().getPath(new String()).toAbsolutePath();
         Scanner fileScanner = null;
         try {
