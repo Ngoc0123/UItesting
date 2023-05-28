@@ -35,7 +35,7 @@ import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.*;
 
-public class StoreController implements Initializable {
+public class StoreController extends Controller implements Initializable {
 
 
     private Stage stage;

@@ -22,7 +22,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 
 
-public class RegisterCotroller {
+public class RegisterCotroller extends Controller{
     private Stage stage;
     private Scene scene;
     private Parent root;

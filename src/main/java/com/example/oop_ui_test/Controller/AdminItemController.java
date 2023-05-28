@@ -24,7 +24,7 @@ import java.nio.file.Path;
 import java.util.*;
 
 
-public class AdminItemController implements Initializable {
+public class AdminItemController extends Controller implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;

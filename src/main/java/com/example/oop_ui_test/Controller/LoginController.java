@@ -26,7 +26,7 @@ import java.util.ResourceBundle;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-public class LoginController implements Initializable {
+public class LoginController extends Controller implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;

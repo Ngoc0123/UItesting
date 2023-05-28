@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ProfileController implements Initializable {
+public class ProfileController extends Controller implements Initializable {
     private Customer customer;
     private int cusIndex;
     private Stage stage;

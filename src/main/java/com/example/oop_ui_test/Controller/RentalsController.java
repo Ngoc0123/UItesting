@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class RentalsController implements Initializable {
+public class RentalsController extends Controller implements Initializable {
 
     private Stage stage;
     private Scene scene;
