@@ -44,6 +44,37 @@ public class AdminItemController implements Initializable {
     @FXML
     private Text Customertext;
 
+    @FXML
+    private ChoiceBox<String> getGenreBox;
+
+    @FXML
+    private TextField getID;
+
+    @FXML
+    private TextField getYearID;
+
+
+    @FXML
+    private ChoiceBox<String> getLoanTypeBox;
+
+    @FXML
+    private TextField getQuantity;
+
+    @FXML
+    private TextField getRentalFee;
+
+    @FXML
+    private ChoiceBox<String > getRentalTypeBox;
+
+    @FXML
+    private TextField getTitle;
+
+    @FXML
+    private Button RegisterButton;
+
+    @FXML
+    private Pane RegisPane;
+
 
 
     @FXML
@@ -171,6 +202,24 @@ public class AdminItemController implements Initializable {
     private Button update;
 
     @FXML
+    private Button RegisCancelButton;
+
+    @FXML
+    private TextField sreachBar;
+
+    @FXML
+    private Label RegisMessError;
+
+    @FXML
+    private  Pane RegisPaneError;
+
+    @FXML
+    private Button addButton;
+
+    @FXML
+    private Button RegisOkayButton;
+
+    @FXML
     private ChoiceBox<String> GenreBox;
     private final String[] Genreword = {"Action", "Horror", "Drama", "Comedy"};
 
@@ -189,6 +238,9 @@ public class AdminItemController implements Initializable {
     private String chosenID2;
     private int choseIndex;
 //    private Customer customer;
+
+    String Iid = null, IidYear=null, Ititle = null, Igenre = null, IrentalType= null,
+    IloanType = null, Istock = null, IrentalFee = null;
 
 
 
@@ -221,6 +273,14 @@ public class AdminItemController implements Initializable {
     private void CustomerExit(MouseEvent event) {
         Customertext.setUnderline(false);
     }
+    @FXML
+    private  void addButton(){RegisPane.setVisible(true);};
+
+    @FXML
+    private void onRegisOkayButton(){RegisPaneError.setVisible(false);}
+
+    @FXML
+    private void onRegisCancelButton(){RegisPane.setVisible(false);}
 
 
 
@@ -493,7 +553,9 @@ public class AdminItemController implements Initializable {
     @FXML
     private void onUpdateButton(){
 
-        if (Itemtext.isDisable()) {
+        if(Customertext.isDisable()) {
+            updateCustomer();
+        } else if (Itemtext.isDisable()) {
             updateItem();
         }
 
@@ -505,7 +567,74 @@ public class AdminItemController implements Initializable {
     @FXML
     private void ukiButton(){ErrorPane.setVisible(false);}
 
+    private void updateCustomer(){
+        Customer cus = new Customer();
+        Rental rental1 = new Rental();
 
+        if (Etex9.getText() == null || Etex9.getText().length() < 1) {
+            ErrorMess.setText("Please enter your name");
+            ErrorPane.setVisible(true);
+            return;
+        }
+
+        if (Etex10.getText() == null || Etex10.getText().length() < 1) {
+            ErrorMess.setText("Please enter your address");
+            ErrorPane.setVisible(true);
+            return;
+        }
+        if(renTalType.getValue().equals("Game")){
+            Etex3.setVisible(false);
+            GenreBox.setVisible(false);
+        }
+
+
+
+        if (!checkNumber(Etex11.getText()) || Etex11.getText() == null ||Etex11.getText().length() != 10) {
+            ErrorMess.setText("Invalid Phone number! Please enter 10 digit numbers: ");
+            ErrorPane.setVisible(true);
+            return;
+        }
+
+        if (Etex12.getText() == null || Etex12.getText().length() < 1) {
+            ErrorMess.setText("Please enter User Name");
+            return;
+        } else if (ManageCustomer.isExist(Etex12.getText())) {
+            ErrorMess.setText("This User Name is already exist, please enter a new one");
+            ErrorPane.setVisible(true);
+            return;
+        }
+
+        if (Etex13.getText() == null || Etex13.getText().length() < 8) {
+            ErrorMess.setText("Wrong format!! Password must have 8 or more characters. Please enter Password");
+            ErrorPane.setVisible(true);
+            return;
+        }
+        ManageCustomer.readFile();
+        cus.setId(Etex8.getText());
+        cus.setName(Etex9.getText());
+        cus.setAddress(Etex10.getText());
+        cus.setPhone(Etex11.getText());
+        cus.setUsername(Etex12.getText());
+        cus.setPassword(Etex13.getText());
+        //
+        //RENTAL HERE
+        //
+        //
+
+
+        ManageCustomer.customersList.set(choseIndex,cus);
+        ManageCustomer.saveFile();
+
+
+        Etex9.setText("");
+        Etex10.setText("");
+        Etex11.setText("");
+        Etex12.setText("");
+        Etex13.setText("");
+
+        editPane.setVisible(false);
+
+    }
 
     private void updateItem(){
         Item item = new Item();
@@ -528,7 +657,7 @@ public class AdminItemController implements Initializable {
         }
 
 
-        if (!ManageCustomer.checkNumber(Etex13.getText())||Etex13.getText() == null) {
+        if (!checkNumber(Etex13.getText())||Etex13.getText() == null) {
             ErrorMess.setText("Please insert quantity of the Item");
             System.out.println(Etex12.getText());
             ErrorPane.setVisible(true);
@@ -559,9 +688,94 @@ public class AdminItemController implements Initializable {
 
     }
 
+    @FXML
+    private void onRegisItemButton(){
+        //set default value
+        getGenreBox.setValue("Horror");
+        getLoanTypeBox.setValue("1-week loan");
+        renTalType.setValue("Record");
+        String tmp = getID.getText();
+        if (!checkNumber(tmp)||tmp == null || tmp.length() < 3) {
+            RegisMessError.setText("ID has 3 unique number, please enter again");
+            RegisPaneError.setVisible(true);
+            return;
+        }
+        Iid = tmp;
+
+        tmp = getYearID.getText();
+        if(!checkNumber(tmp) || tmp == null ){
+            RegisMessError.setText("Please enter Year of Item");
+            RegisPaneError.setVisible(true);
+            return;
+        }
+        IidYear = tmp;
+
+        tmp = getTitle.getText();
+        if(tmp == null|| tmp.length() < 1){
+            RegisMessError.setText("Please enter Item Title");
+            RegisPaneError.setVisible(true);
+            return;
+        }
+        Ititle = tmp;
+
+        if((ManageItem.isExist((Iid + "-" + IidYear)))){
+            RegisMessError.setText("The ID is already exist, try another one");
+            RegisPaneError.setVisible(true);
+            return;
+        }
+
+        getGenreBox.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> Igenre = newValue);
+        System.out.println(Igenre);
+        getRentalTypeBox.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> IrentalType = newValue);
+        System.out.println(IrentalType);
+        getLoanTypeBox.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> IloanType = newValue);
+        System.out.println(IloanType);
+
+        tmp = getQuantity.getText();
+        if(!checkNumber(tmp) || tmp == null){
+            RegisMessError.setText("Please enter Item Qantity");
+            RegisPaneError.setVisible(true);
+            return;
+        }
+        Istock = tmp;
+
+        tmp = getRentalFee.getText();
+        if(!checkNumberDouble(tmp)|| tmp== null){
+            RegisMessError.setText("Please enter Item Price");
+            RegisPaneError.setVisible(true);
+            return;
+        }
+        IrentalFee = tmp;
+        createItem();
+
+        RegisPane.setVisible(false);
 
 
-    private boolean checkNumberDouble(String str){
+
+    }
+
+    private void createItem(){
+        Item newItem = new Item();
+        newItem.setId("I"+Iid + "-" + IidYear);
+        newItem.setTitle(Ititle);
+        newItem.setGenre(Igenre);
+        newItem.setRentalType(IrentalType);
+        newItem.setLoanType(IloanType);
+        newItem.setStock(Integer.parseInt(Istock));
+        newItem.setRentalFee(Double.parseDouble(IrentalFee));
+        ManageItem.items.add(newItem);
+        ManageItem.saveFile();
+
+    }
+
+    private boolean checkNumber(String str){
+        try{
+            int input = Integer.parseInt(str);
+            return true;
+        }catch (NumberFormatException e ){
+            return false;
+        }
+    }private boolean checkNumberDouble(String str){
         try{
             double input = Double.parseDouble(str);
             return true;
@@ -577,12 +791,22 @@ public class AdminItemController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.customers = ManageCustomer.customersList;
 
+        getGenreBox.getItems().addAll(Genreword);
+        getGenreBox.setValue("Action");
+        getLoanTypeBox.getItems().addAll(LoanTypeword);
+        getLoanTypeBox.setValue("2-days loan");
+        getRentalTypeBox.getItems().addAll(rentalType);
+        getRentalTypeBox.setValue("DVD");
+
         GenreBox.getItems().addAll(Genreword);
         GenreBox.setValue("Action");
         loanTypeBox.getItems().addAll(LoanTypeword);
         loanTypeBox.setValue("2-days loan");
         renTalType.getItems().addAll(rentalType);
         renTalType.setValue("DVD");
+
+
+
 
 
 
