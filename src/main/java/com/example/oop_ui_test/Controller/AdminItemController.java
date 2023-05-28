@@ -244,7 +244,7 @@ public class AdminItemController extends Controller implements Initializable {
     @FXML
     private ChoiceBox<String> loanTypeBox;
 
-    private final String[] LoanTypeword = {"1-week loan", "2-days loan"};
+    private final String[] LoanTypeword = {"1-week loan", "2-day loan"};
 
     @FXML
     private ChoiceBox<String> renTalType;
@@ -753,7 +753,7 @@ public class AdminItemController extends Controller implements Initializable {
         GenreBox.getItems().addAll(Genreword);
         GenreBox.setValue("Action");
         loanTypeBox.getItems().addAll(LoanTypeword);
-        loanTypeBox.setValue("2-days loan");
+        loanTypeBox.setValue("2-day loan");
         renTalType.getItems().addAll(rentalType);
         renTalType.setValue("DVD");
 
