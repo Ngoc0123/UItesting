@@ -27,7 +27,7 @@
       </ImageView>
       <BorderPane prefHeight="600.0" prefWidth="800.0">
          <top>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Online Renting" textAlignment="CENTER" wrappingWidth="324.33673095703125" BorderPane.alignment="CENTER">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Genies's Online Video Store" textAlignment="CENTER" wrappingWidth="410.7366943359375" BorderPane.alignment="CENTER">
                <font>
                   <Font size="32.0" />
                </font>
@@ -86,7 +86,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="17.0" prefWidth="800.0">
                      <children>
-                        <Text fx:id="errorText" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="errorText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" />
                      </children>
                   </HBox>
                   <HBox prefHeight="44.0" prefWidth="800.0">
