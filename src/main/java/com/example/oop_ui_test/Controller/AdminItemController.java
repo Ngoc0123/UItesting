@@ -234,6 +234,9 @@ public class AdminItemController extends Controller implements Initializable {
     private RadioButton sortOutOfStock;
 
     @FXML
+    private Text logOutText;
+
+    @FXML
     private ChoiceBox<String> GenreBox;
     private final String[] Genreword = {"Action", "Horror", "Drama", "Comedy"};
 
@@ -295,6 +298,29 @@ public class AdminItemController extends Controller implements Initializable {
 
     @FXML
     private void onRegisCancelButton(){RegisPane.setVisible(false);}
+
+    @FXML
+    void logOutEnter(MouseEvent event) {
+        logOutText.setUnderline(true);
+    }
+
+    @FXML
+    void logOutExit(MouseEvent event) {
+        logOutText.setUnderline(false);
+    }
+
+
+    @FXML
+    void onLogOutAction(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(Main.class.getResource("LoginView.fxml"));
+        root = loader.load();
+
+        stage = (Stage)(((Node)event.getSource()).getScene().getWindow());
+        scene = new Scene(root);
+
+        stage.setScene(scene);
+        stage.show();
+    }
 
 
     @FXML
@@ -487,22 +513,24 @@ public class AdminItemController extends Controller implements Initializable {
             for(Item item : ManageItem.items) {
                 if(chosenID2.matches(item.getId())){
                     Etex8.setText(item.getId());
+                    choseIndex = ManageItem.items.indexOf(item);
                 }
             }
+
             System.out.println(Etex8.getText());
 
             for (Item item : ManageItem.items) {
                 if (chosenID2.matches(item.getId())) {
-                    Etex8.setPromptText(item.getId());
-                    Etex9.setPromptText(item.getTitle());
+                    Etex8.setText(item.getId());
+                    Etex9.setText(item.getTitle());
                     GenreBox.setValue(item.getGenre());
                     renTalType.setValue(item.getRentalType());
                     loanTypeBox.setValue(item.getLoanType());
                     Etex10.setVisible(false);
                     Etex11.setVisible(false);
                     Etex12.setVisible(false);
-                    Etex13.setPromptText("" + item.getStock());
-                    Etex14.setPromptText(""+item.getRentalFee());
+                    Etex13.setText("" + item.getStock());
+                    Etex14.setText(""+item.getRentalFee());
                     Etex15.setVisible(false);
 
                 }
@@ -523,7 +551,7 @@ public class AdminItemController extends Controller implements Initializable {
     private void ukiButton(){ErrorPane.setVisible(false);}
 
     private void updateItem(){
-        Item item = new Item();
+        Item item = ManageItem.items.get(choseIndex);
         GenreBox.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> chosenGenreBox = newValue);
 
         loanTypeBox.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> chosenLoanBox = newValue);

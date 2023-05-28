@@ -23,7 +23,7 @@ public class Main extends Application {
         Image image = new Image(path.toString()+ "\\src\\main\\resources\\com\\example\\oop_ui_test\\img\\StoreIcon.png");
         Scene scene = new Scene(fxmlLoader.load(), 800, 600);
         stage.getIcons().add(image);
-        stage.setTitle("Hello!");
+        stage.setTitle("Genie's Store");
         stage.setScene(scene);
         stage.show();
 
