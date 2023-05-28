@@ -23,7 +23,7 @@ import java.nio.file.Path;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class ItemController implements Initializable {
+public class ItemController extends Controller implements Initializable {
     @FXML
     private Label nameLabel;
 

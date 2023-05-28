@@ -10,8 +10,15 @@ import java.nio.file.Path;
 import java.util.*;
 
 public class ManageItem {
-
+    private static ManageItem manageItemObj;
     public static ArrayList<Item> items = new ArrayList<Item>();
+    public static ManageItem getInstance(){
+        if(manageItemObj == null){
+            manageItemObj = new ManageItem();
+        }
+        return manageItemObj;
+    }
+
 
     public static void readFile(){
         Path path = FileSystems.getDefault().getPath(new String()).toAbsolutePath();

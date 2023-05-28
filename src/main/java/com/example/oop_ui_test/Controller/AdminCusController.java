@@ -25,7 +25,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class AdminCusController implements Initializable {
+public class AdminCusController extends Controller implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;

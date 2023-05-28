@@ -12,9 +12,18 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class ManageCustomer {
+    private static ManageCustomer manageCustomerObj;
     public static ArrayList<Customer> customersList = new ArrayList<Customer>();
 
+    public static ManageCustomer getInstance(){
+        if(manageCustomerObj == null){
+            manageCustomerObj = new ManageCustomer();
+        }
+        return manageCustomerObj;
+    }
 
+
+    //Function to read customersList from customer.txt
     public  static void readFile(){
         Path path = FileSystems.getDefault().getPath(new String()).toAbsolutePath();
         Scanner fileScanner = null;
@@ -56,6 +65,7 @@ public class ManageCustomer {
 
     }
 
+    //Function to save customersList to customer.txt
     public  static void saveFile(){
         Path path = FileSystems.getDefault().getPath(new String()).toAbsolutePath();
         sort(SORT_BY_ID);
@@ -81,6 +91,7 @@ public class ManageCustomer {
 
     }
 
+    //Function to auto update level of customer if meet requirement
     public static void updateLevel(int i){
         int tmp = customersList.get(i).getReturned();
 
@@ -93,6 +104,7 @@ public class ManageCustomer {
         }
     }
 
+    //find index of a customer using id
     public static int find(String id){
         for(Customer cus: customersList){
             if(cus.getId().matches(id)){
@@ -101,6 +113,7 @@ public class ManageCustomer {
         }
         return -1;
     }
+
     public static String generateID(){
         String ID = "";
         if(customersList.size() < 9) {
@@ -125,6 +138,7 @@ public class ManageCustomer {
 
     public static boolean SORT_BY_NAME = true;
     public static boolean SORT_BY_ID = false;
+
     public static void sort(boolean type){
         if(type)
             customersList.sort(new Comparator<Customer>() {

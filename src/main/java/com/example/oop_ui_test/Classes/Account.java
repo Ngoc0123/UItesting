@@ -1,6 +1,6 @@
 package com.example.oop_ui_test.Classes;
 
-public class Account {
+public abstract class Account {
     private String username;
     private String password;
 
