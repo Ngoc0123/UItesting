@@ -8,7 +8,6 @@ public class Item {
     private int stock;
     private double rentalFee;
     private String genre = null;
-    private boolean availability;
     private String imgSrc;
 
     public Item(){}
@@ -21,7 +20,6 @@ public class Item {
         this.stock = stock;
         this.rentalFee = rentalFee;
         this.genre = genre;
-        this.availability = true;
     }
     public String getId(){
         return id;
@@ -85,16 +83,6 @@ public class Item {
 
     public String getImgSrc() {
         return imgSrc;
-    }
-
-    public void setAvailability(boolean availability) {
-        this.availability = availability;
-    }
-
-    public void printItemInfo(){
-        System.out.println( "Title: "+this.title+"\n"+
-                            "ID: "+this.id+"\n"+
-                            "Stock: "+this.stock+"\n");
     }
 
 

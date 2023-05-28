@@ -1,9 +1,10 @@
 package com.example.oop_ui_test.Classes;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import javafx.scene.image.Image;
+
+import java.io.*;
+import java.lang.reflect.InvocationTargetException;
+import java.net.MalformedURLException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -24,7 +25,6 @@ public class ManageItem {
             throw new RuntimeException(e);
         }
 
-        int cnt = 1;
         while(fileScanner.hasNextLine()){
             Item item = new Item();
 
@@ -37,8 +37,7 @@ public class ManageItem {
             item.setLoanType(inReader.nextToken());
             item.setStock(Integer.parseInt(inReader.nextToken()));
             item.setRentalFee(Double.parseDouble(inReader.nextToken()));
-            item.setImgSrc(path.toString()+"\\src\\main\\resources\\com\\example\\oop_ui_test\\img\\"+cnt+".png");
-            cnt++;
+            item.setImgSrc("file:///"+path+"\\src\\main\\resources\\com\\example\\oop_ui_test\\img\\"+item.getRentalType()+".png");
 
             try{String tmp = inReader.nextToken();
                 item.setGenre(tmp);

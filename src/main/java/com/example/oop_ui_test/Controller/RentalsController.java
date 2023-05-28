@@ -162,8 +162,17 @@ public class RentalsController implements Initializable {
                 System.out.println(chosenRentalIndex);
                 setChosenRental(chosenRentalIndex);
                 errorText.setText("");
+
+                int cut = 0;
+                if(chosenRentalIndex >= 9){
+                    cut = 3;
+                }else{
+                    cut = 2;
+                }
+
                 try {
-                    chosenItemIndex = ManageItem.find(myListView.getSelectionModel().getSelectedItem().substring(2, 11));
+
+                    chosenItemIndex = ManageItem.find(myListView.getSelectionModel().getSelectedItem().substring(cut));
                 }catch (NullPointerException e){
 
                 }
@@ -173,8 +182,14 @@ public class RentalsController implements Initializable {
     }
 
     private void setChosenRental(int index){
+        int cut = 0;
+        if(chosenRentalIndex >= 9){
+            cut = 3;
+        }else{
+            cut = 2;
+        }
         try {
-            chosenItemIndex = ManageItem.find(myListView.getSelectionModel().getSelectedItem().substring(2));
+            chosenItemIndex = ManageItem.find(myListView.getSelectionModel().getSelectedItem().substring(cut));
         }catch (NullPointerException e){
 
         }

@@ -130,7 +130,7 @@ public class ManageCustomer {
             customersList.sort(new Comparator<Customer>() {
                 @Override
                 public int compare(Customer a, Customer b) {
-                    return a.getName().compareTo(b.getName());
+                    return a.getName().toLowerCase().compareTo(b.getName().toLowerCase());
                 }
             });
         else

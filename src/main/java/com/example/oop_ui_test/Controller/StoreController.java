@@ -37,6 +37,7 @@ import java.util.*;
 
 public class StoreController implements Initializable {
 
+
     private Stage stage;
     private Scene scene;
     private Parent root;
