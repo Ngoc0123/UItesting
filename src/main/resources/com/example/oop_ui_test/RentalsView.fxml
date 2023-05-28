@@ -16,11 +16,16 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.oop_ui_test.Controller.RentalsController">
    <children>
+      <ImageView fitHeight="600.0" fitWidth="827.0" pickOnBounds="true">
+         <image>
+            <Image url="@img/loginBG.png" />
+         </image>
+      </ImageView>
       <BorderPane layoutX="38.0" layoutY="35.0" prefHeight="635.0" prefWidth="866.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Online Renting Video" textAlignment="CENTER" BorderPane.alignment="CENTER">
+            <Text fill="#5a4fe0" strokeType="OUTSIDE" strokeWidth="0.0" text="Genie's Online Video Store" textAlignment="CENTER" BorderPane.alignment="CENTER">
                <font>
-                  <Font size="40.0" />
+                  <Font name="Berlin Sans FB Demi Bold" size="40.0" />
                </font>
                <BorderPane.margin>
                   <Insets bottom="10.0" top="10.0" />
@@ -32,7 +37,7 @@
                <children>
                   <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="588.0" spacing="10.0">
                      <children>
-                        <AnchorPane prefHeight="22.0" prefWidth="198.0">
+                        <AnchorPane prefHeight="50.0" prefWidth="91.0">
                            <children>
                               <Text fx:id="itemsText" layoutX="50.0" layoutY="30.0" onMouseEntered="#enterItems" onMouseExited="#exitItems" onMousePressed="#switchtoItems" strokeType="OUTSIDE" strokeWidth="0.0" text="Items" textAlignment="CENTER" wrappingWidth="95.73670196533203">
                                  <font>
@@ -50,7 +55,7 @@
                               </Text>
                            </children>
                         </AnchorPane>
-                        <AnchorPane prefHeight="50.0" prefWidth="222.0" />
+                        <AnchorPane prefHeight="50.0" prefWidth="313.0" />
                         <Label fx:id="myAccountLabel" onMouseEntered="#enterProfile" onMouseExited="#exitProfile" onMousePressed="#switchtoProfile" prefHeight="18.0" prefWidth="72.0" text="My Account" />
                         <ImageView fitHeight="50.0" fitWidth="50.0" onMouseEntered="#enterProfile" onMouseExited="#exitProfile" onMousePressed="#switchtoProfile" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -71,12 +76,12 @@
                      <children>
                         <AnchorPane prefHeight="21.0" prefWidth="200.0">
                            <children>
-                              <Text fx:id="numRenText" layoutX="7.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of rental: " wrappingWidth="190.93671035766602" />
+                              <Text fx:id="numRenText" fill="#b27606" layoutX="7.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of rental: " wrappingWidth="190.93671035766602" />
                            </children>
                         </AnchorPane>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Text fx:id="returnedText" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Returned: " />
+                              <Text fx:id="returnedText" fill="#b27606" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Returned: " />
                            </children>
                         </AnchorPane>
                      </children></HBox>
@@ -113,18 +118,18 @@
                                           </HBox>
                                           <HBox prefHeight="100.0" prefWidth="200.0">
                                              <children>
-                                                <Text fx:id="chosenLoanType" strokeType="OUTSIDE" strokeWidth="0.0" text="Rental type:" wrappingWidth="207.7367286682129">
+                                                <Text fx:id="chosenLoanType" fill="#bf9220" strokeType="OUTSIDE" strokeWidth="0.0" text="Rental type:" wrappingWidth="207.7367286682129">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
                                                 </Text>
                                                 <Pane prefHeight="20.0" prefWidth="118.0" />
-                                                <Text fx:id="chosenStatus" strokeType="OUTSIDE" strokeWidth="0.0" text="Status: " wrappingWidth="163.9848403930664" />
+                                                <Text fx:id="chosenStatus" fill="#bf9220" strokeType="OUTSIDE" strokeWidth="0.0" text="Status: " wrappingWidth="163.9848403930664" />
                                              </children>
                                           </HBox>
                                           <HBox prefHeight="100.0" prefWidth="200.0">
                                              <children>
-                                                <Text fx:id="chosenPrice" strokeType="OUTSIDE" strokeWidth="0.0" text="Price:" wrappingWidth="194.13681411743164">
+                                                <Text fx:id="chosenPrice" fill="#bf9220" strokeType="OUTSIDE" strokeWidth="0.0" text="Price:" wrappingWidth="194.13681411743164">
                                                    <font>
                                                       <Font size="14.0" />
                                                    </font>
@@ -133,7 +138,7 @@
                                           </HBox>
                                        </children>
                                     </VBox>
-                                    <Text fx:id="errorText" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="320.800030708313" />
+                                    <Text fx:id="errorText" fill="#fc0909" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="320.800030708313" />
                                     <Button fx:id="returnButton" mnemonicParsing="false" onAction="#onReturnAction" text="Return" />
                                  </children>
                                  <VBox.margin>
