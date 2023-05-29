@@ -249,7 +249,7 @@ public class AdminItemController extends Controller implements Initializable {
     @FXML
     private ChoiceBox<String> renTalType;
 
-    private final String[] rentalType ={"Old Record", "DVD", "Game"};
+    private final String[] rentalType ={"Record", "DVD", "Game"};
 
     private String chosenID;
     private String chosenID2;
