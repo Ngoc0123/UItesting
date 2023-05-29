@@ -375,7 +375,7 @@ public class AdminItemController extends Controller implements Initializable {
         int matches = 0;
         ArrayList<String> lists = new ArrayList<String>();
         for(int i = 1; i<= ManageItem.items.size();i++){
-            if(ManageItem.items.get(i-1).getTitle().toLowerCase().matches(".*"+input.toLowerCase()+".*")||ManageItem.items.get(i-1).getId().toLowerCase().matches(".*"+input)){
+            if(ManageItem.items.get(i-1).getTitle().toLowerCase().matches(".*"+input.toLowerCase()+".*")||ManageItem.items.get(i-1).getId().toLowerCase().matches(".*"+input+".*")){
                 matches++;
                 searchErrorText.setText("");
                 lists.add(ManageItem.items.get(i-1).getId());

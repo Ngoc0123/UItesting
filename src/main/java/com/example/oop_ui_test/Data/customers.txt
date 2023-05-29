@@ -1,7 +1,8 @@
-C001,Minh Dinh,18 Irwin Street,0421473243,VIP,minhdinh,123456,0
+C001,Minh Dinh,18 Irwin Street,0421473243,VIP,minhdinh,123456,10
 I001-2001,On-going
 I002-1988,On-going
 I005-2015,On-going
+I007-2023,On-going
 C002,Hong Wang,20 Irwin Street,0424173255,Guest,wanghong98,987654,0
 C003,Linh Nguyen,12 Brunswick Street,0424173255,Guest,linhtb,linhlinh,0
 I001-2001,Returned
